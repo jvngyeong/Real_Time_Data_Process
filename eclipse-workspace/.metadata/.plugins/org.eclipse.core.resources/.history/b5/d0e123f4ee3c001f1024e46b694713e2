@@ -1,0 +1,16 @@
+package Day1_1;
+
+public class Hello
+{
+	public static void main(String[] args) {
+		// -128 ~ 127
+		byte LJK = 8;	// byte 변수 LJK 선언, 초기화
+		//byte 20;		// 변수명은 숫자일 수 없다.
+		String JK = "이준경";	// String 변수 JK 선언, 초기화
+
+		System.out.println("이숭무");
+		System.out.println(LJK);
+		System.out.println(JK);
+	}
+
+}

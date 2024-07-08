@@ -1,0 +1,15 @@
+package Day1_1;
+
+public class Hello
+{
+	public static void main(String[] args) {
+		System.out.println("이숭무");
+		// -128 ~ 127
+		byte LJK;	// byte 변수 LJK 선언
+		LJK = 8;
+		String JK;
+		JK = "이준경";
+		System.out.println(LJK);
+	}
+
+}

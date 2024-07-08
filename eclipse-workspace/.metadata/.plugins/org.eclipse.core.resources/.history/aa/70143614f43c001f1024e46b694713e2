@@ -1,0 +1,20 @@
+package Day1_1;
+
+public class TypeTest {
+
+	public static void main(String[] args) {
+		byte b = -125;
+		System.out.println(b);
+		b = 127;
+		System.out.println(b);
+		
+		short sh = -32768;
+		System.out.println(sh);
+		sh = 32767;
+		System.out.println(sh);
+		
+		int i = -2147483648;
+		System.out.println(i);
+		i = 2147483647;
+	}
+}

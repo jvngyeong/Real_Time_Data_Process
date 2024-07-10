@@ -132,11 +132,12 @@ public class HomeWork_2024_07_10 {
 		*/
 		System.out.println("\n----- 10번 문제 답 ----- ");
 		System.out.println("<table border='1'>");
-		for(int i = 0; i<= 4; i++) {
+		for(int i = 1; i<= 4; i++) {
 			System.out.print("<tr>");
 			for(int j = 1; j<= 4; j++) {
 				System.out.print("<td> " + j + " </td>");
 			}
+			System.out.print("</tr>");
 			System.out.print("\n");
 		}
 		System.out.println("</table>");

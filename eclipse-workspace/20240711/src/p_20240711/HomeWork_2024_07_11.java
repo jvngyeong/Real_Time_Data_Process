@@ -127,6 +127,33 @@ public class HomeWork_2024_07_11 {
 			idx++;
 			System.out.println();
 		}
-	}
+		//9. 주어진 배열에서 최대값을 구하시오.
+		System.out.println("--- 9번 문제 정답 ---");
+		int max = 0;
+		int [] array_9 = {1,5,3,8,2};
+		for(int z : array_9) {
+			if(z > max) {
+				max = z;
+			}
+		}
+		System.out.println("max : " + max);
 
+
+		//10. 주어진 배열에 있는 요소들의 합과 평균을 구하시오.
+		System.out.println("--- 10번 문제 정답 ---");
+		int [][] array_10 = {{95,86},{83,92,96},{78,83,93,87,88}};
+		int sum = 0;
+		int arrayNum = 0;
+		double avg = 0.0;
+		
+		for(int rowIdx = 0; rowIdx < array_10.length; rowIdx++) {
+			for(int colIdx = 0; colIdx < array_10[rowIdx].length; colIdx++) {
+				sum += array_10[rowIdx][colIdx];
+				arrayNum++;
+			}
+		}
+		System.out.println("sum : " + sum);
+		avg = (double)sum / arrayNum;
+		System.out.println("avg : " + avg);
+	}
 }

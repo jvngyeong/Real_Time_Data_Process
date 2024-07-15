@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="p_20240715.Ex04_Board"/>
+    <fullyQualifiedTypeName name="p_20240715.Ex05_Board"/>
+    <fullyQualifiedTypeName name="p_20240715.Ex07_Board"/>
+    <fullyQualifiedTypeName name="p_20240715.Ex08_Board"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="p_20240715.Ex09_Member"/>
+    <fullyQualifiedTypeName name="p_20240715.Ex10_QnA"/>
 </qualifiedTypeNameHistroy>

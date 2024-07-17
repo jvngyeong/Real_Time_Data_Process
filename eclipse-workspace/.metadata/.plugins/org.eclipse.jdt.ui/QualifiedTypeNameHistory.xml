@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="p_20240715.Ex04_Board"/>
     <fullyQualifiedTypeName name="p_20240715.Ex05_Board"/>
     <fullyQualifiedTypeName name="p_20240715.Ex07_Board"/>
@@ -18,4 +17,13 @@
     <fullyQualifiedTypeName name="p_20240716.Ex11_Student"/>
     <fullyQualifiedTypeName name="p_20240716.Ex12_Student"/>
     <fullyQualifiedTypeName name="p_20240716.Ex13_Account"/>
+    <fullyQualifiedTypeName name="p_20240717.Ex03_FourCalculator"/>
+    <fullyQualifiedTypeName name="p_20240717.Ex04"/>
+    <fullyQualifiedTypeName name="p_20240717.Ex04_Calculator"/>
+    <fullyQualifiedTypeName name="p_20240717.Ex04_FourCalculator"/>
+    <fullyQualifiedTypeName name="p_20240717.Ex05_Calculator"/>
+    <fullyQualifiedTypeName name="p_20240717.Ex05_FourCalculator"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="p_20240717.HomeWork_No1"/>
+    <fullyQualifiedTypeName name="p_20240717.HomeWork_No4"/>
 </qualifiedTypeNameHistroy>

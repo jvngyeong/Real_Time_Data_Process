@@ -6,6 +6,7 @@
 	<item key="TypeHierarchyViewPart.qualifiednames" value="false"/>
 	<item key="TypeHierarchyViewPart.linkeditors" value="false"/>
 	<item key="TypeHierarchyViewPart.orientation" value="3"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\jun gyeong\eclipse\jee-2024-06\eclipse"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="2"/>
@@ -23,10 +24,10 @@
 	<section name="JavaElementSearchActions">
 	</section>
 	<section name="NewClassCreationWizard.dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1083"/>
-		<item key="DIALOG_Y_ORIGIN" value="199"/>
+		<item key="DIALOG_X_ORIGIN" value="713"/>
+		<item key="DIALOG_Y_ORIGIN" value="109"/>
 		<item key="DIALOG_WIDTH" value="696"/>
-		<item key="DIALOG_HEIGHT" value="783"/>
+		<item key="DIALOG_HEIGHT" value="848"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
 	</section>
 	<section name="NewInterfaceCreationWizard.dialogBounds">
@@ -44,6 +45,8 @@
 		<item key="create_unimplemented" value="true"/>
 	</section>
 	<section name="completion_proposal_size">
+		<item key="size.x" value="538"/>
+		<item key="size.y" value="318"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
@@ -65,7 +68,7 @@
 		<item key="org.eclipse.jdt.internal.ui.text.JavaOutlineInformationControlDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item key="pageIndex" value="3"/>
+		<item key="pageIndex" value="2"/>
 	</section>
 	<section name="RefactoringWizard.preview">
 		<item key="width" value="600"/>
@@ -116,7 +119,7 @@
 		<item key="Comments" value="false"/>
 	</section>
 	<section name="GenerateConstructorUsingFieldsSelectionDialog">
-		<item key="OmitCallToSuper" value="false"/>
+		<item key="OmitCallToSuper" value="true"/>
 	</section>
 	<section name="DialogBounds_GenerateConstructorUsingFieldsSelectionDialog">
 		<item key="DIALOG_X_ORIGIN" value="635"/>
@@ -124,5 +127,8 @@
 		<item key="DIALOG_WIDTH" value="668"/>
 		<item key="DIALOG_HEIGHT" value="869"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
+	</section>
+	<section name="ClasspathContainerSelectionPage">
+		<item key="index" value="0"/>
 	</section>
 </section>

@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="p_20240715.Ex04_Board"/>
-    <fullyQualifiedTypeName name="p_20240715.Ex05_Board"/>
-    <fullyQualifiedTypeName name="p_20240715.Ex07_Board"/>
-    <fullyQualifiedTypeName name="p_20240715.Ex08_Board"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="p_20240715.Ex09_Member"/>
-    <fullyQualifiedTypeName name="p_20240715.Ex10_QnA"/>
-    <fullyQualifiedTypeName name="p_20240716.Ex02_Calculator"/>
     <fullyQualifiedTypeName name="p_20240716.Ex03_Calculator"/>
     <fullyQualifiedTypeName name="p_20240716.Ex04_Employee"/>
     <fullyQualifiedTypeName name="p_20240716.Ex06_Employee"/>
@@ -52,4 +44,20 @@
     <fullyQualifiedTypeName name="p_20240718_abstract.Tiger"/>
     <fullyQualifiedTypeName name="p_20240718_abstract.Calculator"/>
     <fullyQualifiedTypeName name="double"/>
+    <fullyQualifiedTypeName name="p_20240719.Test"/>
+    <fullyQualifiedTypeName name="p_20240719.Calculator"/>
+    <fullyQualifiedTypeName name="p_20240719_inheritance.CalculatorImp2"/>
+    <fullyQualifiedTypeName name="p_20240719_inheritance.Calculator"/>
+    <fullyQualifiedTypeName name="p_20240719.CalculatorImp"/>
+    <fullyQualifiedTypeName name="p_20240719_polymorphism.Car"/>
+    <fullyQualifiedTypeName name="p_20240719_polymorphism.KumHoTire"/>
+    <fullyQualifiedTypeName name="p_20240719_polymorphism.HanKookTire"/>
+    <fullyQualifiedTypeName name="p_20240719_approach1.MyDateChild"/>
+    <fullyQualifiedTypeName name="p_20240719_approach1.MyDateChildTest"/>
+    <fullyQualifiedTypeName name="p_20240719_approach.MyDate"/>
+    <fullyQualifiedTypeName name="java.lang.Boolean"/>
+    <fullyQualifiedTypeName name="p_20240719_wrapper.Book"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

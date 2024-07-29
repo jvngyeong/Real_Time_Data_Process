@@ -74,6 +74,8 @@ select * from hr.employees where last_day(hire_date) like '%/02/29';
 -- 31. 입사일로 부터 현재까지 몇달이 지났나요, 이름, 성, 직무, 입사일도 같이 출력
 select first_name, last_name, job_id, hire_date, trunc(months_between(sysdate, hire_date)) || '달' as "지난 개월" from hr.employees;
 -- 32 각 사원이 직무를 담당한 달은 몇달인지 출력하시오.
+select * from hr.job_history;
+select trunc(months_between(end_date, start_date)) from hr.job_history;
 select trunc(months_between(sysdate, hire_date)) || '달' from hr.employees;
 -- 33. 입사한지 200개월이 지난 사원들을 출력하시오.
 select * from hr.employees where trunc(months_between(sysdate, hire_date)) > 200;

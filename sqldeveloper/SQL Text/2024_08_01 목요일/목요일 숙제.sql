@@ -19,8 +19,8 @@ select employee_id, first_name, last_name, salary, to_char(12*salary*(1 + nvl(co
        job_title, l.location_id, state_province
        from hr.employees e join hr.jobs j
        on e.job_id = j.job_id
-       join hr.departments d on e.department_id = d.department_id
-       join hr.locations l on d.location_id = l.location_id;
+       left outer join hr.departments d on e.department_id = d.department_id
+       left outer join hr.locations l on d.location_id = l.location_id;
        
 --3.국가와 대륙의 정보를 모두 출력하시오
 --국가번호, 국가명, 지역번호, 대륙명
@@ -32,16 +32,16 @@ join hr.locations l on c.country_id = l.country_id;
 -- 4.직무가 'AC_MGR'과 'ST_CLERK'사이에있는 미국에 사는 직원들의 정보를 출력하시오
 -- 사원번호, 이름, 성, 직무, 직무내용, 부서번호, 부서명, 국가명
 select employee_id, first_name, last_name, e.job_id, job_title, d.department_id, department_name, country_name
-from hr.employees e join hr.jobs j
+from hr.employees e left outer join hr.jobs j
 on e.job_id = j.job_id
-join hr.departments d on e.department_id = d.department_id
-join hr.locations l on l.location_id = d.location_id
-join hr.countries c on c.country_id = l.country_id
+left outer join hr.departments d on e.department_id = d.department_id
+left outer join hr.locations l on l.location_id = d.location_id
+left outer join hr.countries c on c.country_id = l.country_id
 where e.job_id between 'AC_MGR' and 'ST_CLERK' and c.country_id = 'US';
 
 --5.직원정보를 출력하는데 사원번호가 128에서 188사이이면서 'R'을 직무에 포함하는 직원정보와 부서 정보를 출력하시오
 select * from
-hr.employees e join hr.departments d
+hr.employees e left outer join hr.departments d
 on e.department_id = d.department_id
 where employee_id between 128 and 188 and job_id like '%R%';
 
@@ -72,7 +72,7 @@ where department_id = 50;
 -- 직원번호, 성, 이름, 입사날짜, 부서번호, 부서명을 출력하시오.
 -- 단, 입사일을 기준으로 내림차순으로 정렬하시오.
 select employee_id, last_name, first_name, hire_date, d.department_id, department_name
-from hr.employees e join hr.departments d
+from hr.employees e left outer join hr.departments d
 on e.department_id = d.department_id
 where hire_date between '02/06/07' and '06/11/15'
 order by hire_date desc;
@@ -80,17 +80,17 @@ order by hire_date desc;
 -- 10. 직원번호, 성, 이름, 전화번호, 부서명, 지역 번호를 출력하시오
 -- 전화번호 앞자리가 515 인 직원의 정보만 출력하세요
 select employee_id, last_Name, first_name, phone_number, d.department_id, d.location_id
-from hr.employees e join hr.departments d
+from hr.employees e left outer join hr.departments d
 on e.department_id = d.department_id
 where substr(phone_number, 1, 3) = '515';
 
 -- 11. 이름에 'os'가 들어가는 직원의
 -- 직원 번호, 이름, 직무, 직무 내용, 부서 번호, 부서명을 출력하시오
 select employee_id, first_name, e.job_id, job_title, d.department_id, department_name
-from hr.employees e join hr.departments d
+from hr.employees e left outer join hr.departments d
 on e.department_id = d.department_id
 join hr.jobs j on j.job_id = e.job_id
-where first_name like '%os%';
+where lower(first_name) like '%os%';
 
 -- 12. 50부서의 직무별 급여 합계와 평균 구하시오.
 -- 직무명, 급여의 합계, 평균을 출력한다.
@@ -125,7 +125,7 @@ where r.region_id = 2;
 -- 16. 부서명이 'IT'인 부서의 직원 정보 출력
 -- 직원번호, 성, 이름, 급여, 부서명, 직무명, 직무 내용
 -- 직원 번호를 기준으로 내림차순 정렬
-select employee_id, last_name, first_name, salary, e.department_id, e.job_id, job_title
+select employee_id, last_name, first_name, salary, e.department_id, e.job_id, job_title, department_name
 from hr.employees e join hr.jobs j
 on e.job_id = j.job_id
 join hr.departments d on e.department_id = d.department_id
@@ -133,9 +133,9 @@ where department_name like '%IT%';
 
 --17. 이름에 'HA'가 들어가는 사원의 사원 번호, 이름, 부서, 부서명, 직무명, 직무 내용을 출력하시오.
 select employee_id, first_name, e.department_id, department_name, job_title
-from hr.employees e join hr.departments d
+from hr.employees e left outer join hr.departments d
 on e.department_id = d.department_id
-join hr.jobs j on e.job_id = j.job_id
+left outer join hr.jobs j on e.job_id = j.job_id
 where upper(first_name) like '%HA%';
 
 ---18. 직무가 'ACCOUNT'를 가진 각 부서의 평균이 5000이상인 부서의 
@@ -181,12 +181,12 @@ order by salary desc;
 --- 23. 최소급여의 최솟값, 최대 급여의 최댓값
 -- 가장 빠른 시작일(start_date)과 가장 늦은 만기일(end_date)을 구하시오.
 select min(min_salary), max(max_salary), min(start_date), max(end_date)
-from hr.job_history jh join hr.jobs j
+from hr.job_history jh full outer join hr.jobs j
 on jh.job_id = j.job_id;
 
 --24. 상사가 없는 사원의 부서 번호와 부서 이름, 이메일, 급여를 구하시오.
 select d.department_id, department_name, email, salary
-from hr.departments d join hr.employees e
+from hr.departments d right outer join hr.employees e
 on d.department_id = e.department_id
 where e.manager_id is null;
 
@@ -199,15 +199,15 @@ where department_id in (50, 80);
 select * from hr.employees
 where department_id is not null;
 
--- 27. countrys 테이블에서 번호,이름, regoin_    id를 출력하면서
+-- 27. countrys 테이블에서 번호,이름, regoin_id를 출력하면서
 --     regions 테이블에서 분류이름을 같이 출력하세요
 --     locations 테이블에서 국가번호와 도시를 출력하세요
 select c.country_id, country_name, c.region_id,
        region_name,
        l.country_id, city
-from hr.countries c join hr.regions r
+from hr.countries c full outer join hr.regions r
 on c.region_id = r.region_id
-join hr.locations l on l.country_id = c.country_id;
+full outer join hr.locations l on l.country_id = c.country_id;
 
 -- 28. 부서번호 부서명을 출력하면서
 --     부서번호가 100이내이면서 직원 번호가  200이상인것만 출력하세요
@@ -230,6 +230,6 @@ join hr.countries c on l.country_id = c.country_id;
 --     직무번호 중 AD_PRES 이면서
 --     이메일 길이가 5인 사원만 출력하시오
 select employee_id, last_name, email, e.job_id, job_title
-from hr.employees e join hr.jobs j
+from hr.employees e left outer join hr.jobs j
 on e.job_id = j.job_id
 where e.job_id = 'AD_PRES' and length(email) = 5;

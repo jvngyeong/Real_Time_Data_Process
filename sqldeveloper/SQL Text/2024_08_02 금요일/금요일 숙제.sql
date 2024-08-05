@@ -111,7 +111,7 @@ from hr.employees e join hr.departments d
 on e.department_id = d.department_id
 join hr.jobs j on e.job_id = j.job_id
 join hr.locations l on l.location_id = d.location_id
-where hire_date >= '2005/01/01' and min_salary >= 4000;
+where hire_date >= '2005/01/01' and (nvl(commission_pct, 0)+1) * min_salary * 12 >= 4000;
 
 -- 17 ANSI-JOIN을 사용해서 사원번호, 이름, 부서번호, 위치를 출력하는데 상사가 149인 사원들만 출력하시오.
 --      연봉, 최저연봉, 입사일, 부서명, 부서의 주소를 출력하시오

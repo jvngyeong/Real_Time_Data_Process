@@ -129,7 +129,7 @@ from hr.employees
 where job_id like '%MAN%' and salary >= 10000;
 
 -- 19. 직무가 SA_REP와 AD_PRES 이면서 급여가 15000을 초과하는  사원을 출력하시오.
--- 단, 성, 직무, 급여만 출력 or와 and만 사용\
+-- 단, 성, 직무, 급여만 출력 or와 and만 사용
 select last_name, job_id, salary
 from hr.employees 
 where job_id = 'SA_REP' or job_id = 'AD_PRES';

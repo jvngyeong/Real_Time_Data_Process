@@ -1,31 +1,37 @@
--- 문제 1) 회원 테이블을 만드시오. 각 컬럼에 제약 조건을 부여 하시오. 
--- 제약 조건은 alter문을 이용할것 , 열레벨과 테이블 레벨 둘다 실습해 보세요.
--- Table MEMBER
--- ================================
--- USER_ID     	NOT NULL 	VARCHAR2(20)  
--- USER_PW     	NOT NULL 	VARCHAR2(200) 
--- USER_NAME   	NOT NULL 	VARCHAR2(40)  
--- USER_BIRTH  	NOT NULL 	TIMESTAMP 
--- USER_GENDER 	NOT NULL 	VARCHAR2(1)   
--- USER_ADDR   	NOT NULL 	VARCHAR2(200) 
--- USER_PH1    	NOT NULL 	VARCHAR2(13)  
--- USER_PH2             			VARCHAR2(13)  
--- USER_REGIST          		TIMESTAMP  
--- USER_EMAIL           		VARCHAR2(200) 
--- JOIN_OK              			VARCHAR2(500)
+--문제 1) 회원 테이블을 만드시오. 각 컬럼에 제약 조건을 부여 하시오. 
+--제약 조건은 alter문을 이용할것 , 열레벨과 테이블 레벨 둘다 실습해 보세요.
+--Table MEMBER
+--================================
+--user_num          not null          VARCHAR2(20)  
+--USER_ID     	NOT NULL 	VARCHAR2(20)  
+--USER_PW     	NOT NULL 	VARCHAR2(200) 
+--USER_NAME   	NOT NULL 	VARCHAR2(40)  
+--USER_BIRTH  	NOT NULL 	TIMESTAMP 
+--USER_GENDER 	NOT NULL 	VARCHAR2(1)   
+--USER_ADDR   	NOT NULL 	VARCHAR2(200) 
+--USER_PH1    	NOT NULL 	VARCHAR2(13)  
+--USER_PH2             		VARCHAR2(13)  
+--USER_REGIST          		TIMESTAMP  
+--USER_EMAIL           		VARCHAR2(200) 
+--JOIN_OK              			VARCHAR2(500)
 --
--- 회원 제약조건
--- USER_ID     : primary key (MEMBER_USER_ID_PK)
--- USER_EMAIL : unique (member_USER_EMAIL_UU)
--- USER_REGIST  : 디펄트 값은 sysdate
+--회원 제약조건
+--user_num     : primary key (MEMBER_USER_ID_PK)
+--USER_EMAIL : unique (member_USER_EMAIL_UU)
+--USER_ID : unique (member_USER_ID_UU)
+--USER_REGIST  : 디펄트 값은 sysdate
+--USER_GENDER : M/F만 들어가야한다.
+--USER_PH1  : 11에서 13자리만 들어가야 한다.
+
 create table member(
-    user_id varchar2(20) not null,
-    user_pw varchar2(200) not null,
-    user_name varchar2(40) not null,
-    user_birth timestamp not null,
-    user_gender varchar2(1) not null,
-    user_addr varchar2(200) not null,
-    user_ph1 varchar2(13) not null,
+    user_num varchar2(20),
+    user_id varchar2(20),
+    user_pw varchar2(200),
+    user_name varchar2(40),
+    user_birth timestamp,
+    user_gender char(1),
+    user_addr varchar2(200),
+    user_ph1 varchar2(13),
     user_ph2 varchar2(13),
     user_regist timestamp default sysdate,
     user_email varchar2(200),
@@ -33,16 +39,31 @@ create table member(
 );
 
 alter table member
-modify(constraint member_user_id_pk primary key(user_id),
-    constraint member_user_email_uu unique(user_email)
+add(constraint MEMBER_USER_NUM_PK primary key(user_num)
 );
-desc member;
+alter table member
+add (constraint member_GENDER_CK check(user_gender in ('F', 'M')),
+    constraint member_PH1_CK check(length(user_ph1) >= 11 and length(user_ph1) <= 13));
+alter table member
+add(constraint member_USER_EMAIL_UU unique(user_email),
+    constraint member_USER_ID_UU unique(user_id));
+
+alter table member
+modify(user_num not null, 
+       user_id not null, 
+       user_pw not null, 
+       user_name not null, 
+       user_birth not null,
+       user_gender not null,
+       user_addr not null,
+       user_ph1 not null
+       );
 --문제2) 게시판 테이블을 만들고 각 컬럼에 제약조건을 부여 하시오.
 --제약 조건은 alter문을 이용할것 , 열레벨과 테이블 레벨 둘다 실습해 보세요.
 --Table BOARD
 --====================================
 --BOARD_NUM     	NOT NULL 	NUMBER         
---USER_ID       	NOT NULL 	VARCHAR2(20)   
+--USER_num       	NOT NULL 	VARCHAR2(20)   
 --BOARD_NAME    	NOT NULL 	VARCHAR2(20)    --- 글 쓴이 
 --BOARD_PASS    	NOT NULL 	VARCHAR2(200)  
 --BOARD_SUBJECT 	NOT NULL 	VARCHAR2(100)  -- 제목
@@ -54,53 +75,63 @@ desc member;
 --게시판 제약조건 
 --BOARD_NUM : primary key (BOARD_BOARD_NUM_PK)
 --READ_COUNT ; 디펄트 값은 0
---USER_ID : FOREIGN KEY (BOARD_USER_ID_FK)
+--USER_num : FOREIGN KEY (BOARD_USER_ID_FK)
+drop table board;
 create table board(
-    board_num number not null,
-    user_id varchar2(20) not null,
-    board_name varchar2(20) not null,
-    board_pass varchar2(200) not null,
-    board_subject varchar2(100) not null,
+    board_num number,
+    USER_num VARCHAR2(20), 
+    board_name varchar2(20),
+    board_pass varchar2(200),
+    board_subject varchar2(100),
     board_content varchar2(2000),
     board_date timestamp,
     ip_addr varchar2(15),
     read_count number
 );
 alter table board
-modify(constraint board_board_num_pk primary key(board_num),
-    read_count default 0,
-    constraint board_user_id_fk foreign key(user_id) references member(user_id) on delete cascade) ;
-    
--- 문제 3) 회원테이블에 아래 내용을 포함하여 5개의 데이터를 넣으시오.
-insert into member (user_id,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER,USER_ADDR ,USER_PH1,USER_PH2,USER_REGIST,USER_EMAIL)
-values('highland0','111111','이숭무','1999-12-12','1','서울','010-1234-1234',null,default,null);
-insert into member (user_id,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER,USER_ADDR ,USER_PH1,USER_PH2,USER_REGIST,USER_EMAIL)
-values('highland1','222222','이숭무2','1999-12-12','2','서울','010-1234-1234',null,default,null);
-insert into member (user_id,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER,USER_ADDR ,USER_PH1,USER_PH2,USER_REGIST,USER_EMAIL)
-values('highland2','333333','이숭무3','1999-12-12','3','서울','010-1234-1234',null,default,null);
-insert into member (user_id,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER,USER_ADDR ,USER_PH1,USER_PH2,USER_REGIST,USER_EMAIL)
-values('highland3','444444','이숭무4','1999-12-12','4','서울','010-1234-1234',null,default,null);
-insert into member (user_id,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER,USER_ADDR ,USER_PH1,USER_PH2,USER_REGIST,USER_EMAIL)
-values('highland4','555555','이숭무5','1999-12-12','5','서울','010-1234-1234',null,default,null);
-insert into member (user_id,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER,USER_ADDR ,USER_PH1,USER_PH2,USER_REGIST,USER_EMAIL)
-values('highland5','666666','이숭무6','1999-12-12','6','서울','010-1234-1234',null,default,null);
-select * from member;
+modify(
+    read_count default 0
+) ;
 
--- 문제4)게시판 테이블에 데이터를 아래 내용 포함 6개 이상을 넣는데 위 회원들은 최소 한개 이상 게시글이 등록되게 하시오.
-insert into board(BOARD_NUM,USER_ID,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
-values(1, 'highland0', '상장범 아빠1', '1111','제목', '내용', '192.168.3.117');
-insert into board(BOARD_NUM,USER_ID,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
-values(2, 'highland1', '상장범 아빠2', '2222','제목', '내용', '192.168.3.117');
-insert into board(BOARD_NUM,USER_ID,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
-values(3, 'highland2', '상장범 아빠3', '3333','제목', '내용', '192.168.3.117');
-insert into board(BOARD_NUM,USER_ID,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
-values(4, 'highland3', '상장범 아빠4', '4444','제목', '내용', '192.168.3.117');
-insert into board(BOARD_NUM,USER_ID,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
-values(5, 'highland4', '상장범 아빠5', '5555','제목', '내용', '192.168.3.117');
-insert into board(BOARD_NUM,USER_ID,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
-values(6, 'highland4', '상장범 아빠6', '6666','제목', '내용', '192.168.3.117');
-insert into board(BOARD_NUM,USER_ID,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
-values(7, 'highland5', '상장범 아빠7', '7777','asdasdasd', '내용', '192.168.3.117');
+alter table board
+add(
+    constraint board_board_num_pk primary key(board_num),
+);
+
+alter table board
+modify(constraint board_user_num_fk foreign key(user_num) references member(user_num) on delete cascade);
+alter table board
+modify(
+    board_num not null,
+    USER_num NOT NULL, 
+    board_name not null,
+    board_pass not null,
+    board_subject not null
+);
+
+--문제 3) 회원테이블에 아래 내용을 포함하여 5개의 데이터를 넣으시오.
+--회원번호는 mem_100001부터 부여된다.
+insert into member (USER_num, user_id,USER_PW,USER_NAME,USER_BIRTH,USER_GENDER,USER_ADDR ,USER_PH1,USER_PH2,USER_REGIST,USER_EMAIL)
+values((select concat('mem_', nvl(max(substr(user_num, instr(user_num, '_') + 1)), 100000) + 1) from member), 'highland8','111111','이숭무','1999-12-12','F','서울','010-1234-1234',null,default,null);
+
+--문제4)게시판 테이블에 데이터를 아래 내용 포함 6개 이상을 넣는데 위 회원들은 최소 한개 이상 게시글이 등록되게 하시오.
+--BOARD_NUM은 입력하지 않고 자동부여가 되게 작성하시오. 
+select nvl(max(board_num), 0) + 1 from board;
+insert into board(BOARD_NUM,USER_num,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
+values((select nvl(max(board_num), 0) + 1 from board), 'mem_100001', '상장범 아빠', '1111','제목', '내용', '192.168.3.117');
+
+insert into board(BOARD_NUM,USER_num,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
+values((select nvl(max(board_num), 0) + 1 from board), 'mem_100002', '상장범 아빠', '1111','제목', '내용', '192.168.3.117');
+
+insert into board(BOARD_NUM,USER_num,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
+values((select nvl(max(board_num), 0) + 1 from board), 'mem_100003', '상장범 아빠', '1111','제목', '내용', '192.168.3.117');
+
+insert into board(BOARD_NUM,USER_num,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
+values((select nvl(max(board_num), 0) + 1 from board), 'mem_100004', '상장범 아빠', '1111','제목', '내용', '192.168.3.117');
+
+insert into board(BOARD_NUM,USER_num,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,BOARD_CONTENT,IP_ADDR)
+values((select nvl(max(board_num), 0) + 1 from board), 'mem_100005', '상장범 아빠', '1111','제목', '내용', '192.168.3.117');
+
 desc board;
 
 --문제5) highland0회원의 회원아이디, 회원명, 이메일, 게시글 번호, 게시글 제목, READ_COUNT를 출력하시오.

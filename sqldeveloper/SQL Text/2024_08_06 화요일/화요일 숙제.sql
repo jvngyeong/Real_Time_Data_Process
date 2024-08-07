@@ -95,11 +95,14 @@ modify(
 
 alter table board
 add(
-    constraint board_board_num_pk primary key(board_num),
+    constraint board_board_num_pk primary key(board_num)
 );
 
 alter table board
-modify(constraint board_user_num_fk foreign key(user_num) references member(user_num) on delete cascade);
+modify(constraint board_user_num_fk foreign key(user_num) references member(user_num) on delete set null);
+
+drop 
+
 alter table board
 modify(
     board_num not null,

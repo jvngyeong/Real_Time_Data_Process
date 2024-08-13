@@ -191,7 +191,7 @@ select rpad(substr(user_id, 1, 3), length(user_id), '*') from member
 where user_name = '이숭무' and user_email = 'highland0@nate.com' and user_ph1 = '02-9876-1234';
 
 --문제 16) 게시판 테이블에서 게시글을 많이 쓴 게시글의 user_id를 게시글 갯수와 같이 출력하시오.
-select user_id, count(user_id)
+select rownum, user_id, count(user_id)
 from board
 group by user_id
 having count(user_id) = (select max(count(user_id)) from board group by user_id);

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    텍스트 전송<br/>
+    <form action ='#' method = 'get'>
+        <input type = "text" name = "store_name"/><br/>
+        <input type = "number" min = 1 value = 1/><br/>
+        <input type = "submit" value="텍스트 제출"/><br/>
+    </form>
+
+    이미지 전송<br/>
+    <form action = "#" method = 'get'>
+        <input type = "text" name = "file_name" /> <br/>
+        <input type = "file" name = "upload_file" /> <br/>
+        <input type = "submit" value = "파일 제출"/>
+    </form>
+
+    여러 개의 이미지 전송<br/>
+    <form action = "#" method = 'get' enctype="multipart/form-data">
+        <input type = "text" name = "file_name" /> <br/>
+        <input type = "file" name = "upload_file" multiple/> <br/>
+        <input type = "submit" value = "파일 제출"/>
+    </form>
+</body>
+</html>

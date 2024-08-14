@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    제품 등록
+    <form action ="#" method ='get' enctype="multipart/form-data">
+        <table border=1>
+            <tr>
+                <th>* 제품번호</th>
+                <td>
+                    <input type="text" name="product_num" style="width:96%" />
+                </td>
+            </tr>
+            <tr>
+                <th>* 제품명</th>
+                <td>
+                    <input type="text" name="product_name" style="width:96%" />
+                </td>
+            </tr>
+            <tr>
+                <th>* 제품가격</th>
+                <td>
+                    <input type="text" name="product_price" style="width:60%" / value="5000">원
+                </td>
+            </tr>
+            <tr>
+                <th>* 제품수량</th>
+                <td>
+                    <input type="number" name="product_qty" style="width:40%" / value="1">개
+                </td>
+            </tr>
+            <tr>
+                <th>원산지</th>
+                <td>
+                    <input type="text" name="product_origin" style="width:96%" />
+                </td>
+            </tr>
+            <tr>
+                <th>색상</th>
+                <td>
+                    <input type="color" name="product_color" value="#FFFFFF" />
+                </td>
+            </tr>
+            <tr>
+                <th>제조일</th>
+                <td>
+                    <input type="date" name="product_date" />
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <input type="submit" values="전송" />
+                </th>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

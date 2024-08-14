@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action = '#' method = 'get'>
+        아이디 : <input type="text" id="user_id" name="user_id" value = "id1" required autofocus><br />
+        비밀번호 : <input type="password" id="user_pw" name="user_pw" required/> <br />
+        이메일 : <input type="email" id="user_email" name="user_email"/> <br />
+        검색 : <input type = "search" id="user_search" name = "user_search"/><br/>
+        홈페이지 : <input type="url" id="user_page" name="user_page"/><br />
+        연락처 : <input type="tel" id="user_tel" name="user_tel"/><br />
+        수량 : <input type ="number" id = "user_qty" name = "user_qty" min = "1" max = "10" step = "2"/> <br />
+        투표 수 : <input type = "range" id = "user_range" name = "user_range" min = 0 max = 10 value="2"/> <br />
+        색상 : <input type="color" id = "user_color" name = "user_color" value = "#C0C0C0"/><br />
+        날짜 : <input type ="date" id = "user_date" name = "user_date" value = "2003-01-24"/><br />
+        월 : <input type = "month" id = "user_month" name = "user_month" value = "2000-10"/><br/>
+        주 : <input type = "week" id = "user_week" name = "user_week" value ="2024-W33"/><br/>
+        시간 : <input type ="time" id = "user_time" name = "user_time" value = "11:44"/><br/>
+        현지시간 : <input type ="datetime-local" id = "user_local_time" name = "user_local_time" value="2024-02-02T11:33:02 "/><br/>
+        <h3>리스트</h3>
+        <select name = "sel1">
+            <option>배구</option>
+            <option>농구</option>
+            <option>축구</option>
+            <option>야구</option>
+        </select><br/>
+
+        <select name = "sel2">
+            <option>배구</option>
+            <option>농구</option>
+            <option>축구</option>
+            <option>야구</option>
+        </select><br/>
+
+        <select name = "sel3" size = 3>
+            <option>배구</option>
+            <option>농구</option>
+            <option>축구</option>
+            <option>야구</option>
+        </select><br/>
+
+        <select name = "sel4" multiple>
+            <option>배구</option>
+            <option>농구</option>
+            <option>축구</option>
+            <option>야구</option>
+        </select><br/>
+
+        <select name = "local">
+            <optgroup label = "관악구">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </optgroup>
+            <optgroup label = "구로구">
+                <option>가</option>
+                <option>나</option>
+                <option>다</option>
+            </optgroup>
+        </select><br/>
+        자기소개서 : <textarea rows="10" cols="100" >안녕하세요</textarea><br/><br/>
+        성별 : <br/>
+        <input type ="radio" id = "gender" name = "gender" value="F" checked>여자<br/>
+        <input type ="radio" id = "gender" name = "gender" value="M">남자<br/><br/> 
+        이메일 수신 여부<br/>
+        <input type = "radio" id = "send" name = "send" /> 발송<br/>
+        <input type = "radio" id = "send" name = "send" /> 미발송<br/><br/>
+
+        <input type = "checkbox" id = "interest" name = "interest" value = "독서" checked readonly/> 독서
+        <input type = "checkbox" id = "interest" name = "interest" value = "바둑"/> 바둑
+        <input type = "checkbox" id = "interest" name = "interest" value = "음악 감상"/> 음악 감상
+        <input type = "checkbox" id = "interest" name = "interest" value = "운동"/> 운동<br/><br/>
+        <input type = "submit" value = "전송"/>
+        <input type = "reset" value ="취소"/>
+        <input type = "image" src="../../images/cover.jpg" width = 150; height = 150/>  <!-- 이미지 전송 버튼 --><br/><br/>
+        <input type = "button" value = "네이버" onclick="javascript:location.href = 'http://www.naver.com'"/><br/><br/>
+        <button type ="submit">전송</button>
+        <button type ="reset">리셋</button>
+        <button type="button" onclick="javascript:location.href = 'https://fconline.nexon.com/'">피파</button>
+    </form>
+</body>
+</html>

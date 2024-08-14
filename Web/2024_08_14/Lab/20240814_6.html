@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action = '#' method="get" enctype="multipart/form-data">
+        <fieldset style = "width : 400px">
+            <legend>회원가입</legend>
+            <table border = 1>
+                <caption>회원가입 서식 작성</caption>
+                <colgroup>
+                    <col>
+                    <col style ="width: 250px;">
+                </colgroup>
+                <tr>
+                    <td>이름</td>
+                    <td>
+                        <input type = "text" name = "user_name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>아이디</td>
+                    <td>
+                        <input type = "text" name = "user_id"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td>
+                        <input type = "password" name = "user_pw"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>비밀번호 확인</td>
+                    <td>
+                        <input type = "password" name = "user_pw_confirm"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>핸드폰 번호</td>
+                    <td>
+                        <input type = "tel" name = "user_tel" placeholder="-대신 없이 숫자로만"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>생일</th>
+                    <td>
+                        <input type ="date" name = "user_birth"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>SNS</th>
+                    <td>
+                        <input type = "url" name = "user_sns"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td>
+                        <input type = "email" name = "user_email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan = 2 style = "text-align: center;">
+                        <input type="submit" value="전송"/>
+                        <input type="reset" value="취소"/>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action ="#" method ='get' enctype="multipart/form-data">
+        <table border = 1 style = "width : 700px">
+            <tr>
+                <th>상품번호</th>
+                <td>
+                    <input type = "text" name = "product_num" autofocus/> 자동부여
+                </td>
+            </tr>
+            <tr>
+                <th>상품명</th>
+                <td>
+                    <input type = "text" name = "product_name"/>
+                </td>
+            </tr>
+            <tr>
+                <th>상품가격</th>
+                <td>
+                    <input type = "text" name = "product_price"/>
+                </td>
+            </tr>
+            <tr>
+                <th>배송비</th>
+                <td>
+                    <input type = "text" name = "delivery_fee" style = "width: 70px;"/>
+                </td>
+            </tr>
+            <tr>
+                <th>상품설명</th>
+                <td>
+                    <textarea name = "explain" style = "width : 500px; height : 200px"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>대문이미지</th>
+                <td>
+                    <input type = "file" name = "thumbnail"/>
+                </td>
+            </tr>
+            <tr>
+                <th>이미지</th>
+                <td>
+                    <input type = "file" name = "img"/>
+                </td>
+            </tr>
+            <tr>
+                <th colspan = 2>
+                    <input type = "submit" value = "상품 등록"/>
+                </th>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

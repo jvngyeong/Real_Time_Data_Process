@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image CSS3</title>
+    <style>
+        body{
+            background-image: url(../../Images/bg_grid.gif);
+            padding : 0;
+            margin : auto;
+        }
+
+        div{
+            width : 500px;
+            height : 500px;
+            border : 2px dotted black;
+            margin-bottom: 20px;
+        }
+
+        .bg1{
+            background : url("../../Images/top.jpg") no-repeat left top;
+            background-size: auto;  /* 원본 크기대로 사용 */
+        }
+
+        .bg2{
+            background : url("../../Images/top.jpg") no-repeat left top;
+            background-size: 200px 150px;
+        }
+
+        .bg3{
+            background : url("../../Images/top.jpg") no-repeat left top;
+            background-size: 60% 40%;
+        }
+
+        .bg4{
+            background : url("../../Images/top.jpg") no-repeat left top;
+            background-size : contain;     /* 비율대로 박스 크기에 딱 맞춤 */ 
+        }
+        
+        .bg5{
+            background : url("../../Images/top.jpg") no-repeat left top;
+            background-size : over;     /* 비율대로 박스 크기에 딱 맞춤 */ 
+        }
+
+        .bg6{
+            background : url("../../Images/top.jpg") no-repeat left top;
+            background-size : 100% 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- div.bg$ * 6 -->
+    <!-- .은 class | #은 id | [name = "이름"]은 name | $는 숫자 -->
+    <div class = "bg1"></div>
+    <div class = "bg2"></div>
+    <div class = "bg3"></div>
+    <div class = "bg4"></div>
+    <div class = "bg5"></div>
+    <div class = "bg6"></div>
+</body>
+</html>

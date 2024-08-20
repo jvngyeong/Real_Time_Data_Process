@@ -1,0 +1,152 @@
+body{
+    margin: 0 auto;
+}
+
+#logo{
+    background-color: rgb(51, 51, 51);
+    padding:100px;
+    text-align: center;
+    color:white;
+}
+#header-wrapper{
+    margin-bottom: 0;
+}
+#menu-wrapper{
+    margin-top:0;
+}
+
+#banner{
+    width:1980px;
+    height:500px;
+    background-image: url("../Images/pic01.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#content{
+    width:1000px;
+    float:right;
+}
+
+#page{
+    height:400px;
+    background-image: url("../Images/bg01.png");
+    background-size: 1920px 500px;
+}
+
+#logo a{
+    text-decoration: none;
+    color:white;
+}
+
+#menu{
+    background-color: rgb(177, 0, 88);
+}
+.menu_ul{
+    margin: 0;
+    text-align: center;
+    list-style-type: none;
+}
+
+.page_item1{
+    display:inline-block;
+    padding:50px;
+}
+
+.page_item1 a{
+    text-decoration: none;
+    color:white;
+}
+
+.page_item1:hover{
+    background-color: rgb(192, 0, 95);
+}
+#sidebar{
+    float:left;
+}
+h2{
+    margin:0;
+    padding:50px;
+    color: rgb(177, 0, 88);
+}
+.title h2{
+    padding-bottom: 10px;
+}
+.living{
+    padding-bottom:0;
+    padding-left: 0;
+}
+.byline{
+    font-size:10px;
+    color : lightgray;
+}
+
+#milk{
+    font-size: 15px;
+    color:lightgray;
+}
+#portfolio-wrapper{
+    clear:both;
+}
+
+
+.style2{
+    list-style-type:none;
+    margin-top:3;
+}
+.style2 li{
+    padding:8px;
+    border-bottom:1px solid gray;
+}
+.style2 li a{
+    text-decoration: underline black;
+    color:gray;
+}
+
+#portfolio{
+    width:100%;
+    background-color: rgb(177, 0, 88);
+    padding : 50px 0px 80px 0px;
+}
+#column1, #column2, #column3, #column4{
+    display:inline-block;
+    width:20%;
+    padding:30px;
+}
+#portfolio h2{
+    color:white;
+    width:100%;
+    padding : 0px 0px 20px 0px; 
+}
+
+#portfolio p{
+    color:white;
+}
+
+#portfolio .icon{
+    display:block;
+    width:150px;
+    height: 30px;
+    background-color:rgb(192, 0, 95);
+    text-decoration: none;
+    color:white;
+    text-align: center;
+    padding-top:7px;
+}
+
+#footer{
+    background-color:black;
+}
+
+#footer h2, a{
+    color : white;
+}
+
+#box1, #box2, #box3{
+    display:inline-block;
+    padding : 120px;
+}
+
+#footer li{
+    line-height:60px;
+    border-bottom:1px solid gray;
+}

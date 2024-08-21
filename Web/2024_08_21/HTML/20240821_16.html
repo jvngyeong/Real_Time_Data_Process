@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        var sum = 0;
+        //1 ~ 10 까지의 합
+        for(var i = 1; i <= 10; i++){
+            sum += i;
+        }
+        document.write(sum); document.write("<br/>");
+
+
+        i = 1;
+        sum = 0;
+        for(; i<=10;){
+            sum += i;
+            i++;
+        }
+        document.write(sum); document.write("<br/>");
+
+        i = 1;
+        sum = 0;
+        while(i<=10){
+            sum += i;
+            i++;
+        }
+        document.write(sum); document.write("<br/>");
+
+        //1 ~ 100
+        i = 1;
+        sum = 0;
+        while(i <= 100){
+            sum += i;
+            i++;
+        }
+        document.write(sum); document.write("<br/>");
+
+        //6단 출력
+        var dan = Number(prompt("단을 입력하세요."), 6);
+        var gop = 1;
+        while(gop<=9){
+            document.write(dan + " * " + gop + " = " + dan*gop);
+            gop++;
+            document.write("<br/>");
+        }
+
+        //5단, 6단, 7단
+        var dan = 5;
+        var gop = 1;
+        while(dan <= 7){
+            gop = 1;
+            while(gop <= 9){
+                document.write(dan + " * " + gop + " = " + dan*gop);
+                document.write("<br/>");
+                gop++;
+            }
+            dan++;
+        }
+
+        //******
+        //*****
+        //****
+        //***
+        //**
+        //*
+        var star = 6;
+        while(star >= 1){
+            var num = star;
+            while(num >= 1){
+                document.write('*');
+                num--;
+            }
+            document.write('<br/>');
+            star--;
+        }
+
+        //역순
+        var star = 1;
+        while(star <= 6){
+            var num = star;
+            while(num >= 1){
+                document.write('*');
+                num--;
+            }
+            document.write('<br/>');
+            star++;
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

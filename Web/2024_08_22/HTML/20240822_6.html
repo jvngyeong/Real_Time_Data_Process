@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        //내장 함수
+        document.write("10+20" + "<br/>");
+        //문자열을 명령어로 변환
+        document.write(eval("10+20") + "<br/>");
+        var num = 100;
+        document.write(eval("num") + 10 + "<br/>");
+        //isNaN() = is Not a Number
+        document.write(isNaN(100) + "<br/>"); //숫자이기 때문에 false
+        document.write(isNaN("100") + "<br/>"); //숫자로 인식하기 때문에 false
+        document.write(isNaN("01234") + "<br/>"); //숫자로 인식하기 때문에 false
+        document.write(isNaN("010-1010-1010") + "<br/>"); //문자가 포함되어 있기 때문에 true
+
+        //변환함수
+        document.write(Number("100") + 10 + "<br/>");
+        document.write(String(100) + String(10)+ "<br/>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

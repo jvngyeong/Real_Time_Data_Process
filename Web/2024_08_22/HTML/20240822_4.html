@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        //Array 객체
+        //배열 선언 방법
+        var name1 = new Array();    //가변형 배열
+        name1[0] = "이숭무";
+        name1[1] = "이상범";
+        name1[2] = "이장범";
+        name1[3] = "강변진";
+        document.write(name1[2]);
+        document.write("<br/>");
+        document.write(name1.length);
+        document.write("<br/>");
+        name1[4] = "김찬중";    //index 크기보다 넘어도 배열을 사용
+        name1[6] = "김찬중6";
+        document.write(name1[6]);
+        document.write("<br/>");
+
+        var money = [100,100,200,50];
+        /* 배열 안에 있는 값의 합을 구하시오. */
+        money.forEach((currElement, index, array)=>{
+            document.write(currElement);
+            document.write("<br/>");
+            document.write(index);
+            document.write("<br/>");
+            document.write(array);
+            document.write("<br/>");
+            document.write("<br/>");
+            document.write("<br/>");
+        });
+
+        //forEach를 이용해서 배열의 합을 구하시오.
+        var total = 0;
+        money.forEach((currElement, index, array)=>{
+            total += currElement;
+        });
+        document.write(total);
+        document.write("<br/>");
+
+
+        var theFood=["짜장면", "냉면", "갈비탕", "돈까스", "삼겹살"];
+        theFood.forEach((currElement, index, array)=>{
+            document.write(currElement);
+        });
+        document.write("<br/>");
+        theFood.reverse();
+        theFood.forEach((currElement, index, array)=>{
+            document.write(currElement);
+        });
+        document.write("<br/>");
+        result = theFood.slice(2,4);
+        document.write(result);
+        document.write("<br/>");
+
+        result = theFood.join(",");
+        document.write(result);
+
+        var theSubway = ["2호선", "9호선", "7호선", "4호선", "3호선"];
+        var newLine1 = "1호선";
+        var newLine2 = "분당선";
+        var subwayNum = theSubway.pop();
+        document.write("<br/>");
+        document.write(subwayNum);
+
+        var subwayNum2 = theSubway.shift();
+        document.write("<br/>");
+        document.write(subwayNum2);
+
+        theSubway.unshift(newLine1);
+        document.write("<br/>");document.write("<br/>");
+        theSubway.push(newLine1);
+        theSubway.forEach((currElement, index, array)=>{
+            document.write(currElement);
+            document.write("<br/>");
+        });
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        //함수
+        function f(x, y){
+            z = x + 2 + y;
+            document.write(z);
+        }
+
+        function greet(){
+            alert("함수 실행");
+        }
+        num = 1;
+        function nextGallary(){
+            num++;
+            if(num > 7) num = 1;
+            document.getElementById("gallary").src ="../../Images/img" + num + ".jpg";
+        }
+        function prevGallary(){
+            num--;
+            if(num < 1) num = 7;
+            document.getElementById("gallary").src ="../../Images/img" + num + ".jpg";
+        }
+    </script>
+</head>
+<body>
+    <button type = "button" onclick="f(2,3)">버튼</button>
+    <button type = "button" onclick="greet()">greet</button>
+    <hr/>
+    <a onclick="prevGallary()"><img src = "../../Images/left_btn.png"/></a>
+    <img id = "gallary" src = "../../Images/img1.jpg"/>
+    <a onclick="nextGallary()"><img src = "../../Images/right_btn.png"/></a>
+
+</body>
+</html>

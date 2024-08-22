@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        // Navigator 객체 : 사용자의 정보를 확인할 때 사용
+        document.write("브라우저명 : " + navigator.appName);
+        document.write("<br/>");
+        document.write("브라우저명 : " + navigator.appVersion);
+        document.write("<br/>");
+        document.write("브라우저명 : " + navigator.userAgent);
+        document.write("<br/>");
+        document.write("코드명 : " + navigator.appCodeName);
+
+        var mobile = ["iphone", "ipod", "android", "blackberry", "window ce"
+            , "nokia", "webos", "opera mini", "sonyericsson", "windows"];
+
+        var myAgen = navigator.userAgent.toLowerCase();
+        var isMobile = false;
+
+        for (var i = 0; i < mobile.length; i++) {
+            if (myAgen.indexOf(mobile[i]) >= 0) {
+                isMobile = true;
+                break;
+            }
+        }
+
+        if (isMobile) {
+            location.href = "https://m.naver.com";
+        } else {
+            location.href = "https://www.google.co.kr";
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

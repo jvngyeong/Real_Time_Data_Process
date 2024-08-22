@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        // 기본 자료형(리터럴 자료형, 비즈니스 자료형) : 정수, 실수, 문자, 문자열, Bool
+        // 객체. 객체도 자료형임!!. 만들어진 것을 가져다 쓰는것 ->  API 자료형
+        // -> Date, String, Math, Array, ...
+        var i = 10;
+        var toDate = new Date();    // 기본값은 현재 날짜가 저장된다.
+
+        // 달
+        var toMonth = toDate.getMonth();    // getMonth는 0 ~ 11 까지의 값을 반환
+        document.write(toDate);
+        document.write("<br/>");
+        document.write(toMonth + 1 + "월");    // +1을 해줘야 제대로 된 값을 볼 수 있다.
+        document.write("<br/>");
+
+        // 요일
+        var toDay = toDate.getDay();    // getDay는 요일을 0 ~ 6번까지의 숫자값으로 반환함.
+        switch(toDay){
+            case 0 : week = "일"; break;
+            case 1 : week = "월"; break;
+            case 2 : week = "화"; break;
+            case 3 : week = "수"; break;
+            case 4 : week = "목"; break;
+            case 5 : week = "금"; break;
+            case 6 : week = "토"; break;
+        }
+        document.write(week + "요일");
+        document.write("<br/>");
+
+        // 일
+        var date = toDate.getDate();
+        document.write(date + "일입니다.");
+        document.write("<br/>");
+
+        // 년
+        var toYear = toDate.getFullYear();
+        document.write(toYear + '년입니다.');
+        document.write("<br/>");
+
+        // 시 
+        var toHours = toDate.getHours();
+        document.write(toHours + "시입니다.");
+        document.write("<br/>");
+
+        // 분
+        var toMinutes = toDate.getMinutes();
+        document.write(toMinutes + "분입니다.")
+        document.write("<br/>");
+
+        // 초
+        var toSeconds = toDate.getSeconds();
+        document.write(toSeconds + "초입니다.");
+        document.write("<br/>");
+
+        // 2024-08-22
+        document.write(toYear + "-" + (toMonth + 1) + "-" + date);
+        toDate = new Date(2022, 14, 20, 10, 30, 52);
+        //                 연   월  일  시   분  초
+        document.write("<br/>");
+        document.write(toDate);
+        document.write("<br/>");
+
+        var arrDayStr = ['일', '월', '화', '수', '목', '금', '토', '일'];
+        document.write(arrDayStr[toDate.getDay()]);
+        document.write("<br/>");
+        var arrMonStr = [1,2,3,4,5,6,7,8,9,10,11];
+        document.write(arrMonStr[toDate.getMonth()]);
+        document.write("<br/>");
+        document.write(toDate.toString());
+        document.write("<br/>");
+        document.write(toDate.toDateString());
+        document.write("<br/>");
+        document.write(toDate.toLocaleDateString());
+        document.write("<br/>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

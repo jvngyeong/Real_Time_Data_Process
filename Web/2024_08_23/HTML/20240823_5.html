@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        function cart(){
+            var con = confirm("장바구니로 이동하시겠습니까?");
+            if(con == true){
+                location.href = "https://www.naver.com";
+            }
+        }
+
+        function dlt(){
+            var con = confirm("정말 탈퇴하시겠습니까?");
+            if(con == true){
+                confirm("정상적으로 탈퇴했습니다.");
+                location.href = "https://www.google.com";
+            }
+        }
+
+        function btn(){
+            var cnt = 10;           //콜백함수  : 함수 안에서 사용하는 익명함수
+            interval = setInterval(function(){
+                cnt--;
+                document.getElementById("count").innerHTML = cnt;
+            }, 1000);
+
+            setTimeout(function(){
+                clearInterval(interval);
+                alert("로그아웃 됩니다.");
+                location.href = "#";
+            }, 10000);
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick = "cart()">장바구니</button>
+    <button type="button" onclick = "dlt()">탈퇴하기</button>
+    <h3>
+        <span id="count">
+            10
+        </span>
+        초 후에 이동을 합니다.
+    </h3>
+    <button type="button" onclick = "btn()">버튼</button>
+</body>
+
+</html>

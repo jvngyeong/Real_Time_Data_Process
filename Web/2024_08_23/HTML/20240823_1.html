@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- DOM : Document Object Model -->
+    <!-- DOM을 사용하기 위해서 사용하는 명령어 = document. -->
+    <!-- ex) document.getElementById("아이디") : 복수가 허용되지 않는다. -->
+    <!-- ex) document.getElementsByTagName("태그명") : 복수가 허용됨! 따라서 Elements임. -->
+    <!-- ex) document.getElementsByClassName("클래스명") : 위와 같이 복수가 허용됨. -->
+    <!-- #선택자 -->
+    <!-- document.querySelector("div p");        //div 태그 안의 p 태그를 선택한 것. -->
+    <h1>h1 Tag1</h1>
+    <h1>h1 Tag3</h1>
+    <h1>h1 Tag5</h1>
+
+    <h2 class="head2">head class</h2>
+    <h2 class="head2">head class</h2>
+    <h2 class="head2">head class</h2>
+    <h2 class="head2">head class</h2>
+
+    <h3 id="head3">head3 id</h3>
+    <h3 id="head3">head4 id</h3>
+
+    <input type = "text" id = "id1"/>
+    <input type = "text" id = "id"/>
+</body>
+<script>
+    document.getElementById("head3").innerHTML = "이준경";
+    document.getElementsByClassName("head2")[0].innerHTML = "김찬중";
+    var elemTag = document.getElementsByTagName("h1");
+    console.log(elemTag);
+    document.getElementsByTagName("h1")[0].innerText="이상희";
+    elemTag[1].innerText="이상희";
+    console.log(document.getElementById("head3"));
+    document.getElementById("id").value = 2000;
+    document.getElementById("id1").value = 1234;
+
+    document.write("두 번째 h2의 값은 = " + document.getElementsByClassName("head2")[1].innerText);
+</script>
+</html>

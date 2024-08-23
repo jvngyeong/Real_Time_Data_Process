@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type = "text/javascript">
+        function keyEvt(){
+            var txt = document.getElementsByTagName("textarea");
+            var msg = document.getElementsByTagName("span");
+            var val = txt[0].value;
+            if(0 <= val.length <= 10){
+                txt[0].style.color = "black";
+            }
+            if (15 > val.length > 10){
+                txt[0].style.color = "red";
+            }
+            if(val.length > 15) {
+                alert("15글자 이상을 입력할 수 없습니다.");
+                txt[0].value = val.substr(0, 15);
+                msg[0].value = "(15자 입력)";
+            }
+            else{
+                msg[0].innerHTML = "(" + val.length + "자 입력)";
+            }
+            
+        }
+    </script>
+</head>
+
+<body>
+    <textarea rows="10" cols="60" onkeyup="keyEvt()"></textarea><span>(0자 입력)</span>
+</body>
+</html>

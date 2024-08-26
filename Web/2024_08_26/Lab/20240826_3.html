@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+	*{margin:0; padding:0}
+  </style>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script>
+  function remove(btn){
+    //btn.remove();
+    $(btn).parent().remove();
+  }
+  $(function(){
+    $("#btn").click(function(){
+      $("form[name = 'frm']").append("<div name = 'appd' id = 'appd'><input type='text' size='6'/>" +' '+"<input type='text' size='15' name='ddd'/>" +' '+"<button type='button' id='btn1' onclick = 'remove(this)'>삭제</button></div>")
+    });
+  });
+</script>
+ </head>
+ <body>
+  <form name="frm" action="#">
+ 이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호<br />
+ <div name = "appd" id = "appd">
+	 <input type="text" size="6"/>
+	 <input type="text" size="15" name="ddd"/>
+	 <button type='button' id="btn1" onclick="remove(this)">삭제</button>
+ </div>
+</form>
+<button type='button' id="btn">추가</button>
+ </body>
+</html>

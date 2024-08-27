@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            $(".list1").css("display", "none");
+            $(".list1").hide("fast");   /* 숫자(1000은 1초를 말함.), slow, fast */ 
+            $("#btn4").click(function(){
+                $(".list1").slideDown(1000);    /* 숫자(1000은 1초를 말함.), slow, fast */ 
+            });
+
+            $("#btn5").click(function(){
+                $(".list1").slideUp("fast");
+            });
+
+            $("#wrap").hover(function(){
+                $(".list1").slideToggle("slow");
+            }, function(){
+            });
+
+            $("#btn6").hover(function(){
+                $(this).parent().next().children(1).next().slideToggle();  // 위치 기준으로 찾기!!
+            }, function(){
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>
+        <button id="btn4">slideDown</button>
+        <button id="btn5">slideUp</button>
+        <button id="btn6">slideToggle</button>
+    </p>
+
+    <!-- div>h3{관련 사이트}ul.list1>(li>a[href="#"]{list$})*4 -->
+    <div id = "wrap">
+        <h3>관련 사이트</h3>
+        <ul class="list1">
+            <li><a href="#">list1</a></li>
+            <li><a href="#">list2</a></li>
+            <li><a href="#">list3</a></li>
+            <li><a href="#">list4</a></li>
+        </ul>
+    </div>
+</body>
+</html>

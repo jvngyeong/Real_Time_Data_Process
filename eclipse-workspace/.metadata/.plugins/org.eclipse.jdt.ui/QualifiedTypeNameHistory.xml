@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="p_20240717.Ex04_Calculator"/>
-    <fullyQualifiedTypeName name="p_20240717.Ex04_FourCalculator"/>
     <fullyQualifiedTypeName name="p_20240717.Ex05_Calculator"/>
     <fullyQualifiedTypeName name="p_20240717.Ex05_FourCalculator"/>
     <fullyQualifiedTypeName name="p_20240717.HomeWork_No1"/>
@@ -46,18 +44,20 @@
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="java.io.Serial"/>
     <fullyQualifiedTypeName name="p_20240722.Calculator"/>
-    <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="p_20240722.CalculatorAbstract"/>
     <fullyQualifiedTypeName name="p_20240722.FourCalculatorExtends"/>
     <fullyQualifiedTypeName name="p_20240722.CalculatorImp"/>
     <fullyQualifiedTypeName name="p_20240722.FourCalculatorImp"/>
     <fullyQualifiedTypeName name="p_20240722.Student"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.Setter"/>
-    <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
 </qualifiedTypeNameHistroy>

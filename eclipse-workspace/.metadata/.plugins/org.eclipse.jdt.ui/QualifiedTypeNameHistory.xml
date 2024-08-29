@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="p_20240717.Ex05_Calculator"/>
-    <fullyQualifiedTypeName name="p_20240717.Ex05_FourCalculator"/>
-    <fullyQualifiedTypeName name="p_20240717.HomeWork_No1"/>
-    <fullyQualifiedTypeName name="p_20240717.HomeWork_No4"/>
-    <fullyQualifiedTypeName name="p_20240718.Ex01_FourCalculator"/>
-    <fullyQualifiedTypeName name="p_20240718.Ex01_Calculator"/>
-    <fullyQualifiedTypeName name="p_20240718.Ex02_Calculator"/>
-    <fullyQualifiedTypeName name="p_20240718.Ex02_FourCalculator"/>
     <fullyQualifiedTypeName name="p_20240718.Ex03_Calculator"/>
     <fullyQualifiedTypeName name="p_20240718.Ex04_Calculator"/>
     <fullyQualifiedTypeName name="p_20240718.Ex05_FourCalculator"/>
@@ -55,9 +47,17 @@
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
-    <fullyQualifiedTypeName name="java.lang.Override"/>
-    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="bank.service.AccountWriteService"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="bank.view.AccountDepositView"/>
+    <fullyQualifiedTypeName name="bank.service.DepositService"/>
+    <fullyQualifiedTypeName name="bank.model.AccountDTO"/>
+    <fullyQualifiedTypeName name="bank.Request"/>
+    <fullyQualifiedTypeName name="bank.view.AccountWithDrawView"/>
+    <fullyQualifiedTypeName name="bank.service.WithDrawService"/>
 </qualifiedTypeNameHistroy>

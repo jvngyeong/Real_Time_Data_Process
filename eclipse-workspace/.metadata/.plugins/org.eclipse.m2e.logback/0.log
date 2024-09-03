@@ -45,3 +45,11 @@
 2024-08-30 16:47:21,963 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2024-09-02 09:08:15,820 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
 2024-09-02 17:50:15,824 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-09-03 09:09:26,979 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-09-03 17:02:07,480 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.9; built: 2024-05-03T13:03:17.262Z; git: efe8023327e67287f9bfd006700e6a71d45b5dd6; jvm 22.0.1+8
+2024-09-03 17:02:07,616 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@26e34cb2{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@4262720{STARTED}}
+2024-09-03 17:02:07,617 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2024-09-03 17:02:07,661 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@49cd4f07{HTTP/1.1, (http/1.1)}{127.0.0.1:54783}
+2024-09-03 17:02:07,678 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@53103739{STARTING}[12.0.9,sto=0] @28381781ms
+2024-09-03 17:02:09,454 [qtp398634449-6782] INFO  o.e.j.e.nested.ContextHandler._help - Warning: No org.apache.tomcat.JarScanner set in ServletContext. Falling back to default JarScanner implementation.
+2024-09-03 17:02:10,505 [qtp398634449-6782] INFO  o.e.j.e.nested.ContextHandler._help - Warning: No org.apache.tomcat.JarScanner set in ServletContext. Falling back to default JarScanner implementation.

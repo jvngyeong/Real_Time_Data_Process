@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="p_20240718.Ex05_Calculator"/>
-    <fullyQualifiedTypeName name="p_20240718.Ex06_Calculator"/>
-    <fullyQualifiedTypeName name="p_20240718.Ex06_FourCalculator"/>
-    <fullyQualifiedTypeName name="p_20240718.A"/>
-    <fullyQualifiedTypeName name="java.beans.beancontext.BeanContextServiceProviderBeanInfo"/>
-    <fullyQualifiedTypeName name="p_20240718_polymorphism.Animal"/>
-    <fullyQualifiedTypeName name="p_20240718_polymorphism.Eagle"/>
-    <fullyQualifiedTypeName name="p_20240718_polymorphism.Human"/>
-    <fullyQualifiedTypeName name="p_20240718_polymorphism.Tiger"/>
-    <fullyQualifiedTypeName name="p_20240718_polymorphism.HanKookTire"/>
-    <fullyQualifiedTypeName name="p_20240718_polymorphism.KumHoTire"/>
-    <fullyQualifiedTypeName name="p_20240718_abstract.Animal"/>
-    <fullyQualifiedTypeName name="p_20240718_abstract.Eagle"/>
-    <fullyQualifiedTypeName name="p_20240718_abstract.Tiger"/>
     <fullyQualifiedTypeName name="p_20240718_abstract.Calculator"/>
     <fullyQualifiedTypeName name="double"/>
     <fullyQualifiedTypeName name="p_20240719.Test"/>
@@ -51,13 +37,27 @@
     <fullyQualifiedTypeName name="bank.view.AccountWithDrawView"/>
     <fullyQualifiedTypeName name="bank.service.WithDrawService"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
-    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
     <fullyQualifiedTypeName name="org.apache.catalina.filters.SetCharacterEncodingFilter"/>
     <fullyQualifiedTypeName name="oracle.sql.CharacterSet"/>
+    <fullyQualifiedTypeName name="board.model.BoardDAO"/>
+    <fullyQualifiedTypeName name="board.service.BoardListService"/>
+    <fullyQualifiedTypeName name="board.controller.BoardDAO"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="board.controller.BoardDTO"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+    <fullyQualifiedTypeName name="board.service.BoardWriteService"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="javax.naming.spi.DirStateFactory.Result"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="board.service.BoardDetailService"/>
+    <fullyQualifiedTypeName name="board.service.BoardDeleteService"/>
+    <fullyQualifiedTypeName name="board.model.BoardDTO"/>
 </qualifiedTypeNameHistroy>

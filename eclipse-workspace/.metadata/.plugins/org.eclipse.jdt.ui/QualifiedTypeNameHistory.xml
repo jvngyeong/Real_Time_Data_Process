@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="p_20240718_abstract.Calculator"/>
-    <fullyQualifiedTypeName name="double"/>
-    <fullyQualifiedTypeName name="p_20240719.Test"/>
-    <fullyQualifiedTypeName name="p_20240719.Calculator"/>
-    <fullyQualifiedTypeName name="p_20240719_inheritance.CalculatorImp2"/>
-    <fullyQualifiedTypeName name="p_20240719_inheritance.Calculator"/>
-    <fullyQualifiedTypeName name="p_20240719.CalculatorImp"/>
     <fullyQualifiedTypeName name="p_20240719_polymorphism.Car"/>
     <fullyQualifiedTypeName name="p_20240719_polymorphism.KumHoTire"/>
     <fullyQualifiedTypeName name="p_20240719_polymorphism.HanKookTire"/>
@@ -38,10 +31,6 @@
     <fullyQualifiedTypeName name="bank.service.WithDrawService"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.Setter"/>
-    <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="oracle.sql.CharacterSet"/>
     <fullyQualifiedTypeName name="board.model.BoardDAO"/>
     <fullyQualifiedTypeName name="board.service.BoardListService"/>
@@ -52,12 +41,23 @@
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="board.service.BoardDetailService"/>
     <fullyQualifiedTypeName name="board.service.BoardDeleteService"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="board.model.BoardDTO"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="org.apache.catalina.filters.SetCharacterEncodingFilter"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.MemberWriteService"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.MemberDTO"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.MemberDAO"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberListService"/>
 </qualifiedTypeNameHistroy>

@@ -26,6 +26,7 @@ public class MemberDTO {
 	String memberPost;
 	String gender;
 	String memberEmail;
+	int memberPoint;
 	Date memberBirth;
 	
 	Date memberRegist;

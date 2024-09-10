@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,6 +99,102 @@ public class MemberDAO {
 		}
 		return list;
 	}
+	
+	public String memberAutoNum() {
+	      con = getConnection();
+	      sql = " select concat('mem_' ,nvl(substr(max(member_num), 5), 100000) + 1) from members ";
+	      String memberNum = null;
+	      try {
+	         pstmt = con.prepareStatement(sql);
+	         rs = pstmt.executeQuery();
+	         rs.next();
+	         memberNum = rs.getString(1);
+	         System.out.println("회원번호 : " + memberNum);
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close();
+	      }
+	      return memberNum;
+	   }
+	   
+	
+	public MemberDTO memberSelectOne(MemberDTO dto) {
+		MemberDTO returnDTO = null;
+		con = getConnection();
+		sql = " select MEMBER_NUM, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_ADDR, MEMBER_ADDR_DETAIL, MEMBER_POST";
+		sql += ", MEMBER_REGIST, GENDER, MEMBER_PHONE1, MEMBER_PHONE2";
+		sql += ", MEMBER_EMAIL, MEMBER_BIRTH, MEMBER_POINT, MEMBER_EMAIL_CONF from members where MEMBER_NUM = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getMemberNum());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				returnDTO = new MemberDTO();
+				returnDTO.setMemberNum(rs.getString("MEMBER_NUM"));
+				returnDTO.setMemberName(rs.getString("MEMBER_NAME"));
+				returnDTO.setMemberId(rs.getString("MEMBER_ID"));
+				returnDTO.setMemberPw(rs.getString("MEMBER_PW"));
+				returnDTO.setMemberAddr(rs.getString("MEMBER_ADDR"));
+				returnDTO.setMemberAddrDetail(rs.getString("MEMBER_ADDR_DETAIL"));
+				returnDTO.setMemberPost(rs.getString("MEMBER_POST"));
+				returnDTO.setMemberRegist(rs.getDate("MEMBER_REGIST"));
+				returnDTO.setGender(rs.getString("GENDER"));
+				returnDTO.setMemberPhone1(rs.getString("MEMBER_PHONE1"));
+				returnDTO.setMemberPhone2(rs.getString("MEMBER_PHONE2"));
+				returnDTO.setMemberEmail(rs.getString("MEMBER_EMAIL"));
+				returnDTO.setMemberBirth(rs.getDate("MEMBER_BIRTH"));
+				returnDTO.setMemberPoint(rs.getInt("MEMBER_POINT"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return returnDTO;
+	}
+	
+	public void memberUpdate(MemberDTO dto) {
+		con = getConnection();
+		sql = "update members set MEMBER_NAME = ?, MEMBER_ID = ?, MEMBER_PW = ?, MEMBER_ADDR = ?, ";
+		sql += " MEMBER_ADDR_DETAIL = ?, MEMBER_POST = ?, GENDER = ?, MEMBER_PHONE1 = ?, ";
+		sql += " MEMBER_PHONE2 = ?, MEMBER_EMAIL = ?, MEMBER_BIRTH = ? where MEMBER_NUM = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getMemberName());
+			pstmt.setString(2, dto.getMemberId());
+			pstmt.setString(3, dto.getMemberPw());
+			pstmt.setString(4, dto.getMemberAddr());
+			pstmt.setString(5, dto.getMemberAddrDetail());
+			pstmt.setString(6, dto.getMemberPost());
+			pstmt.setString(7, dto.getGender());
+			pstmt.setString(8, dto.getMemberPhone1());
+			pstmt.setString(9, dto.getMemberPhone2());
+			pstmt.setString(10, dto.getMemberEmail());
+			pstmt.setDate(11, new Date(dto.getMemberBirth().getTime()));
+			pstmt.setString(12, dto.getMemberNum());
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개의 행이 수정되었습니다");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
+	public void memberDelete(MemberDTO dto) {
+		con = getConnection();
+		sql = "delete from members where member_num = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getMemberNum());
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개의 행이 삭제되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
 	public void close() {
 		if(rs != null) try {rs.close();} catch(Exception e) {}
 		if(pstmt != null) try {pstmt.close();} catch(Exception e) {}

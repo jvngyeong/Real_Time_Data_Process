@@ -9,7 +9,7 @@
 <body>
 	회원가입 페이지입니다.<br>
 	<form action = "memberRegist.mem" method= "post">
-		회원번호 : <input type = "text" name = "memberNum"><br>
+		회원번호 : <input type = "text" name = "memberNum" value = ${memberNum } readonly><br>
 		이름 : <input type = "text" name = "memberName"><br>
 		아이디 : <input type = "text" name = "memberId"><br>
 		비밀번호 : <input type = "password" name = "memberPw"><br>

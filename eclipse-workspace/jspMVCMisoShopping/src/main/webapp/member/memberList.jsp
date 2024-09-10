@@ -16,56 +16,26 @@
 			<td>회원번호</td>
 			<td>이름</td>
 			<td>아이디</td>
-			<td>비밀번호</td>
-			<td>주소</td>
-			<td>상세주소</td>
-			<td>우편번호</td>
-			<td>연락처</td>
-			<td>연락처 2</td>
-			<td>성별</td>
-			<td>생년월일</td>
-			<td>이메일</td>
+			<td>가입일</td>
 		</tr>
 		<c:forEach items = "${list }" var = "dto">
 			<tr>
 				<td>
-					${dto.memberNum }
+					<a href = "memberDetail.mem?memberNum=${dto.memberNum }">${dto.memberNum }</a>
 				</td>
 				<td>
-					${dto.memberName }
+					<a href = "memberDetail.mem?memberNum=${dto.memberNum }">${dto.memberName }</a>
 				</td>
 				<td>
 					${dto.memberId }
 				</td>
 				<td>
-					${dto.memberPw }
-				</td>
-				<td>
-					${dto.memberAddr }
-				</td>
-				<td>
-					${dto.memberAddrDetail }
-				</td>
-				<td>
-					${dto.memberPost }
-				</td>
-				<td>
-					${dto.memberPhone1 }
-				</td>
-				<td>
-					${dto.memberPhone2 }
-				</td>
-				<td>
-					${dto.gender }
-				</td>
-				<td>
-					${dto.memberBirth }
-				</td>
-				<td>
-					${dto.memberEmail }
+					${dto.memberRegist }
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
+	<br/>
+	<a href = "index.jsp">메인화면으로 돌아가기</a><br/>
 </body>
 </html>

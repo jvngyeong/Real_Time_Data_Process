@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="p_20240719_polymorphism.Car"/>
-    <fullyQualifiedTypeName name="p_20240719_polymorphism.KumHoTire"/>
-    <fullyQualifiedTypeName name="p_20240719_polymorphism.HanKookTire"/>
     <fullyQualifiedTypeName name="p_20240719_approach1.MyDateChild"/>
     <fullyQualifiedTypeName name="p_20240719_approach1.MyDateChildTest"/>
     <fullyQualifiedTypeName name="p_20240719_approach.MyDate"/>
@@ -45,19 +42,22 @@
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="board.model.BoardDTO"/>
     <fullyQualifiedTypeName name="org.apache.catalina.filters.SetCharacterEncodingFilter"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.MemberWriteService"/>
-    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.Setter"/>
-    <fullyQualifiedTypeName name="lombok.Getter"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.MemberDTO"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.MemberDAO"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberListService"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberAutoNumService"/>
+    <fullyQualifiedTypeName name="java.io.Console"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.MemberDTO"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.employee.EmployeeAutoNumService"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 </qualifiedTypeNameHistroy>

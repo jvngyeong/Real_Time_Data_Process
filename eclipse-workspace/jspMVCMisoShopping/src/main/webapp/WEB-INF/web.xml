@@ -30,4 +30,24 @@
   	<url-pattern>*.emp</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>user</servlet-name>
+  	<servlet-class>jspMVCMisoShopping.controller.UserFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>user</servlet-name>
+  	<url-pattern>*.nhn</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>help</servlet-name>
+  	<servlet-class>jspMVCMisoShopping.controller.HelpFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>help</servlet-name>
+  	<url-pattern>*.help</url-pattern>
+  </servlet-mapping>
 </web-app>

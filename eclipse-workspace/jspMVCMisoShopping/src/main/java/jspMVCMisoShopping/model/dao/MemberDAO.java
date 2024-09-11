@@ -11,30 +11,7 @@ import java.util.List;
 
 import jspMVCMisoShopping.model.dto.MemberDTO;
 
-public class MemberDAO {
-	String jdbcURL;
-	String jdbcDriver;
-	Connection con;
-	PreparedStatement pstmt;
-	ResultSet rs;
-	String sql;
-	
-	public MemberDAO() {
-	      jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-	      jdbcDriver = "oracle.jdbc.driver.OracleDriver";
-	}
-	
-	public Connection getConnection() {
-		Connection co = null;
-		try {
-			Class.forName(jdbcDriver);
-			co = DriverManager.getConnection(jdbcURL, "miso", "1234");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return co;
-	}
-	
+public class MemberDAO extends DataBaseInfo{
 	public void memberInsert(MemberDTO dto) {
 		con = getConnection();
 		sql = " insert into members (MEMBER_NUM, MEMBER_NAME, MEMBER_ID, MEMBER_PW"

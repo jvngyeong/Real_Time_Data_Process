@@ -86,7 +86,6 @@ public class MemberDAO extends DataBaseInfo{
 	         rs = pstmt.executeQuery();
 	         rs.next();
 	         memberNum = rs.getString(1);
-	         System.out.println("회원번호 : " + memberNum);
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      } finally {
@@ -96,7 +95,7 @@ public class MemberDAO extends DataBaseInfo{
 	   }
 	   
 	
-	public MemberDTO memberSelectOne(MemberDTO dto) {
+	public MemberDTO memberSelectOne(String memberNum) {
 		MemberDTO returnDTO = null;
 		con = getConnection();
 		sql = " select MEMBER_NUM, MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_ADDR, MEMBER_ADDR_DETAIL, MEMBER_POST";
@@ -104,7 +103,7 @@ public class MemberDAO extends DataBaseInfo{
 		sql += ", MEMBER_EMAIL, MEMBER_BIRTH, MEMBER_POINT, MEMBER_EMAIL_CONF from members where MEMBER_NUM = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getMemberNum());
+			pstmt.setString(1, memberNum);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				returnDTO = new MemberDTO();
@@ -157,12 +156,12 @@ public class MemberDAO extends DataBaseInfo{
 		}
 	}
 	
-	public void memberDelete(MemberDTO dto) {
+	public void memberDelete(String memberNum) {
 		con = getConnection();
 		sql = "delete from members where member_num = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, dto.getMemberNum());
+			pstmt.setString(1, memberNum);
 			int i = pstmt.executeUpdate();
 			System.out.println(i + "개의 행이 삭제되었습니다.");
 		} catch (Exception e) {
@@ -176,5 +175,42 @@ public class MemberDAO extends DataBaseInfo{
 		if(rs != null) try {rs.close();} catch(Exception e) {}
 		if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
 		if(con != null) try {con.close();} catch(Exception e) {}
+	}
+
+	public String memberNumSelect(String memberId) {
+		String memberNum = null;
+		con = getConnection();
+		sql = " select member_num from members ";
+		sql += " where member_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			rs = pstmt.executeQuery();
+			rs.next();
+			memberNum = rs.getString("member_num");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return memberNum;
+	}
+	
+	public void memberPwUpdate(String newPw, String userId) {
+		con = getConnection();
+		sql = "update members set member_pw = ? where member_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, newPw);
+			pstmt.setString(2, userId);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개의 행이 수정되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 	}
 }

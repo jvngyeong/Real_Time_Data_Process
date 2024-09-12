@@ -10,6 +10,6 @@ public class MemberDeleteService {
 		MemberDTO dto = new MemberDTO();
 		dto.setMemberNum(request.getParameter("memberNum"));
 		MemberDAO dao = new MemberDAO();
-		dao.memberDelete(dto);
+		dao.memberDelete(dto.getMemberNum());
 	}
 }

@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.Boolean"/>
-    <fullyQualifiedTypeName name="p_20240719_wrapper.Book"/>
-    <fullyQualifiedTypeName name="java.util.Iterator"/>
-    <fullyQualifiedTypeName name="java.util.Random"/>
-    <fullyQualifiedTypeName name="java.io.Serial"/>
-    <fullyQualifiedTypeName name="p_20240722.Calculator"/>
     <fullyQualifiedTypeName name="p_20240722.CalculatorAbstract"/>
     <fullyQualifiedTypeName name="p_20240722.FourCalculatorExtends"/>
     <fullyQualifiedTypeName name="p_20240722.CalculatorImp"/>
@@ -39,7 +33,6 @@
     <fullyQualifiedTypeName name="board.model.BoardDTO"/>
     <fullyQualifiedTypeName name="org.apache.catalina.filters.SetCharacterEncodingFilter"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.MemberWriteService"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.MemberDAO"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberListService"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberAutoNumService"/>
     <fullyQualifiedTypeName name="java.io.Console"/>
@@ -54,10 +47,17 @@
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.sql.DriverManager"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.DataBaseInfo"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.help.PwFindService"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.login.UserLoginService"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberDeleteService"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberDetailService"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberUpdateService"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.user.MemberPasswordService"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.MemberDAO"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>

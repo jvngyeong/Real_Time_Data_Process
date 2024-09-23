@@ -31,8 +31,10 @@
 	</ul>
 	<form action="memberPwPro.my" method="post" id="frm">
 		비밀번호 확인 : <input type="password" name="oldPw" id="oldPw"
-			required="required" /><br> 새 비밀번호 : <input type="password"
-			name="newPw" id="newPw" required="required" /><br> 새 비밀번호 확인 :
+			required="required" /><br> 
+		새 비밀번호 : <input type="password"
+			name="newPw" id="newPw" required="required" /><br> 
+		새 비밀번호 확인 :
 		<input type="password" name="newPwCon" id="newPwCon"
 			required="required" /><br> <input type="submit" value="비밀번호 변경" />
 	</form>

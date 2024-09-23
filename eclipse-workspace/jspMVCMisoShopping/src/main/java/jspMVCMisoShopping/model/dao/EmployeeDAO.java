@@ -161,6 +161,41 @@ public class EmployeeDAO extends DataBaseInfo{
 		}
 	}
 	
+	public String employeeNumSelect(String empId) {
+		String empNum = null;
+		con = getConnection();
+		sql = "select emp_num from employees where emp_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, empId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				empNum = rs.getString("emp_num");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return empNum;
+	}
+	
+	public void employeePwUpdate(String newPw, String empId) {
+		con = getConnection();
+		sql = "update employees set emp_pw = ? where emp_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, newPw);
+			pstmt.setString(2, empId);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개의 행이 수정되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
 	public void close() {
 		if(rs != null) try {rs.close();} catch(Exception e) {}
 		if(pstmt != null) try {pstmt.close();} catch(Exception e) {}

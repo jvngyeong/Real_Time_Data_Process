@@ -14,19 +14,20 @@
 	<br>
 	<br>
 	<c:if test="${!empty auth }">
-		<ui>
+		<ul>
 		<!-- 직원이 봐야할 View -->
 		<c:if test ="${auth.grade == 'emp' }">
 		<li><a href="memberList.mem">회원 목록</a></li>
 		<li><a href="employeeList.emp">직원 목록</a></li>
 		<li><a href = "empMyPage.my">내 정보 보기</a>
+		<li><a href = "goodsList.goods">상품 리스트</a></li>
 		</c:if>
 		<c:if test ="${auth.grade == 'mem' }">
 		<!-- 회원이 봐야할 View -->
 		<li><a href = "memberMyPage.my">내 정보 보기</a>
 		</c:if>
 		<li><a href = "logout.login">로그아웃</a></li>
-		</ui>
+		</ul>
 	</c:if>
 
 	<c:if test="${empty auth }">

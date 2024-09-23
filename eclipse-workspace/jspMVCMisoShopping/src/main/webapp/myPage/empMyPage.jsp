@@ -5,9 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>employeeDetail.jsp</title>
+<title>empMyPage.jsp</title>
 </head>
 <body>
+	<ul>
+		<li><a href = "<c:url value = '/' />">홈으로 이동</a></li>
+		<li><a href = "empMyPage.my">내 정보 보기</a></li>
+		<li><a href = "empUpdate.my">내 정보 수정</a></li>
+		<li><a href = "empPwModify.my">비밀번호 변경</a></li>
+		<li><a href = "goodsList.goods">상품 리스트</a></li>
+	</ul>
 	직원번호 :	${dto.empNum }<br />
 	아이디 : ${dto.empId }<br />
 	비밀번호 : ${dto.empPw }<br />
@@ -20,7 +27,5 @@
 	이메일 : ${dto.empEmail }<br />
 	고용일 : ${dto.empHireDate }<br />
 	직원 이미지 : <img alt="" src="${dto.empImage }" /><br />
-	<a href = "employeeModify.emp?empNum=${dto.empNum }">수정</a> |
-	<a href = "employeeDelete.emp?empNum=${dto.empNum }">삭제</a>
 </body>
 </html>

@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jspMVCMisoShopping.model.dto.AuthInfoDTO;
+import jspMVCMisoShopping.service.employee.EmployeeDetailService;
+import jspMVCMisoShopping.service.employee.EmployeeUpdateService;
 import jspMVCMisoShopping.service.member.MemberDetailService;
 import jspMVCMisoShopping.service.member.MemberUpdateService;
+import jspMVCMisoShopping.service.user.EmployeePasswordService;
 import jspMVCMisoShopping.service.user.MemberDropService;
 import jspMVCMisoShopping.service.user.MemberPasswordService;
 
@@ -26,7 +29,6 @@ public class MyPageFrontController extends HttpServlet{
 			action.execute(req);
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/myPage/memberMyPage.jsp");
 			dispatcher.forward(req, resp);
-			System.out.println("memberMyPage.my");
 		}
 		else if(command.equals("/memberUpdate.my")){
 			MemberDetailService action = new MemberDetailService();
@@ -38,7 +40,6 @@ public class MyPageFrontController extends HttpServlet{
 			MemberUpdateService action = new MemberUpdateService();
 			int i = action.execute(req);
 			if (i == 1) {
-				
 				resp.sendRedirect("memberMyPage.my");
 			}
 			else {
@@ -92,6 +93,64 @@ public class MyPageFrontController extends HttpServlet{
 				RequestDispatcher dispatcher = req.getRequestDispatcher("/myPage/memberDrop.jsp");
 				dispatcher.forward(req, resp);
 				req.setAttribute("errPw", "비밀번호가 틀렸습니다.");
+			}
+		}
+		
+		// 여기서부터 Employee MyPage
+		else if(command.equals("/empMyPage.my")) {
+			EmployeeDetailService action = new EmployeeDetailService();
+			action.execute(req);
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/myPage/empMyPage.jsp");
+			dispatcher.forward(req, resp);
+		}
+		
+		else if(command.equals("/empUpdate.my")) {
+			EmployeeDetailService action = new EmployeeDetailService();
+			action.execute(req);
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/myPage/empMyModify.jsp");
+			dispatcher.forward(req, resp);
+		}
+		
+		else if(command.equals("/empModify.my")){
+			EmployeeUpdateService action = new EmployeeUpdateService();
+			int i = action.execute(req);
+			if(i == 1) {
+				resp.sendRedirect("empMyPage.my");
+			}
+			else {
+				EmployeeDetailService action1 = new EmployeeDetailService();
+				action1.execute(req);
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/myPage/empMyModify.jsp");
+				dispatcher.forward(req, resp);
+			}
+		}
+		else if(command.equals("/empPwModify.my")) {
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/myPage/empMyPwCon.jsp");
+			dispatcher.forward(req, resp);
+		}
+		else if(command.equals("/empPwUpdate.my")) {
+			HttpSession session = req.getSession();
+			AuthInfoDTO auth = (AuthInfoDTO) session.getAttribute("auth");
+			String path = null;
+			if(req.getParameter("empPw").equals(auth.getUserPw())) {
+				path = "/myPage/empNewPw.jsp";
+			}
+			else {
+				req.setAttribute("errPw", "비밀번호가 일치하지 않습니다.");
+				path = "/myPage/empMyPwCon.jsp";
+			}
+			RequestDispatcher dispatcher = req.getRequestDispatcher(path);
+			dispatcher.forward(req, resp);
+		}
+		else if(command.equals("/empNewPw.my")) {
+			EmployeePasswordService action = new EmployeePasswordService();
+			int i = action.execute(req);
+			if(i == 1) {
+				resp.sendRedirect("empMyPage.my");
+			}
+			else {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/myPage/empNewPw.jsp");
+				dispatcher.forward(req, resp);
 			}
 		}
 	}

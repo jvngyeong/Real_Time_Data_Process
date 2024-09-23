@@ -15,11 +15,9 @@ public class MemberUpdateService {
 		String memberNum = request.getParameter("memberNum");
 		HttpSession session = request.getSession();
 		AuthInfoDTO authDTO = (AuthInfoDTO) session.getAttribute("auth");
-		System.out.println(authDTO);
 		MemberDAO dao = new MemberDAO();
 		if(memberNum == null) {
 			memberNum = dao.memberNumSelect(authDTO.getUserId());
-			System.out.println(memberNum);
 		}
 		MemberDTO dto = new MemberDTO();
 		try {

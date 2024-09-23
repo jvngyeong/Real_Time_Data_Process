@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="p_20240722.CalculatorAbstract"/>
-    <fullyQualifiedTypeName name="p_20240722.FourCalculatorExtends"/>
-    <fullyQualifiedTypeName name="p_20240722.CalculatorImp"/>
-    <fullyQualifiedTypeName name="p_20240722.FourCalculatorImp"/>
     <fullyQualifiedTypeName name="p_20240722.Student"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="bank.service.AccountWriteService"/>
     <fullyQualifiedTypeName name="bank.view.AccountDepositView"/>
@@ -41,23 +36,28 @@
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.employee.EmployeeAutoNumService"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.user.UserRegistService"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.sql.DriverManager"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.DataBaseInfo"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.help.PwFindService"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.login.UserLoginService"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberDeleteService"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberDetailService"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.member.MemberUpdateService"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.user.MemberPasswordService"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.MemberDAO"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.AuthInfoDTO"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.EmployeeDAO"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.user.EmployeePasswordService"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.DataBaseInfo"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.GoodsDTO"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.employee.EmployeeAutoNumService"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 </qualifiedTypeNameHistroy>

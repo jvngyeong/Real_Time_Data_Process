@@ -22,7 +22,7 @@
 		<c:forEach items = "${list }" var = "list">
 			<tr>
 				<td><a href = "employeeDetail.emp?empNum=${list.empNum }">${list.empNum }</a></td>
-				<td><a href = "employeeDetail.emp?empnum=${list.empNum }">${list.empName }</a></td>
+				<td><a href = "employeeDetail.emp?empNum=${list.empNum }">${list.empName }</a></td>
 				<td>${list.empId }</td>
 				<td>${list.empHireDate }</td>
 			</tr>

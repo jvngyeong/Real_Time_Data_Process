@@ -21,7 +21,7 @@ public class GoodsUpdateService {
 			e.printStackTrace();
 		}
 		GoodsDTO dto = new GoodsDTO();
-		dto.setGoodsNum(req.getParameter("goodsNum"));
+		dto.setGoodsNum(req.getParameter("goodsIpgoNum"));
 		dto.setGoodsName(req.getParameter("goodsName"));
 		dto.setGoodsPrice(Integer.parseInt(req.getParameter("goodsPrice")));
 		dto.setGoodsContent(req.getParameter("goodsContent"));

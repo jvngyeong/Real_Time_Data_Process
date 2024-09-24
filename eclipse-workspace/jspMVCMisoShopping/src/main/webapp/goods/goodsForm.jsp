@@ -16,7 +16,7 @@
 		<li><a href="goodsIpgoList.ipgo">상품 입고 현황</a></li>
 	</ul>
 	
-<form action="goodsRegist.goods" method="POST">
+<form action="goodsRegist.goods" method="POST" enctype = "multipart/form-data">
 <table border = "1" width ="600" align="center">
 	<tr><th width="100">상품번호</th>
 		<td><input type="text" name="goodsNum" readonly="readonly" value = "${maxNum }"/>번호자동부여</td></tr>
@@ -26,6 +26,12 @@
 		<td><input type="number" name="goodsPrice"/></td></tr>
 	<tr><th>상품설명</th>
 		<td><textarea rows="10" cols="50" name="goodsContent"></textarea></td></tr>
+	<tr><th>대문이미지</th>
+		<td><input type="file" name="mainImage"></td></tr>
+	<tr><th>상품설명이미지</th>
+		<td><input type="file" name="image1">
+			<input type="file" name="image2"/>
+			<input type="file" name="image3"/></td></tr>
 	<tr><th colspan="2"><input type="submit" value="상품등록" /></th></tr>
 </table>	
 </form>

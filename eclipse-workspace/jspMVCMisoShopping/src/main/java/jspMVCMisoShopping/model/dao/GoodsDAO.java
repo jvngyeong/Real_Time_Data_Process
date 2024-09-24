@@ -13,7 +13,7 @@ public class GoodsDAO extends DataBaseInfo{
 		con = getConnection();
 		sql = "select GOODS_NUM, GOODS_NAME, GOODS_PRICE, GOODS_CONTENTS, VISIT_COUNT, GOODS_MAIN_IMAGE, "
 				+ " GOODS_MAIN_STORE_IMAGE, GOODS_DETAIL_IMAGE, GOODS_DETAIL_STORE_IMAGE, EMP_NUM, "
-				+ " GOODS_REGIST, UPDATE_EMP_NUM, GOODS_UPDATE_DATE from goods";
+				+ " GOODS_REGIST, UPDATE_EMP_NUM, GOODS_UPDATE_DATE from goods order by GOODS_NUM";
 		try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -88,7 +88,8 @@ public class GoodsDAO extends DataBaseInfo{
 	public GoodsDTO goodsSelectOne(String goodsNum) {
 		GoodsDTO dto = null;
 		con = getConnection();
-		sql = "select GOODS_NUM, GOODS_NAME, GOODS_PRICE, GOODS_CONTENTS, VISIT_COUNT, EMP_NUM, "
+		sql = "select GOODS_NUM, GOODS_NAME, GOODS_PRICE, GOODS_CONTENTS, VISIT_COUNT, GOODS_MAIN_IMAGE, "
+				+ " GOODS_MAIN_STORE_IMAGE, GOODS_DETAIL_IMAGE, GOODS_DETAIL_STORE_IMAGE, EMP_NUM, "
 				+ "GOODS_REGIST, UPDATE_EMP_NUM, GOODS_UPDATE_DATE from goods where goods_num = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -101,6 +102,10 @@ public class GoodsDAO extends DataBaseInfo{
 				dto.setGoodsPrice(rs.getInt("GOODS_PRICE"));
 				dto.setGoodsContent(rs.getString("GOODS_CONTENTS"));
 				dto.setVisitCount(rs.getInt("VISIT_COUNT"));
+				dto.setGoodsMainImage(rs.getString("GOODS_MAIN_IMAGE"));
+				dto.setGoodsMainStoreImage(rs.getString("GOODS_MAIN_STORE_IMAGE"));
+				dto.setGoodsDetailImage(rs.getString("GOODS_DETAIL_IMAGE"));
+				dto.setGoodsDetailStoreImage(rs.getString("GOODS_DETAIL_STORE_IMAGE"));
 				dto.setEmpNum(rs.getString("EMP_NUM"));
 				dto.setGoodsRegist(rs.getDate("GOODS_REGIST"));
 				dto.setUpdateEmpNum(rs.getString("UPDATE_EMP_NUM"));
@@ -137,18 +142,37 @@ public class GoodsDAO extends DataBaseInfo{
 		}
 	}
 	
-	public void goodsDelete(String goodsNum) {
+	public int goodsDelete(String goodsNum) {
+		int i = 0;
 		con = getConnection();
 		sql = "delete from goods where GOODS_NUM = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, goodsNum);
-			int i = pstmt.executeUpdate();
+			i = pstmt.executeUpdate();
 			System.out.println(i + "개의 행이 삭제되었습니다");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
+		return i;
+	}
+	
+	public String goodsNameSelect(String goodsNum) {
+		String goodsName = null;
+		con = getConnection();
+		sql = "select GOODS_NAME from goods where goods_num = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, goodsNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				goodsName = rs.getString("GOODS_NAME");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return goodsName;
 	}
 }

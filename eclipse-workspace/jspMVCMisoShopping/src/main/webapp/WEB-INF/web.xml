@@ -81,4 +81,13 @@
   	<url-pattern>*.goods</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+  	<servlet-name>ipgo</servlet-name>
+  	<servlet-class>jspMVCMisoShopping.controller.IpgoFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ipgo</servlet-name>
+  	<url-pattern>*.ipgo</url-pattern>
+  </servlet-mapping>
 </web-app>

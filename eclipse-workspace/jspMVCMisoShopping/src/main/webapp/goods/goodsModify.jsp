@@ -9,7 +9,7 @@
 <body>
 	<ul>
 		<li><a href = "<c:url value = '/' />">홈으로 이동</a></li>
-		<li><a href = "goodsList.goods">상품 리스트</a></li>
+		<li><a href = "goodsList.goods">상품 관리</a></li>
 		<li><a href="goodsWrite.goods">상품 추가</a></li>
 		<li><a href="goodsIpgo.ipgo">상품 입고</a></li>
 		<li><a href="goodsIpgoList.ipgo">상품 입고 현황</a></li>

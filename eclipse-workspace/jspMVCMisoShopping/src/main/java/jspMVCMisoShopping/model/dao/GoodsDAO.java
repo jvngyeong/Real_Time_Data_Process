@@ -175,4 +175,19 @@ public class GoodsDAO extends DataBaseInfo{
 		}
 		return goodsName;
 	}
+	
+	public void visitCount(String goodsNum) {
+		con = getConnection();
+		sql = "update goods set VISIT_COUNT = VISIT_COUNT + 1 where GOODS_NUM = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, goodsNum);
+			pstmt.executeUpdate();
+			System.out.println("조회수가 1 증가했습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
 }

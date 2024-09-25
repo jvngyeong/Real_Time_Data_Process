@@ -186,9 +186,9 @@ public class MemberDAO extends DataBaseInfo{
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 			rs = pstmt.executeQuery();
-			rs.next();
-			memberNum = rs.getString("member_num");
-
+			if(rs.next()) {
+				memberNum = rs.getString("member_num");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

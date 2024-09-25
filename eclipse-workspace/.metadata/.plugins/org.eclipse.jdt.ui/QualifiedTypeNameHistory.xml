@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="bank.service.AccountWriteService"/>
-    <fullyQualifiedTypeName name="bank.view.AccountDepositView"/>
     <fullyQualifiedTypeName name="bank.service.DepositService"/>
     <fullyQualifiedTypeName name="bank.model.AccountDTO"/>
     <fullyQualifiedTypeName name="bank.Request"/>
@@ -43,21 +41,23 @@
     <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.AuthInfoDTO"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.EmployeeDAO"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.user.EmployeePasswordService"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.DataBaseInfo"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.GoodsDTO"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.employee.EmployeeAutoNumService"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.goods.GoodsListService"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="java.text.DateFormat"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
     <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
     <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.goods.GoodsListService"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.goods.GoodsDetailService"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.MemberAuthService"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
 </qualifiedTypeNameHistroy>

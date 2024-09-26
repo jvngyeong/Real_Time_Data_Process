@@ -28,6 +28,7 @@
 		<!-- 회원이 봐야할 View -->
 		<li><a href = "memberMyPage.my">내 정보 보기</a>
 		</c:if>
+		<li><a href = "cartList.item">장바구니로 이동</a></li>
 		<li><a href = "logout.login">로그아웃</a></li>
 		</ul>
 	</c:if>

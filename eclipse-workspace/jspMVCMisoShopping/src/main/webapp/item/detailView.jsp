@@ -61,6 +61,7 @@
 <title>detailView.jsp</title>
 </head>
 <body>
+<ul><li><a href = "<c:url value = '/' />">홈으로 이동</a></li></ul>
 	<table width="800" align="center">
 		<caption>${dto.goodsName } 상품정보입니다.</caption>
 		<tr>

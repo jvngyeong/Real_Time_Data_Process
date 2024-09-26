@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="bank.service.DepositService"/>
-    <fullyQualifiedTypeName name="bank.model.AccountDTO"/>
-    <fullyQualifiedTypeName name="bank.Request"/>
     <fullyQualifiedTypeName name="bank.view.AccountWithDrawView"/>
     <fullyQualifiedTypeName name="bank.service.WithDrawService"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
@@ -46,8 +43,6 @@
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.employee.EmployeeAutoNumService"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="java.text.DateFormat"/>
     <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
     <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
@@ -57,7 +52,12 @@
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.goods.GoodsDetailService"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.CartListDTO"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.item.IniPayReqService"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.MemberAuthService"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="org.apache.catalina.startup.SafeForkJoinWorkerThreadFactory"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>

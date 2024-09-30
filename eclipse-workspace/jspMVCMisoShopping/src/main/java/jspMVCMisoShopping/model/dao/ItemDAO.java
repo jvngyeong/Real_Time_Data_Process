@@ -1,13 +1,14 @@
 package jspMVCMisoShopping.model.dao;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import jspMVCMisoShopping.model.dto.CartDTO;
 import jspMVCMisoShopping.model.dto.CartListDTO;
+import jspMVCMisoShopping.model.dto.PaymentDTO;
 import jspMVCMisoShopping.model.dto.PurchaseDTO;
+import jspMVCMisoShopping.model.dto.PurchaseInfoDTO;
 
 public class ItemDAO extends DataBaseInfo{	
 	public void wishItem(String memberNum, String goodsNum) {
@@ -223,6 +224,131 @@ public class ItemDAO extends DataBaseInfo{
 			pstmt.setString(4, memberNum);
 			int i = pstmt.executeUpdate();
 			System.out.println(i + "개의 행이 삽입되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	public List<PurchaseInfoDTO> purchaseItemSelect(String memberNum) {
+	      List<PurchaseInfoDTO> list = new ArrayList<PurchaseInfoDTO>();
+	      con = getConnection();
+	      sql = "select g.goods_num , goods_name , goods_main_store_image";
+	      sql += " ,p.purchase_num, purchase_status, purchase_price, member_num ";
+	      sql += " ,APPLDATE, CONFIRMNUMBER ";
+	      sql += " , delivery_num, delivery_status ";
+	      sql += " from goods g join purchase_list pl";
+	      sql += " on g.goods_num = pl.goods_num join purchase p";
+	      sql += " on pl.purchase_Num = p.purchase_Num left outer join payment pm";
+	      sql += " on pm.purchase_num = p.purchase_num left outer join delivery d";
+	      sql += " on d.purchase_num = p.purchase_num ";
+	      if(memberNum != null) {
+	    	  sql += " where member_num = ?";
+	      }
+	      sql += " order by p.purchase_num desc";
+	      try {
+	         pstmt = con.prepareStatement(sql);
+	         if(memberNum != null) {
+	        	 pstmt.setString(1, memberNum);
+	         }
+	         rs = pstmt.executeQuery();
+	         while(rs.next()) {
+	            PurchaseInfoDTO dto = new PurchaseInfoDTO();
+	            dto.setGoodsNum(rs.getString(1));
+	            dto.setGoodsName(rs.getString(2));
+	            dto.setGoodsImage(rs.getString(3));
+	            dto.setPurchaseNum(rs.getLong(4));
+	            dto.setPurchaseStatus(rs.getString(5));
+	            dto.setPurchasePrice(rs.getLong(6));
+	            dto.setMemberNum(rs.getString(7));
+	            dto.setApplDate(rs.getString("APPLDATE"));
+	            dto.setConfirmNum(rs.getString("CONFIRMNUMBER"));
+	            dto.setDeliveryNum(rs.getLong("delivery_num"));
+	            dto.setDeliveryStatus(rs.getString("delivery_status"));
+	            list.add(dto);
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }finally {
+	         close();
+	      }
+	      return list;
+	   }
+
+	public PurchaseDTO purchaseSelectOne(String purchaseNum) {
+	      PurchaseDTO dto = null;
+	      con = getConnection();
+	      sql = "select purchase_price, delivery_name, delivery_phone, purchase_name, member_num  from purchase where purchase_num = ?";
+	      try {
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setString(1, purchaseNum);
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	            dto = new PurchaseDTO();
+	            dto.setPurchasePrice(rs.getLong(1));
+	            dto.setDeliveryName(rs.getString(2));
+	            dto.setDeliveryPhone(rs.getString(3));
+	            dto.setPurchaseName(rs.getString(4));
+	            dto.setMemberNum(rs.getString(5));
+	            
+	         }
+	      } catch (Exception e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally {
+	         close();
+	      }
+	      return dto;
+	   }
+
+	public void paymentInsert(PaymentDTO dto) {
+		con = getConnection();
+		sql = "insert into payment(purchase_num, confirmNumber, cardNum, TID, totalPrice, "
+				+ " resultMassage, payMathod, applDate, appTime) "
+				+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getPurchaseNum());
+			pstmt.setString(2, dto.getConfirmNumber());
+			pstmt.setString(3, dto.getCardNum());
+			pstmt.setString(4, dto.getTid());
+			pstmt.setString(5, dto.getTotalPrice());
+			pstmt.setString(6, dto.getResultMessage());
+			pstmt.setString(7, dto.getPayMethod());
+			pstmt.setString(8, dto.getApplDate());
+			pstmt.setString(9, dto.getApplTime());
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개의 행이 삽입되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
+	public void paymentDelete(String purchaseNum) {
+		con = getConnection();
+		sql = "delete from payment where purchase_num = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, purchaseNum);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개의 행이 삭제되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
+	public void purchaseStatusUpdate(String purchase_num) {
+		con = getConnection();
+		sql = "update purchase set purchase_status = '결제 완료' where purchase_num = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, purchase_num);
+			int i = pstmt.executeUpdate();
+			System.out.println(i + "개의 행을 수정했습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

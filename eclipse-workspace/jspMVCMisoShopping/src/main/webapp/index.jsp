@@ -21,7 +21,7 @@
 		<li><a href="employeeList.emp">직원 목록</a></li>
 		<li><a href = "empMyPage.my">직원 내 정보 보기</a>
 		<li><a href = "goodsList.goods">상품 리스트</a></li>
-		<li><a href="memPurchaseList.deli">회원구매정보</a></li>
+		<li><a href="purchaseList.deli">회원구매정보</a></li>
 		<li><a href="inquire.inq">상품문의</a></li>
 		</c:if>
 		<c:if test ="${auth.grade == 'mem' }">
@@ -29,6 +29,7 @@
 		<li><a href = "memberMyPage.my">내 정보 보기</a>
 		</c:if>
 		<li><a href = "cartList.item">장바구니로 이동</a></li>
+		<li> <a href="purchaseList.item">주문조회</a></li>
 		<li><a href = "logout.login">로그아웃</a></li>
 		</ul>
 	</c:if>

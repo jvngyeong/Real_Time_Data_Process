@@ -179,7 +179,7 @@
                     <!-- //유의사항 -->
 
 
-                    <form name="" id="result" method="post" class="mt-5">
+                    <form name="" id="SendPayForm_id" method="post" class="mt-5">
                     <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">
  
                         <label class="col-10 col-sm-2 gap-2 input param" style="border:none;">resultCode</label>
@@ -225,7 +225,7 @@
                     </div>
                 </form>
 				
-				<button onclick="location.href='INIstdpay_pc_req.jsp'" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">돌아가기</button>
+				<button onclick="location.href='INIstdpay_pc_req.item'" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">돌아가기</button>
 					
                 </div>
             </section>

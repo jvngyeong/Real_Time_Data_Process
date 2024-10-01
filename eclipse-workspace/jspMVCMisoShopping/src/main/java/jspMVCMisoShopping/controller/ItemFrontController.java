@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jspMVCMisoShopping.model.dao.ItemDAO;
 import jspMVCMisoShopping.service.goods.GoodsDetailService;
 import jspMVCMisoShopping.service.item.CartItemsDeleteService;
 import jspMVCMisoShopping.service.item.CartListService;
@@ -22,6 +21,7 @@ import jspMVCMisoShopping.service.item.INIstdPayPcReturn;
 import jspMVCMisoShopping.service.item.IniPayReqService;
 import jspMVCMisoShopping.service.item.PaymentDeleteService;
 import jspMVCMisoShopping.service.item.PurchaseListService;
+import jspMVCMisoShopping.service.item.PurchasedService;
 
 public class ItemFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) 
@@ -103,6 +103,18 @@ public class ItemFrontController extends HttpServlet{
 			PaymentDeleteService action = new PaymentDeleteService();
 			action.execute(req);
 			resp.sendRedirect("purchaseList.item");
+		}
+		else if(command.equals("/purchased.item")) {
+			PurchasedService action = new PurchasedService();
+			action.execute(req);
+			resp.sendRedirect("purchaseList.item");
+		}
+		else if(command.equals("/descript.item")) {
+			GoodsDetailService action = new GoodsDetailService();
+			action.execute(req);
+			req.setAttribute("newLine", "\n");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("item/descript.jsp");
+			dispatcher.forward(req, resp);
 		}
 	}
 	@Override

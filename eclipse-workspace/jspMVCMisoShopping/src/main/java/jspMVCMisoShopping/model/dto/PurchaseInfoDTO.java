@@ -22,4 +22,7 @@ public class PurchaseInfoDTO {
 	//delivery
 	Long deliveryNum;
 	String deliveryStatus;
+	
+	//review
+	int reviewNum;
 }

@@ -7,6 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script type = "text/javascript">
 	$(function(){
+		descript();
 		$("#cartBtn").click(function(){
 			if(${!empty auth}){
 				$.ajax({
@@ -55,10 +56,64 @@
 				}
 			}); 
 		});
+		$("#descript").click(function() {
+			descript();
+		});
+		
+		$("#review").click(function(){
+			review();
+		});
 	});
+	
+	function descript(){
+		$.ajax({
+			type : "post",
+			url : "descript.item",
+			data : {"goodsNum" : "${dto.goodsNum}"},
+			dataType : "html",
+			success : function(result){
+				$("#content").html(result);
+			},
+			error : function(){
+				alert("에러가 발생했습니다.");
+				return;
+			}
+		});
+	}
+	function review(){
+		$.ajax({
+			type : "post",
+			url : "reviewList.review",
+			data : {"goodsNum" : "${dto.goodsNum}"},
+			dataType : "html",
+			success : function(result){
+				$("#content").html(result);
+			},
+			error : function(){
+				alert("에러가 발생했습니다.");
+				return;
+			}
+		});
+	}
+	
+	function inquire(){
+		$.ajax({
+			type : "post",
+			url : "inquireList.inq",
+			data : {"goodsNum" : "${dto.goodsNum}"},
+			dataType : "html",
+			success : function(result){
+				$("#content").html(result);
+			},
+			error : function(){
+				alert("에러가 발생했습니다.");
+				return;
+			}
+		})
+	}
 </script>
 <meta charset="UTF-8">
-<title>detailView.jsp</title>
+<title>item/detailView.jsp</title>
 </head>
 <body>
 <ul><li><a href = "<c:url value = '/' />">홈으로 이동</a></li></ul>
@@ -95,7 +150,7 @@
 		</tr>
 		<tr>
 			<td colspan="2"><span id="descript">제품 상세 설명</span> | 
-			<span id="review">리뷰</span> | <span id="inquire" onclick="">상품문의</span></td>
+			<span id="review">리뷰</span> | <span id="inquire" onclick="inquire()">상품문의</span></td>
 		</tr>
 		<tr>
 			<td colspan="2"><div id="content"></div></td>

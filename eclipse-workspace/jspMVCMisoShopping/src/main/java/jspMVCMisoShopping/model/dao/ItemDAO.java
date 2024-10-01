@@ -237,11 +237,13 @@ public class ItemDAO extends DataBaseInfo{
 	      sql += " ,p.purchase_num, purchase_status, purchase_price, member_num ";
 	      sql += " ,APPLDATE, CONFIRMNUMBER ";
 	      sql += " , delivery_num, delivery_status ";
+	      sql += " , review_num ";
 	      sql += " from goods g join purchase_list pl";
 	      sql += " on g.goods_num = pl.goods_num join purchase p";
 	      sql += " on pl.purchase_Num = p.purchase_Num left outer join payment pm";
 	      sql += " on pm.purchase_num = p.purchase_num left outer join delivery d";
-	      sql += " on d.purchase_num = p.purchase_num ";
+	      sql += " on d.purchase_num = p.purchase_num left outer join reviews r ";
+	      sql += " on pl.purchase_num = r.purchase_num and r.goods_num = pl.goods_num";
 	      if(memberNum != null) {
 	    	  sql += " where member_num = ?";
 	      }
@@ -265,6 +267,7 @@ public class ItemDAO extends DataBaseInfo{
 	            dto.setConfirmNum(rs.getString("CONFIRMNUMBER"));
 	            dto.setDeliveryNum(rs.getLong("delivery_num"));
 	            dto.setDeliveryStatus(rs.getString("delivery_status"));
+	            dto.setReviewNum(rs.getInt("review_num"));
 	            list.add(dto);
 	         }
 	      } catch (Exception e) {
@@ -341,12 +344,17 @@ public class ItemDAO extends DataBaseInfo{
 		}
 	}
 	
-	public void purchaseStatusUpdate(String purchase_num) {
+	public void purchaseStatusUpdate(String purchaseNum, String nowStatus) {
 		con = getConnection();
-		sql = "update purchase set purchase_status = '결제 완료' where purchase_num = ?";
+		if(nowStatus.equals("payComplete")) {
+			sql = "update purchase set purchase_status = '결제 완료' where purchase_num = ?";
+		}
+		else if(nowStatus.equals("purchased")) {
+			sql = "update purchase set purchase_status = '구매 확정' where purchase_num = ?";
+		}
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, purchase_num);
+			pstmt.setString(1, purchaseNum);
 			int i = pstmt.executeUpdate();
 			System.out.println(i + "개의 행을 수정했습니다.");
 		} catch (Exception e) {

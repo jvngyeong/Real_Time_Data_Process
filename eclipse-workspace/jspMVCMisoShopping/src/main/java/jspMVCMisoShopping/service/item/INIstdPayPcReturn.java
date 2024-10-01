@@ -117,7 +117,7 @@ public class INIstdPayPcReturn {
 					dto.setTotalPrice(resultMap.get("TotPrice"));
 					dto.setPurchaseName(resultMap.get("goodsName"));
 					dao.paymentInsert(dto);
-					dao.purchaseStatusUpdate(resultMap.get("MOID"));
+					dao.purchaseStatusUpdate(resultMap.get("MOID"), "payComplete");
 				} catch (Exception ex) {
 
 					//####################################

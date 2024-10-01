@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="board.model.BoardDAO"/>
     <fullyQualifiedTypeName name="board.service.BoardListService"/>
     <fullyQualifiedTypeName name="board.controller.BoardDAO"/>
     <fullyQualifiedTypeName name="board.controller.BoardDTO"/>
@@ -43,21 +42,22 @@
     <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.goods.GoodsListService"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.goods.GoodsDetailService"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.CartListDTO"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.item.IniPayReqService"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.MemberAuthService"/>
     <fullyQualifiedTypeName name="org.apache.catalina.startup.SafeForkJoinWorkerThreadFactory"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.PurchaseInfoDTO"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.item.PurchaseListService"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.delivery.DeliveryDetailService"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.DataBaseInfo"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.goods.GoodsDetailService"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.review.ReviewListService"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.MemberAuthService"/>
+    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dao.DataBaseInfo"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
 </qualifiedTypeNameHistroy>

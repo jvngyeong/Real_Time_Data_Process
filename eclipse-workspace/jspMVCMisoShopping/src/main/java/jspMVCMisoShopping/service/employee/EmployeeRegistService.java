@@ -1,5 +1,7 @@
 package jspMVCMisoShopping.service.employee;
 
+
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,10 +26,10 @@ public class EmployeeRegistService {
 		
 		//자바에서 문자열을 날짜로 형변환
 		Date date = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String hireDate = request.getParameter("empHireDate"); // yyyy-mm-dd
 		try {
-			date = sdf.parse(hireDate);
+				date = sdf.parse(hireDate);
 			
 		} catch(Exception e) {
 			e.printStackTrace();

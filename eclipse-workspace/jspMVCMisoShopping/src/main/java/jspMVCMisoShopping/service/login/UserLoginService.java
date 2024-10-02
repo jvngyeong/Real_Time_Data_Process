@@ -1,13 +1,15 @@
 package jspMVCMisoShopping.service.login;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jspMVCMisoShopping.model.dao.UserDAO;
 import jspMVCMisoShopping.model.dto.AuthInfoDTO;
 
 public class UserLoginService {
-	public int execute(HttpServletRequest request) {
+	public int execute(HttpServletRequest request, HttpServletResponse response) {
 		int i = 0;
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
@@ -21,6 +23,37 @@ public class UserLoginService {
 			if(auth.getUserPw().equals(userPw)) {
 				System.out.println("비밀번호가 일치합니다.");
 				session.setAttribute("auth", auth);
+				String storeId = request.getParameter("storeId");	// 쿠키 요청
+				String keepLogin = request.getParameter("keepLogin");
+				if(keepLogin != null && keepLogin.equals("on")) {	// 조건문
+					// 쿠키 생성
+					Cookie cookie = new Cookie("keepLogin", userId);
+					cookie.setPath("/");
+					cookie.setMaxAge(60 * 60 * 24 * 30);
+					// 웹 브라우저로 전달
+					response.addCookie(cookie);
+				}
+				
+				
+				
+				
+				
+				
+				
+				if(storeId != null && storeId.equals("store")) {	// 조건문
+					// 쿠키 생성
+					Cookie cookie = new Cookie("storeId", userId);
+					cookie.setPath("/");
+					cookie.setMaxAge(60 * 60 * 24 * 30);
+					// 웹 브라우저로 전달
+					response.addCookie(cookie);
+				}
+				else {
+					Cookie cookie = new Cookie("storeId", "");
+					cookie.setPath("/");
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
+				}
 				i = 1;
 			}
 			else{

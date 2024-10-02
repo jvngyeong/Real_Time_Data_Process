@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <meta charset="UTF-8">
 <title>inquire/inquireForm.jsp</title>
 </head>

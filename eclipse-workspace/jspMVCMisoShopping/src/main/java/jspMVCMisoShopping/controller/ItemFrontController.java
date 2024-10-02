@@ -116,6 +116,11 @@ public class ItemFrontController extends HttpServlet{
 			RequestDispatcher dispatcher = req.getRequestDispatcher("item/descript.jsp");
 			dispatcher.forward(req, resp);
 		}
+		else if(command.equals("/buyItem.item")) {
+			CartMergeService action = new CartMergeService();
+			action.execute(req);
+			resp.sendRedirect("itemBuy.item?prodCk="+req.getParameter("goodsNum"));
+		}
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 

@@ -8,6 +8,11 @@
 <script type = "text/javascript">
 	$(function(){
 		descript();
+		$("#buyItem").click(function(){
+			location.href = "buyItem.item?goodsNum=${dto.goodsNum}&cartQty="+$("#cartQty").val();
+		});
+		
+		
 		$("#cartBtn").click(function(){
 			if(${!empty auth}){
 				$.ajax({
@@ -107,6 +112,24 @@
 			},
 			error : function(){
 				alert("에러가 발생했습니다.");
+				return;
+			}
+		})
+	}
+	function inquireUpdate(inquireNum){
+		window.open("inquireUpdate.inq?inquireNum="+inquireNum, "문의수정", "width=700, height=650, top=100, left=100");
+	}
+	
+	function inquireDelete(inquireNum){
+		$.ajax({
+			type : "post",
+			url : "inquireDelete.inq",
+			data : {"inquireNum" : inquireNum},
+			success : function(){
+				inquire();
+			},
+			error : function(){
+				alert('에러가 발생했습니다.');
 				return;
 			}
 		})

@@ -8,7 +8,7 @@
 </head>
 <body>
 게시글 폼
-<form action="boardWrite.miso" method="post" >
+<form action="boardWrite" method="post" >
 작성자 : <input type="text" name="boardWriter" /> <br />
 제목 :<input type="text" name="boardSubject" /> <br />
 내용 : <textarea rows="5" cols="60" name="boardContent"></textarea><br />

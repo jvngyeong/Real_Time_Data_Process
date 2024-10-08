@@ -10,7 +10,7 @@
 <body>
 	게시글리스트
 	<br />
-	<a href="boardWrite.miso">게시글쓰기</a>
+	<a href="boardWrite">게시글쓰기</a>
 	<br />
 	<table border="1">
 		<tr>
@@ -20,7 +20,7 @@
 		</tr>
 		<c:forEach items="${list }" var="dto">
 			<tr>
-				<td> <a href="boardDetail.miso?boardNum=${dto.boardNum }"> ${dto.boardNum }</a></td>
+				<td> <a href="boardDetail?boardNum=${dto.boardNum }"> ${dto.boardNum }</a></td>
 				<td>${dto.boardWriter }</td>
 				<td>${dto.boardSubject }</td>
 			</tr>

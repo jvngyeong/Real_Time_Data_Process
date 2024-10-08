@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+	
+<mapper namespace="spring_boot_board.mapper.BoardMapper">
+	<sql id="boardNum">
+		select nvl(max(BOARD_NUM) , 0) + 1 from board
+	</sql>
+
+	<insert id="boardInsert" parameterType="dto">
+		insert into board(BOARD_NUM, BOARD_SUBJECT, BOARD_CONTENT, BOARD_WRITER) 
+		values((<include refid="boardNum"></include>), #{boardSubject}, #{boardContent}, #{boardWriter})
+	</insert>
+	
+	<select id="boardSelectAll" resultType="dto">
+		select BOARD_NUM as boardNum, BOARD_SUBJECT as boardSubject, 
+		BOARD_CONTENT as boardContent, BOARD_WRITER as boardWriter from board order by BOARD_NUM asc
+	</select>
+	
+	<select id="boardSelectOne" resultType="dto" parameterType="String">
+		select BOARD_NUM as boardNum, BOARD_SUBJECT as boardSubject, 
+		BOARD_CONTENT as boardContent, BOARD_WRITER as boardWriter from board where BOARD_NUM = #{boardNum}
+	</select>
+	
+	<update id="boardUpdate" parameterType="dto">
+		update board set BOARD_SUBJECT = #{boardSubject}, BOARD_CONTENT = #{boardContent}, 
+		BOARD_WRITER = #{boardWriter} where BOARD_NUM = #{boardNum}
+	</update>
+	
+	<delete id="boardDelete" parameterType="String">
+		delete from board where BOARD_NUM = #{boardNum}	
+	</delete>
+</mapper>

@@ -2,12 +2,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>boardList.jsp</title>
+<title>thymeleaf/board/boardList.html</title>
 </head>
 <body>
 	게시글리스트
 	<br />
 	<a href="boardWrite">게시글 쓰러 고고씽~~~~~~~~~~~~~~~~~~</a>
 	<br />
+	<table border='1' width="600px" align="center">
+		<tr>
+			<th>글번호</th>
+			<th>글쓴이</th>
+			<th>제목</th>
+		</tr>
+
+		<tr th:each="dto : ${list}">
+			<th>	
+				<a th:href="@{boardDetail(boardNum=${dto.boardNum})}">[[${dto.boardNum}]]</a>
+			</th>
+			<th>[[${dto.boardWriter}]]</th>
+			<th>[[${dto.boardSubject}]]</th>
+		</tr>
+	</table>
 </body>
 </html>

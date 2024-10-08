@@ -1,9 +1,16 @@
 package board.command;
 
 public class BoardCommand {
+	Integer boardNum;
 	String boardWriter;
 	String boardSubject;
 	String boardContent;
+	public Integer getBoardNum() {
+		return boardNum;
+	}
+	public void setBoardNum(Integer boardNum) {
+		this.boardNum = boardNum;
+	}
 	public String getBoardWriter() {
 		return boardWriter;
 	}

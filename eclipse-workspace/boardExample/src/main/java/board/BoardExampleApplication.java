@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 @Controller
 public class BoardExampleApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(BoardExampleApplication.class, args);
 	}

@@ -2,16 +2,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>thymeleaf/board/boardDetail.html</title>
+<title>Insert title here</title>
 </head>
 <body>
-글번호 : [[${dto.boardNum}]] <br />
-글제목 :	[[${dto.boardSubject}]]<br />
-글내용 : [[${dto.boardContent}]]<br />
-글쓴이 : [[${dto.boardWriter}]]<br />
-
-<a th:href = "@{boardModify(boardNum=${dto.boardNum})}">수정</a>
-|
-<a th:href = "@{boardDelete(boardNum=${dto.boardNum})}">삭제</a>
+	글번호 :	[[${dto.boardNum}]]	<br/>
+	글쓴이 :	[[${dto.boardWriter}]]<br/>
+	글제목 :	[[${dto.boardSubject}]]<br/>
+	글내용 :	[[${dto.boardContent}]]<br/>
+	<a th:href = "@{boardModify(boardNum=${dto.boardNum})}">수정</a>
+	|
+	<a th:href = "@{boardDelete(boardNum=${dto.boardNum})}">삭제</a>
 </body>
 </html>

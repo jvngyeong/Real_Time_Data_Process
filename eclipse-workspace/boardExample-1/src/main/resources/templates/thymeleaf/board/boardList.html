@@ -2,27 +2,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>thymeleaf/board/boardList.html</title>
+<title>Insert title here</title>
 </head>
 <body>
-게시판 리스트<br />
-<a href = "boardWrite">게시글 쓰기</a><br />
-
-<table border = '1' width = "600px">
-	<tr>
-		<th>글번호</th>
-		<th>글제목</th>
-		<th>글쓴이</th>
-	</tr>
+	게시글 리스트다!<br/>
+	<a href = "boardWrite">게시글 작성하러갈래...?</a>
 	
-	<tr th:each = "dto : ${list}">
-		<th>
-			<a th:href = "@{boardDetail(boardNum=${dto.boardNum})}">[[${dto.boardNum}]]</a>
-		</th>
-		<th>[[${dto.boardSubject}]]</th>
-		<th>[[${dto.boardWriter}]]</th>
-	</tr>
-
-</table>
+	<table border = '1' width = "600px" align = "center">
+		<tr>
+			<td>글번호</td>
+			<td>글제목</td>
+			<td>글쓴이</td>
+		</tr>
+		
+		<tr th:each = "dto : ${list}">
+			<td>
+				<a th:href = "@{boardDetail(boardNum=${dto.boardNum})}">[[${dto.boardNum}]]</a>
+			</td>
+			<td>[[${dto.boardSubject}]]</td>
+			<td>[[${dto.boardWriter}]]</td>
+		</tr>
+	</table>
 </body>
 </html>

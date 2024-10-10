@@ -3,32 +3,32 @@
 	"-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
 	
-<mapper namespace="spring_boot_board.mapper.BoardMapper">
-	<sql id="boardNum">
-		select nvl(max(BOARD_NUM) , 0) + 1 from board
-	</sql>
-
-	<insert id="boardInsert" parameterType="dto">
-		insert into board(BOARD_NUM, BOARD_SUBJECT, BOARD_CONTENT, BOARD_WRITER) 
-		values((<include refid="boardNum"></include>), #{boardSubject}, #{boardContent}, #{boardWriter})
-	</insert>
+	<mapper namespace="spring_boot_board.mapper.BoardMapper">
+		<sql id="boardNum">
+			select nvl(max(board_num), 0) + 1 from board
+		</sql>
 	
-	<select id="boardSelectAll" resultType="dto">
-		select BOARD_NUM as boardNum, BOARD_SUBJECT as boardSubject, 
-		BOARD_CONTENT as boardContent, BOARD_WRITER as boardWriter from board order by BOARD_NUM asc
-	</select>
-	
-	<select id="boardSelectOne" resultType="dto" parameterType="String">
-		select BOARD_NUM as boardNum, BOARD_SUBJECT as boardSubject, 
-		BOARD_CONTENT as boardContent, BOARD_WRITER as boardWriter from board where BOARD_NUM = #{boardNum}
-	</select>
-	
-	<update id="boardUpdate" parameterType="dto">
-		update board set BOARD_SUBJECT = #{boardSubject}, BOARD_CONTENT = #{boardContent}, 
-		BOARD_WRITER = #{boardWriter} where BOARD_NUM = #{boardNum}
-	</update>
-	
-	<delete id="boardDelete" parameterType="String">
-		delete from board where BOARD_NUM = #{boardNum}	
-	</delete>
-</mapper>
+		<insert id="boardInsert" parameterType="dto">
+			insert into board(board_num, board_subject, board_content, board_writer)
+			values((<include refid="boardNum"></include>), #{boardSubject}, #{boardContent}, #{boardWriter})
+		</insert>
+		
+		<select id="boardSelectAll" resultType="dto">
+			select board_num as boardNum, board_subject as boardSubject, 
+			board_content as boardContent, board_writer as boardWriter from board order by board_num asc
+		</select>
+		
+		<select id="boardSelectOne" parameterType="string" resultType="dto">
+			select board_num as boardNum, board_subject as boardSubject, 
+			board_content as boardContent, board_writer as boardWriter from board where board_num = #{boardNum}
+		</select>
+		
+		<update id="boardUpdate" parameterType="dto">
+			update board set board_subject = #{boardSubject}, board_content = #{boardContent},
+			board_writer = #{boardWriter} where board_num = #{boardNum}
+		</update>
+		
+		<delete id="boardDelete" parameterType="string">
+			delete from board where board_num = #{boardNum}
+		</delete>
+	</mapper>

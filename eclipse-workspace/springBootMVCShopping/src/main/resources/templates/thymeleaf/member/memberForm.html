@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf/member/memberForm.html</title>
+</head>
+<body>
+	회원가입 페이지입니다.<br>
+	<form action = "memberRegist" method= "post" th:object="${memberCommand}">
+		회원번호 : <input type = "text" name = "memberNum" th:value = "${memberCommand.memberNum}" readonly="readonly"> 번호는 자동부여!<br>
+		이름 : <input type = "text" name = "memberName" th:value = "${memberCommand.memberName}">
+		<span style = "color : red" th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}"></span><br>
+		아이디 : <input type = "text" name = "memberId" id = "userId" th:value = "${memberCommand.memberId}">
+		<span style = "color : red" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span><br>
+		비밀번호 : <input type = "password" name = "memberPw" th:value = "${memberCommand.memberPw}">
+		<span style = "color : red" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></span><br>
+		비밀번호 확인 : <input type = "password" name = "memberPwCon" th:value = "${memberCommand.memberPwCon}">
+		<span style = "color : red" th:if="${#fields.hasErrors('memberPwCon')}" th:errors="*{memberPwCon}"></span><br>
+		주소 :  <input type = "text" name = "memberAddr" th:value = "${memberCommand.memberAddr}" id = "sample4_roadAddress"><button type = "button">우편번호 검색</button>
+		<span style = "color : red" th:if="${#fields.hasErrors('memberAddr')}" th:errors="*{memberAddr}"></span>	<br>
+		상세주소 : <input type = "text" name = "memberAddrDetail" th:value = "${memberCommand.memberAddrDetail}">
+		<span style = "color : red" th:if="${#fields.hasErrors('memberAddrDetail')}" th:errors="*{memberAddrDetail}"></span><br>
+		우편번호 : <input type = "text" name = "memberPost" th:value = "${memberCommand.memberPost}" id = "sample4_postcode"><br>
+		연락처 : <input type = "tel" name = "memberPhone1" th:value = "${memberCommand.memberPhone1}">
+		<span style = "color : red" th:if="${#fields.hasErrors('memberPhone1')}" th:errors="*{memberPhone1}"></span><br>
+		연락처 2 : <input type = "tel" name = "memberPhone2" th:value = "${memberCommand.memberPhone2}"><br>
+		성별 : <br>
+			<input type = "checkbox" name = "gender" value = "M">남자<br>
+			<input type = "checkbox" name = "gender" value = "F">여자<br>
+		생년월일 : <input type = "date" name = "memberBirth" th:value = "${memberCommand.memberBirth}">
+		<span style = "color : red" th:if="${#fields.hasErrors('memberBirth')}" th:errors="*{memberBirth}"></span><br>
+		이메일 : <input type = "email" name = "memberEmail" th:value = "${memberCommand.memberEmail}">
+		<span style = "color : red" th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}"></span><br>
+		<input type = "submit" value = "회원가입">
+	</form>
+</body>
+</html>

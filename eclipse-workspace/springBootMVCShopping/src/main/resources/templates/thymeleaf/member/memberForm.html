@@ -2,6 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/static/js/daumAddressScript.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src = "/static/js/checkbox.js"></script>
+<script type = "text/javascript">
+$(function(){
+	$("#userId").on("change keyup", function(){
+		$.ajax({
+			type : "post",
+			url : "/login/userIdCheck",
+			data : {"userId" : $("#userId").val()},
+			dataType : "text",
+			success : function(result){
+				if(result == "1"){
+					$("#idCheck").text("사용할 수 없는 아이디입니다.");
+					$("#idCheck").css("color", "red");
+				}
+				else{
+					$("#idCheck").text("사용 가능한 아이디입니다.");
+					$("#idCheck").css("color", "blue");			
+				}
+			},
+			error : function(){
+				alert("오류");
+			}
+		});
+	});
+});
+</script>
 <title>thymeleaf/member/memberForm.html</title>
 </head>
 <body>
@@ -11,12 +40,14 @@
 		이름 : <input type = "text" name = "memberName" th:value = "${memberCommand.memberName}">
 		<span style = "color : red" th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}"></span><br>
 		아이디 : <input type = "text" name = "memberId" id = "userId" th:value = "${memberCommand.memberId}">
+		<span id = "idCheck"></span>
 		<span style = "color : red" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span><br>
 		비밀번호 : <input type = "password" name = "memberPw" th:value = "${memberCommand.memberPw}">
 		<span style = "color : red" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></span><br>
 		비밀번호 확인 : <input type = "password" name = "memberPwCon" th:value = "${memberCommand.memberPwCon}">
 		<span style = "color : red" th:if="${#fields.hasErrors('memberPwCon')}" th:errors="*{memberPwCon}"></span><br>
-		주소 :  <input type = "text" name = "memberAddr" th:value = "${memberCommand.memberAddr}" id = "sample4_roadAddress"><button type = "button">우편번호 검색</button>
+		주소 :  <input type = "text" name = "memberAddr" th:value = "${memberCommand.memberAddr}" id = "sample4_roadAddress">
+		<button type = "button" onclick = "execDaumPostcode();">우편번호 검색</button>
 		<span style = "color : red" th:if="${#fields.hasErrors('memberAddr')}" th:errors="*{memberAddr}"></span>	<br>
 		상세주소 : <input type = "text" name = "memberAddrDetail" th:value = "${memberCommand.memberAddrDetail}">
 		<span style = "color : red" th:if="${#fields.hasErrors('memberAddrDetail')}" th:errors="*{memberAddrDetail}"></span><br>

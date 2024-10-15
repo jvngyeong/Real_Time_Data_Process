@@ -3,8 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <title>thymeleaf/member/memberList.html</title>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src = "/static/js/checkbox.js"></script>
 </head>
 <body>
-	<a href = "memberWrite">회원 등록</a><br />
+	<a href="memberWrite">회원 등록</a>
+	<br />
+	회원 수 : [[${count}]]<br/>
+	<table border='1' width="600px" align="center">
+		<form action = "memberList" method = "get">
+			<tr>
+				<td colspan = '6'>
+					회원 검색 : <input type = "search" name = "searchWord" size = "60" th:value = "${searchWord}"/>
+					<input type = "submit" value = "검색"/>
+				</td>
+			</tr>
+		</form>
+		<tr>
+		<form action = "membersDelete" method = "post" id = "frm">
+			<th>
+				<input type = "checkbox" id = "checkBoxes" />
+			</th>
+			<th>번호</th>
+			<th>이름</th>
+			<th>아이디</th>
+			<th>등록일</th>
+			<th>
+				<button type = "submit">선택 삭제</button>
+			</th>
+		</tr>
+		
+		
+		<tr th:each="memberDTO : ${list}">
+			<th>
+				<input type = "checkbox" name = "nums" th:value="${memberDTO.memberNum}"/>
+			</th>
+			<th>[[${memberDTO.memberNum}]]</th>
+			<th>[[${memberDTO.memberName}]]</th>
+			<th>[[${memberDTO.memberId}]]</th>
+			<th>[[${#dates.format(memberDTO.memberRegist, 'yyyy-MM-dd')}]]</th>
+			<th>
+				<button type = "button" th:attr="onclick=|javascript:location.href='membersDelete?nums=${memberDTO.memberNum}'|">삭제</button>
+			</th>
+		</tr>
+		</form>
+		<tr>
+			<th colspan = '6'>
+				<span th:if="${page <= 1}">[이전]</span>
+				<span th:if="${page > 1}">
+					<a th:href = "|memberList?page=${page - 1}&searchWord=${searchWord}|">[이전]</a>
+				</span>
+				
+				<!-- #numbers 객체를 사용해서 반복문을 돌림. -->
+				<th:block th:each="i : ${#numbers.sequence(startPageNum,endPageNum)}">
+					[<a th:href="|memberList?page=${i}&searchWord=${searchWord}|">[[${i}]]</a>]
+				</th:block> 
+
+				
+				<span th:if="${page < maxPage}">
+					<a th:href = "@{memberList(page=${page + 1},searchWord=${searchWord})}">[다음]</a>
+				</span>
+				<span th:if="${page >= maxPage}">[다음]</span>
+			</th>
+		</tr>
+	</table>
 </body>
 </html>

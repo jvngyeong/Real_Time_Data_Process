@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.service.goods.GoodsListService"/>
-    <fullyQualifiedTypeName name="jspMVCMisoShopping.model.dto.CartListDTO"/>
     <fullyQualifiedTypeName name="jspMVCMisoShopping.service.item.IniPayReqService"/>
     <fullyQualifiedTypeName name="org.apache.catalina.startup.SafeForkJoinWorkerThreadFactory"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="springBootMVCShopping.service.StartEndPageService"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.ModelMap"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.BeanUtils"/>
+    <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
 </qualifiedTypeNameHistroy>

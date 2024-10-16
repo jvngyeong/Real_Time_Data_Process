@@ -19,7 +19,9 @@ public class MemberDTO {
 	String memberPhone1;
 	String memberPhone2;
 	String memberEmail;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memberRegist;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memberBirth;
 	String gender;
 	String memberPoint;

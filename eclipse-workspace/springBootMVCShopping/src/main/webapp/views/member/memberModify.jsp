@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	회원상세정보 페이지입니다.
 	<br> 
 	<form action = "memberUpdate.mem" method = "post">
 		회원번호 : <input type = "text" name = "memberNum" value = ${attDTO.memberNum } readonly />

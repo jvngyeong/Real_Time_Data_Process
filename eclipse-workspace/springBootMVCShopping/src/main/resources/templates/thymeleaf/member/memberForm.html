@@ -6,31 +6,8 @@
 <script src="/static/js/daumAddressScript.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src = "/static/js/checkbox.js"></script>
-<script type = "text/javascript">
-$(function(){
-	$("#userId").on("change keyup", function(){
-		$.ajax({
-			type : "post",
-			url : "/login/userIdCheck",
-			data : {"userId" : $("#userId").val()},
-			dataType : "text",
-			success : function(result){
-				if(result == "1"){
-					$("#idCheck").text("사용할 수 없는 아이디입니다.");
-					$("#idCheck").css("color", "red");
-				}
-				else{
-					$("#idCheck").text("사용 가능한 아이디입니다.");
-					$("#idCheck").css("color", "blue");			
-				}
-			},
-			error : function(){
-				alert("오류");
-			}
-		});
-	});
-});
-</script>
+<script src = "/static/js/check.js"></script>
+
 <title>thymeleaf/member/memberForm.html</title>
 </head>
 <body>
@@ -60,7 +37,8 @@ $(function(){
 			<input type = "checkbox" name = "gender" value = "F">여자<br>
 		생년월일 : <input type = "date" name = "memberBirth" th:value = "${memberCommand.memberBirth}">
 		<span style = "color : red" th:if="${#fields.hasErrors('memberBirth')}" th:errors="*{memberBirth}"></span><br>
-		이메일 : <input type = "email" name = "memberEmail" th:value = "${memberCommand.memberEmail}">
+		이메일 : <input type = "email" id = "userEmail" name = "memberEmail" th:value = "${memberCommand.memberEmail}">
+		<span id = "emailCheck"></span>
 		<span style = "color : red" th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}"></span><br>
 		<input type = "submit" value = "회원가입">
 	</form>

@@ -38,8 +38,12 @@
 			<th>
 				<input type = "checkbox" name = "nums" th:value="${memberDTO.memberNum}"/>
 			</th>
-			<th>[[${memberDTO.memberNum}]]</th>
-			<th>[[${memberDTO.memberName}]]</th>
+			<th>
+				<a th:href = "|memberDetail/${memberDTO.memberNum}|">[[${memberDTO.memberNum}]]</a>
+			</th>
+			<th>
+				<a th:href = "|memberDetail/${memberDTO.memberNum}|">[[${memberDTO.memberName}]]</a>
+			</th>
 			<th>[[${memberDTO.memberId}]]</th>
 			<th>[[${#dates.format(memberDTO.memberRegist, 'yyyy-MM-dd')}]]</th>
 			<th>

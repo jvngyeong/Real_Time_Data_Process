@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf/member/memberModify.html</title>
+</head>
+<body>
+	<br> 
+	<form action = "memberModify" method = "post" th:object = "${memberCommand}">
+	<input type = "hidden" name = "memberPw" value = "1!qQ1234" />
+	<input type = "hidden" name = "memberPwCon" value = "1!qQ1234" />
+		회원번호 : <input type = "text" name = "memberNum" th:field = "*{memberNum}" readonly />
+	<br> 이름 : <input type = "text" name = "memberName" th:field = "*{memberName}" />
+	<span style = "color:red" th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}"></span>
+	<br> 아이디 : <input type = "text" name = "memberId" th:field = "*{memberId}" />
+	<span style = "color:red" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></span>
+	<br> 주소 : <input type = "text" name = "memberAddr" th:field = "*{memberAddr}" />
+	<br> 상세주소 : <input type = "text" name = "memberAddrDetail" th:field = "*{memberAddrDetail}" />
+	<br> 우편번호 : <input type = "text" name = "memberPost" th:field = "*{memberPost}" />
+	<br> 연락처 1 : <input type = "tel" name = "memberPhone1" th:field = "*{memberPhone1}" />
+	<br> 연락처 2 : <input type = "tel" name = "memberPhone2" th:field = "*{memberPhone2}" />
+	<br> 성별 : 
+	<input type = "radio" name="gender" value = "M" th:checked="*{gender == 'M'} "/> 남자
+	<input type = "radio" name="gender" value = "F" th:checked="${memberCommand.gender == 'F'}"/> 여자
+	<br> 등록일 : <input type = "date" name = "memberRegist" th:field = "*{memberRegist}" readonly />
+	<br> 생년월일 : <input type = "date" name = "memberBirth" th:field = *{memberBirth} />
+	<br> 이메일 : <input type = "text" name = "memberEmail" th:field = "*{memberEmail}" />
+	<span style = "color:red" th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}"></span>
+	<br> <input type = "submit" value = "수정" /> <input type = "button" onclick="javascript:location.href = 'memberList'" value = "회원 리스트로 이동"/>
+	</form>
+
+</body>
+</html>

@@ -34,7 +34,7 @@ $(function() {
 			success: function(result) {
 				if (result == "1") {
 					$("#emailCheck").text("사용할 수 없는 이메일입니다.")
-					$("#emailCheck").css("color", "blue");
+					$("#emailCheck").css("color", "red");
 				} else {
 					$("#emailCheck").text("사용 가능한 이메일입니다.")
 					$("#emailCheck").css("color", "blue");

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf/employee/employeeList</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script src="/static/js/checkbox.js"></script>
+<script type="text/javascript">
+	
+</script>
+</head>
+<body>
+	직원 목록입니다.
+	<br />
+	<a href="employeeWrite">직원 가입하러 가기</a>
+	<table border='1' width="600px" align="center">
+		<form action="employeeList" method="get">
+		<tr>
+			<th colspan='6'>
+			검색 : <input type="search" name = "searchWord" size="60" th:value = ${searchWord} /> <input type="submit" value="검색" />
+			</th>
+		</tr>
+		</form>
+		<form action="employeesDelete" method="post">
+		<tr>
+			<th><input type="checkbox" id="checkBoxes" /></th>
+			<th>번호</th>
+			<th>이름</th>
+			<th>아이디</th>
+			<th>등록일</th>
+			<th><input type="submit" value="선택 삭제" /></th>
+		</tr>
+		<input type="hidden" name="nums" value="">
+		<tr th:each="dto : ${list}">
+			<th><input type="checkbox" name="nums" th:value="${dto.empNum}">
+			</th>
+			<th><a th:href="@{employeeDetail(empNum=${dto.empNum})}">[[${dto.empNum}]]</a>
+			</th>
+			<th><a th:href="@{employeeDetail(empNum=${dto.empNum})}">[[${dto.empName}]]</a>
+			</th>
+			<th>[[${dto.empId}]]</th>
+			<th>[[${#dates.format(dto.empHireDate, 'yyyy-MM-dd')}]]</th>
+			<th>
+				<button type="button"
+					th:attr="onclick=|javascript:location.href='employeesDelete?nums=${dto.empNum}'|">삭제</button>
+			</th>
+		</tr>
+		<tr>
+			<th colspan = '6'>
+				<span th:if="${page > 1}">
+					<a th:href = "@{employeeList(page=${page - 1}, searchWord=${searchWord})}">[이전]</a>
+				</span>
+				<span th:if="${page <= 1}">
+					[이전]
+				</span>
+				
+				<th:block th:each = "i : ${#numbers.sequence(startPageNum, endPageNum)}">
+					[<a th:href ="@{employeeList(page=${i}, searchWord=${searchWord})}">[[${i}]]</a>]
+				</th:block>
+				
+				<span th:if="${page < maxPage}">
+					<a th:href = "@{employeeList(page=${page+1}, searchWord=${searchWord})}">[다음]</a>
+				</span>
+				<span th:if="${page >= maxPage}">
+					[다음]
+				</span>
+			</th>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>

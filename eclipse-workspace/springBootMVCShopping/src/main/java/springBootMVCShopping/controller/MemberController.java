@@ -77,7 +77,9 @@ public class MemberController {
 	
 	@RequestMapping("membersDelete")
 	public String membersDelete(@RequestParam("nums") String[] memberNums) {
-		membersDeleteService.execute(memberNums);
+		if(memberNums.length >= 1) {
+			membersDeleteService.execute(memberNums);
+		}
 		return "redirect:memberList";
 	}
 	

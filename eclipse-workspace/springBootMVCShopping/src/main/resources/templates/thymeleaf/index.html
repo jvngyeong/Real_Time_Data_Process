@@ -5,14 +5,50 @@
 <title>thymeleaf/index.html</title>
 </head>
 <body>
-<h1>Hello Miso Shopping!</h1>
-<ul>
-	<li>
-		<a href = "member/memberList">회원 목록</a>
-	</li>
-	<li>
-		<a href = "employee/employeeList">직원 관리</a>
-	</li>
-</ul>
+	<h1>Hello Miso Shopping!</h1>
+	<div th:if="${session.auth != null}">
+		<ul>
+			<li>
+				<a href = "/member/memberList">회원 목록</a>
+			</li>
+			<li>
+				<a href = "/employee/employeeList">직원 목록</a>
+			</li>
+			<li>
+				<a href = "/login/logout">로그아웃</a>
+			</li>
+			
+		</ul>
+	</div>
+	<div th:if ="${session.auth == null}">
+	<ul>
+		<form action = "/login/login" method = "post">
+			<table border="1" align="center" th:object = "${loginCommand}">
+				<tr>
+					<th colspan="2">자동 로그인 / 비밀번호 찾기</th>
+				</tr>
+				<tr>
+					<th>아이디 : <input type = "text" name = "userId" th:field = "*{userId}"/><br>
+						<span style = "color:red" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+					</th>
+					<th rowspan = "2">
+						<input type = "image" src = "/static/images/tokki.PNG" width="400"/>
+					</th>
+				</tr>
+				<tr>
+					<th>비밀번호 : <input type = "password" name = "userPw"/><br>
+						<span style = "color:red" th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}"></span>
+					</th>
+				</tr>
+				<tr>
+					<th colspan="2">
+						아이디 / 비밀번호 찾기 | 
+						<a href="regist/userAgree">회원가입</a>
+					</th>
+				</tr>
+			</table>
+		</form>
+	</ul>
+	</div>
 </body>
 </html>

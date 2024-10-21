@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import springBootMVCShopping.command.LoginCommand;
+
 @SpringBootApplication
 @Controller
 public class SpringBootMvcShoppingApplication {
@@ -14,7 +16,7 @@ public class SpringBootMvcShoppingApplication {
 	}
 
 	@GetMapping("/")
-	public String index() {
+	public String index(LoginCommand loginCommand) {
 		return "thymeleaf/index";
 	}
 }

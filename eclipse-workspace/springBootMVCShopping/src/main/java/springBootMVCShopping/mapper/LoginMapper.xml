@@ -23,10 +23,11 @@
 	   <result column="member_name" property="userName" jdbcType="VARCHAR"/>
 	   <result column="member_email" property="userEmail" jdbcType="VARCHAR"/>
 	   <result column="grade" property="grade" jdbcType="VARCHAR"/>
-	</resultMap>
+	</resultMap>	
 	
 	<select id="loginSelectOne" parameterType="string" resultMap = "authResultMap">
 		select member_id, member_pw, member_name, member_email, 'mem' as grade from members where member_id = #{userId}
+		and member_email_conf is not null
 		union
 		select emp_id, emp_pw, emp_name, emp_email, 'emp' from employees where emp_id = #{userId}
 	</select>

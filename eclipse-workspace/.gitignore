@@ -10,6 +10,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+TFT
 
 # External tool builders
 .externalToolBuilders/

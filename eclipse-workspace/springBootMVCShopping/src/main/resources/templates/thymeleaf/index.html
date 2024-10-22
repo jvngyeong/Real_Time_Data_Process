@@ -8,20 +8,33 @@
 	<h1>Hello Miso Shopping!</h1>
 	<div th:if="${session.auth != null}">
 		<ul>
+			<th:block th:if="${session.auth.grade == 'emp'}">
+				<li>
+					<a href = "/member/memberList">회원 목록</a>
+				</li>
+				<li>
+					<a href = "/employee/employeeList">직원 목록</a>
+				</li>
+				<li>
+					<a href = "/mailling">메일 보내기</a>
+				</li>
+			</th:block>
+			<th:block th:if="${session.auth.grade == 'mem'}">
 			<li>
-				<a href = "/member/memberList">회원 목록</a>
+				<a href = "/myPage/memberMyPage">내 정보 보기</a>
 			</li>
-			<li>
-				<a href = "/employee/employeeList">직원 목록</a>
-			</li>
+			</th:block>
 			<li>
 				<a href = "/login/logout">로그아웃</a>
 			</li>
 			
 		</ul>
 	</div>
-	<div th:if ="${session.auth == null}">
+	<div th:if ="${session.auth == null}">	
 	<ul>
+		<li>
+			<a href = "/smsSend">문자 보내기</a>
+		</li>
 		<form action = "/login/login" method = "post">
 			<table border="1" align="center" th:object = "${loginCommand}">
 				<tr>
@@ -43,7 +56,7 @@
 				<tr>
 					<th colspan="2">
 						아이디 / 비밀번호 찾기 | 
-						<a href="regist/userAgree">회원가입</a>
+						<a href="/regist/userAgree">회원가입</a>
 					</th>
 				</tr>
 			</table>

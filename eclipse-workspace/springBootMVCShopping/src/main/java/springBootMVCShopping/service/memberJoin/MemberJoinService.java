@@ -29,6 +29,11 @@ public class MemberJoinService {
 		dto.setMemberPost(userCommand.getMemberPost());
 		String encodedPw = passwordEncoder.encode(userCommand.getMemberPw());
 		dto.setMemberPw(encodedPw);
-		userMapper.userInsert(dto);
+		int i = userMapper.userInsert(dto);
+		if(i > 0) {
+			String html = "<html><body>"
+						+ "내용"
+						+ "</body></html>";
+		}
 	}
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf/myPage/employeeInfo.html</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script src = "/static/js/employeeSinglePage.js"></script>
+</head>
+<body>
+	<ul>
+		<li><a href="/">홈</a></li>
+		<li><a href="/myPage/employeeMyPage">내 정보 보기</a></li>
+		<li><a href="javascript:empModify();">내 정보 수정</a></li>
+		<li><a href="javascript:empPw();">비밀번호 변경</a></li>
+		<li><a href="/myPage/employeeDrop">퇴사</a></li>
+	</ul>
+	<div id = "content"></div>
+	<div id = "empForm" style = "display:none">
+		<form action = "employeeUpdate" method = "post">
+			직원 번호 : <input type = "text" name = "empNum" id = "empNum" readonly="readonly"/> 직원 번호는 자동부여됩니다.<br /> 
+			아이디 : <input type = "text" name = "empId" id = "empId"/><br />
+			이름 : <input type = "text" name = "empName" id = "empName"/><br />
+			주소 : <input type = "text" name = "empAddr" id = "empAddr"/><br />
+			상세 주소 : <input type = "text" name = "empAddrDetail" id = "empAddrDetail"/><br />
+			우편번호 : <input type = "text" name = "empPost" id = "empPost"/><br />
+			전화번호 : <input type = "tel" name = "empPhone" id = "empPhone"/> <br />
+			주민번호 : <input type = "text" name = "empJumin" id = "empJumin"/><br />
+			이메일 : <input type = "email" name = "empEmail" id = "empEmail"/><br />
+			직원 사진 : <input type = "file" name = "empImage" id = "empImage"/><br />
+			가입일 : <input type = "date" name = "empHireDate" id = "empHireDate"/><br />
+			<input type = "submit" value = "수정하기" />
+		</form>
+		</div>
+</body>
+</html>

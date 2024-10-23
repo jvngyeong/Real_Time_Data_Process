@@ -5,7 +5,7 @@
 
 <mapper namespace="springBootMVCShopping.mapper.MemberInfoMapper">
 	<select id="memberSelectOne" resultType="memberDTO">
-		select MEMBER_NUM, member_id, MEMBER_PW, MEMBER_ADDR, MEMBER_ADDR_DETAIL, MEMBER_POST,
+		select MEMBER_NUM, MEMBER_ID, MEMBER_PW, MEMBER_ADDR, MEMBER_ADDR_DETAIL, MEMBER_POST,
 		MEMBER_REGIST, GENDER, MEMBER_PHONE1, MEMBER_PHONE2, MEMBER_EMAIL, MEMBER_BIRTH,
 		MEMBER_EMAIL_CONF, MEMBER_NAME
 		from members

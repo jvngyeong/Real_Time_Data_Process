@@ -5,6 +5,9 @@
 <title>thymeleaf/employee/employeeModify</title>
 </head>
 <body>
+	<ul>
+		<li><a href="/">홈</a></li>
+	</ul>
 	<h3>직원 수정 페이지입니다.</h3>
 	<form action = "employeeUpdate" method = "post" th:object = "${employeeCommand}">
 		직원 번호 : <input type = "text" name = "empNum" th:field = "*{empNum}" readonly="readonly"/> 직원 번호는 자동부여됩니다.<br /> 

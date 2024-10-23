@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+   "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="springBootMVCShopping.mapper.GoodsMapper">
+	<sql id="goodsColumns">
+		GOODS_NUM, GOODS_PRICE, GOODS_CONTENTS, VISIT_COUNT, GOODS_UPDATE_DATE, 
+		 EMP_NUM, GOODS_REGIST, UPDATE_EMP_NUM, GOODS_NAME
+	</sql>
+
+	<insert id="goodsInsert">
+		insert into goods(<include refid="goodsColumns"></include>)
+		values(#{goodsNum}, #{goodsPrice}, #{goodsContents}, #{visitCount},
+		sysdate, #{empNum}, sysdate, #{updateEmpNum}, #{goodsName})
+	</insert>
+	
+	<select id="goodsSelectAll" resultType = "goodsDTO">
+		select <include refid="goodsColumns"></include>
+		from goods order by goods_num asc
+	</select>
+	
+	<select id="goodsSelectOne" resultType="goodsDTO">
+		select <include refid="goodsColumns"></include>
+		from goods where goods_num = #{goodsNum}
+	</select>
+	
+	<update id="goodsUpdate">
+		update goods set GOODS_PRICE = #{goodsPrice}, 
+		GOODS_CONTENTS = #{goodsContents}, VISIT_COUNT = #{visitCount}, 
+		GOODS_UPDATE_DATE = sysdate, EMP_NUM = #{empNum}, 
+		GOODS_REGIST = #{goodsRegist}, 
+		UPDATE_EMP_NUM = #{updateEmpNum}, GOODS_NAME = #{goodsName}
+		where goods_num = #{goodsNum}
+	</update>
+	
+	<delete id="goodsDelete">
+		delete from goods where goods_num = #{goodsNum}
+	</delete>
+</mapper>

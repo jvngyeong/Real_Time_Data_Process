@@ -8,7 +8,7 @@ import springBootMVCShopping.mapper.AutoNumMapper;
 public class AutoNumService {
 	@Autowired
 	AutoNumMapper autoNumMapper;
-	public String execute(String sep, String columnName, Integer len, String tableName) {
+	public String execute(String sep, String columnName, int len, String tableName) {
 		String autoNum = autoNumMapper.autoNumSelect(sep, columnName, len, tableName);
 		return autoNum;
 	}

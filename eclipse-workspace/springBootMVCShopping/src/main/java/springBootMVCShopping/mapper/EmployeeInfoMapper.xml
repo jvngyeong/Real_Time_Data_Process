@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+   "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springBootMVCShopping.mapper.EmployeeInfoMapper">
+	<sql id="employeeColumns">
+		EMP_NUM, EMP_PW, EMP_NAME, EMP_ADDR, EMP_IMAGE, EMP_POST, EMP_PHONE, 
+		EMP_JUMIN, EMP_EMAIL, EMP_HIRE_DATE, EMP_ID, EMP_ADDR_DETAIL
+	</sql>
+	
+	<select id="employeeSelectOne" resultType="employeeDTO">
+		select <include refid="employeeColumns"></include> from employees
+		where emp_id = #{userId}
+	</select>
+	
+	<update id="employeePwUpdate">
+		update employees set emp_pw = #{newPw} where emp_id = #{userId}
+	</update>
+</mapper>

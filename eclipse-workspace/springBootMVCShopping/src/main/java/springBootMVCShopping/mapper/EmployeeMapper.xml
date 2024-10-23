@@ -49,4 +49,8 @@
 	<select id="employeeCount" resultType = "int">
 		select count(*) from employees
 	</select>
+	
+	<select id="empNumSelect" resultType = "string">
+		select emp_num from employees where emp_id = #{userId}
+	</select>
 </mapper>

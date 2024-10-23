@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf/goods/goodsModify.html</title>
+</head>
+<body>
+	<form action="goodsModify" method="post" >
+		<table border=1 align="center" width="600">
+			<caption> 상품 상세보기</caption>
+			<tr><th width="150" >상품번호</th>
+				<td><input type="text" name="goodsNum" id = "goodsNum" th:value="${dto.goodsNum }" readonly="readonly"></td></tr>
+			<tr><th width="150" >상품명</th>
+				<td><input type="text" name="goodsName" id = "goodsName" th:value="${dto.goodsName }"></td></tr>
+			<tr><th>상품가격</th>
+				<td><input type="text" name="goodsPrice" id = "goodsPrice" th:value="${dto.goodsPrice }"></td></tr>
+			<tr><th>상품설명</th>
+				<td><textarea rows="10" cols="45" name="goodsContents" id = "goodsContent">[[${dto.goodsContents }]]</textarea></td></tr>
+			<tr><th>조회수</th>
+				<td><input type="text" name="visitCount" id = "visitCount" th:value="${dto.visitCount }" readonly="readonly"></td></tr>
+			<tr><th>등록한 사원</th>
+				<td><input type="text" name="empNum" id = "empNum" th:value="${dto.empNum }" readonly="readonly"></td></tr>
+			<tr><th>등록일</th>
+				<td><input type="text" name="goodsRegist" id = "goodsRegist" th:value="${#dates.format(dto.goodsRegist, 'yyyy-MM-dd')}" readonly="readonly"></td></tr>
+			<tr><th>마지막 수정 사원</th>
+				<td><input type="text" name="updateEmpNum" id = "updateEmpNum" th:value="${dto.updateEmpNum }" readonly="readonly"></td></tr>
+			<tr><th>마지막 수정일</th>
+				<td><input type="text" name="goodsUpdateDate" id = "goodsUpdateDate" th:value="${#dates.format(dto.goodsUpdateDate, 'yyyy-MM-dd' )}" readonly="readonly"></td></tr>
+			<tr><th colspan="2">
+				<input type="submit" value="수정완료" />
+				<button type="button" th:attr="onclick=|javascript:location.href='/goods/goodsUpdate?goodsNum=${dto.goodsNum}'|">수정취소 1번</button>
+				<button type="button" th:attr="onclick=|javascript:location.reload()|">수정취소 2번</button>
+				<button type="button" th:attr="onclick=|javascript:location.href='/goods/goodsList'|">상품목록</button></th></tr>
+		</table>
+	</form>
+</body>
+</html>

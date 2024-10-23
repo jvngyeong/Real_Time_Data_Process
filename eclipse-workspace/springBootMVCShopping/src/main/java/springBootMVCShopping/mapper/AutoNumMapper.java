@@ -8,7 +8,7 @@ public interface AutoNumMapper {
 	public String autoNumSelect(
 			@Param("sep") String sep, 
 			@Param("columnName") String columnName, 
-			@Param("len")Integer len,
+			@Param("len") Integer len,
 			@Param("tableName")String tableName);
 	
 	public void numsDelete(

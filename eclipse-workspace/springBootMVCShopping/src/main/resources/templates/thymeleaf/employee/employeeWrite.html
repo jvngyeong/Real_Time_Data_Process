@@ -9,6 +9,9 @@
 <script src = "/static/js/check.js"></script>
 </head>
 <body>
+	<ul>
+		<li><a href="/">홈</a></li>
+	</ul>
 	<h3>직원 가입 페이지입니다.</h3>
 	<form action = "employeeWrite" method = "post" th:object = "${employeeCommand}">
 		직원 번호 : <input type = "text" name = "empNum" th:field = "*{empNum}" readonly="readonly"/> 직원 번호는 자동부여됩니다.<br /> 

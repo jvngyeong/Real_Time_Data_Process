@@ -5,6 +5,9 @@
 <title>thymeleaf/employee/employeeDetail</title>
 </head>
 <body>
+	<ul>
+		<li><a href="/">홈</a></li>
+	</ul>
 	<h3>직원 상세 정보입니다.</h3>
 		직원 번호 : [[${employeeCommand.empNum}]] <br />
 		아이디 : [[${employeeCommand.empId}]] <br />
@@ -18,10 +21,10 @@
 		이메일 : [[${employeeCommand.empEmail}]] <br />
 		직원 사진 : [[${employeeCommand.empImage}]] <br />
 		가입일 : [[${#dates.format(employeeCommand.empHireDate, 'yyyy-MM-dd')}]] <br />
-		<a th:href = "@{employeeModify(empNum=${employeeCommand.empNum})}">수정</a>
+		<a th:href = "@{../employee/employeeModify(empNum=${employeeCommand.empNum})}">수정</a>
 		|
-		<a th:href = "@{employeesDelete(nums=${employeeCommand.empNum})}">삭제</a>
+		<a th:href = "@{../employee/employeesDelete(nums=${employeeCommand.empNum})}">삭제</a>
 		<br />
-		<a href = "employeeList">직원 리스트로 돌아가기</a>
+		<a href = "../employee/employeeList">직원 리스트로 돌아가기</a>
 </body>
 </html>

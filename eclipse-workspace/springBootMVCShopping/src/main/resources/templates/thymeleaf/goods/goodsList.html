@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf/goods/goodsList.html</title>
+</head>
+<body>
+	<h3>상품 리스트입니다.</h3>
+	<a href = "/goods/goodsWrite">상품 등록하러 가기</a>
+	<table border=1 width="600" align="center">
+		<caption>상품 목록</caption>
+		<tr><th>번호</th><th>상품번호</th><th>상품명</th><th>상품가격</th></tr>
+		<tr th:each = "dto,idx : ${list}" >
+			<th><a th:href = "@{goodsInfo(goodsNum=${dto.goodsNum })}">[[${idx.count}]]</a></th>
+			<th><a th:href = "@{goodsInfo(goodsNum=${dto.goodsNum })}">[[${dto.goodsNum}]]</a></th>
+			<th>[[${dto.goodsName }]]</th>
+			<th>[[${dto.goodsPrice }]]</th>
+		</tr>
+	</table>
+</body>
+</html>

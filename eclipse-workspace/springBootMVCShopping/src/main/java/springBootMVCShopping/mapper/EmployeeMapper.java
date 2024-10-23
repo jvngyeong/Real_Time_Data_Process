@@ -23,4 +23,6 @@ public interface EmployeeMapper {
 	public void employeesDelete(String[] empNums);
 
 	public int employeeCount();
+
+	public String empNumSelect(String userId);
 }

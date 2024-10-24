@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf/goodsIpgo/goodsIpgoForm.html</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#goodsNum").click(function(){
+			window.open("goodsSelect", "상품 선택", "width=600, heigth=500, left=50, top = 50");
+		});
+	});
+</script>
+</head>
+<body>
+	<h3>상품 입고 페이지입니다.</h3>
+	<table border = '1'>
+		<tr>
+			<th>입고 번호</th>
+			<th>
+				<input type = "text" name = "ipgoNum"/>
+			</th>
+		</tr>
+		<tr>
+			<th>상품 번호</th>
+			<th>
+				<input type = "text" name = "goodsNum" readonly="readonly" id = "goodsNum" />
+			</th>
+		</tr>
+	</table>
+</body>
+</html>

@@ -13,6 +13,8 @@ public class GoodsDetailService {
 	GoodsMapper goodsMapper;
 	public void execute(String goodsNum, Model model) {
 		GoodsDTO dto = goodsMapper.goodsSelectOne(goodsNum);
+		model.addAttribute("mainImage", dto.getGoodsMainStoreImage());
+		model.addAttribute("detailImages", dto.getGoodsDetailStoreImage());
 		model.addAttribute("dto", dto);
 	}
 }

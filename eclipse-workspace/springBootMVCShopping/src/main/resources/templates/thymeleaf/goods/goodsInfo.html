@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>thymeleaf/goods/goodsInfo.html</title>
 </head>
 <body>
 	<table border=1 align="center" width="600">
@@ -16,6 +16,20 @@
 		<tr><th>등록일</th><td>[[${#dates.format(dto.goodsRegist, 'yyyy-MM-dd') }]]</td></tr>
 		<tr><th>마지막 수정 사원</th><td>[[${dto.updateEmpNum }]]</td></tr>
 		<tr><th>마지막 수정일</th><td>[[${#dates.format(dto.goodsUpdateDate, 'yyyy-MM-dd' )}]]</td></tr>
+		<tr>
+			<th colspan = '2'>
+				대문 이미지 :
+				<img th:src = "|/static/upload/${mainImage}|" />
+			</th>
+		</tr>
+		<tr th:each = "image : ${#strings.arraySplit(detailImages, '/')}">
+			<th>
+				상세 이미지
+			</th>
+			<th colspan ='2' >
+				<img th:src = "|/static/upload/${image}|" />	
+			</th>
+		</tr>
 		<tr><th colspan="2">
 			<a th:href="@{goodsUpdate(goodsNum=${dto.goodsNum })}">상품 수정</a> | 
 			<a th:href="@{goodsDelete(goodsNum=${dto.goodsNum })}">상품 삭제</a> | 

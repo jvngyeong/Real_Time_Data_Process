@@ -11,7 +11,7 @@ public interface AutoNumMapper {
 			@Param("len") Integer len,
 			@Param("tableName")String tableName);
 	
-	public void numsDelete(
+	public int numsDelete(
 			@Param("nums") String[] nums,
 			@Param("tableName") String tableName,
 			@Param("columnName") String columnName);

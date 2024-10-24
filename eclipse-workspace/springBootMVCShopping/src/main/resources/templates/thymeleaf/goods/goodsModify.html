@@ -5,7 +5,7 @@
 <title>thymeleaf/goods/goodsModify.html</title>
 </head>
 <body>
-	<form action="goodsModify" method="post" >
+	<form action="goodsModify" method="post" enctype="multipart/form-data">
 		<table border=1 align="center" width="600">
 			<caption> 상품 상세보기</caption>
 			<tr><th width="150" >상품번호</th>
@@ -26,6 +26,18 @@
 				<td><input type="text" name="updateEmpNum" id = "updateEmpNum" th:value="${dto.updateEmpNum }" readonly="readonly"></td></tr>
 			<tr><th>마지막 수정일</th>
 				<td><input type="text" name="goodsUpdateDate" id = "goodsUpdateDate" th:value="${#dates.format(dto.goodsUpdateDate, 'yyyy-MM-dd' )}" readonly="readonly"></td></tr>
+			<tr>
+				<th>대문 이미지</th>
+				<th>
+					<input type = "file" name = "goodsMainImage"/>
+				</th>
+			</tr>
+			<tr>
+				<th>상세 이미지</th>
+				<th>
+					<input type = "file" name = "goodsDetailImage" multiple="multiple"/>
+				</th>
+			</tr>
 			<tr><th colspan="2">
 				<input type="submit" value="수정완료" />
 				<button type="button" th:attr="onclick=|javascript:location.href='/goods/goodsUpdate?goodsNum=${dto.goodsNum}'|">수정취소 1번</button>

@@ -3,18 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <title>thymeleaf/goods/goodsList.html</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script src="/static/js/checkbox.js"></script>
 </head>
 <body>
+
 	<h3>상품 리스트입니다.</h3>
-	<a href = "/goods/goodsWrite">상품 등록하러 가기</a>
+	<ul>
+		<li><a href="/">홈</a></li>
+		<li><a href="/goods/goodsList">상품 목록</a></li>
+		<li><a href = "/goods/goodsForm">상품 등록하러 가기</a></li>
+		<li><a href = "/goodsIpgo/goodsIpgoList">상품 입고 현황</a></li>
+	</ul>
+	
 	<table border=1 width="600" align="center">
 		<caption>상품 목록</caption>
-		<tr><th>번호</th><th>상품번호</th><th>상품명</th><th>상품가격</th></tr>
-		<tr th:each = "dto,idx : ${list}" >
-			<th><a th:href = "@{goodsInfo(goodsNum=${dto.goodsNum })}">[[${idx.count}]]</a></th>
-			<th><a th:href = "@{goodsInfo(goodsNum=${dto.goodsNum })}">[[${dto.goodsNum}]]</a></th>
-			<th>[[${dto.goodsName }]]</th>
-			<th>[[${dto.goodsPrice }]]</th>
+		<tr>
+			<form action = "goodsList" method = "post">
+				<th colspan = '6'>
+					<input type = "text" name = "searchWord" size="70"/>
+					<input type = "submit" value = "검색" />
+				</th>
+			</form>
+		</tr>
+		<form action = "goodsDelete" method = "post">
+			<tr>
+				<th><input type = "checkbox" id = "checkBoxes" /></th>
+				<th>번호</th>
+				<th>상품번호</th>
+				<th>상품명</th>
+				<th>상품가격</th>
+				<th>
+						<input type = "submit" value = "선택 삭제"/>
+				</th>
+			</tr>
+			<tr th:each = "dto,idx : ${list}" >
+				<th><input type = "checkbox" name = "nums" th:value = "${dto.goodsNum}"/></th>
+				<th><a th:href = "@{goodsInfo(goodsNum=${dto.goodsNum })}">[[${idx.count}]]</a></th>
+				<th><a th:href = "@{goodsInfo(goodsNum=${dto.goodsNum })}">[[${dto.goodsNum}]]</a></th>
+				<th>[[${dto.goodsName }]]</th>
+				<th>[[${dto.goodsPrice }]]</th>
+				<th>
+					<button type = "button" th:attr="onclick=|javascript:location.href='@{goodsDelete(goodsNum=${dto.goodsNum})}'|">삭제</button>
+				</th>
+			</tr>
+		</form>
+		<tr>
+			<th colspan = '6'>
+				<span th:if="${page > 1}">
+					<a th:href = "@{goodsList(page=${page - 1}, searchWord=${searchWord})}">[이전]</a>
+				</span>
+				<span th:if="${page <= 1}">
+					[이전]
+				</span>
+				
+				<th:block>
+				</th:block>
+				
+				<span th:if="${page < maxPage}">
+					<a th:href = "@{goodsList(page=${page+1}, searchWord=${searchWord})}">[다음]</a>
+				</span>
+				<span th:if="${page >= maxPage}">
+					[다음]
+				</span>
+			</th>
 		</tr>
 	</table>
 </body>

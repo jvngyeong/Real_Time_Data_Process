@@ -7,14 +7,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import springBootMVCShopping.domain.GoodsDTO;
+import springBootMVCShopping.domain.StartEndPageDTO;
 import springBootMVCShopping.mapper.GoodsMapper;
+import springBootMVCShopping.service.StartEndPageService;
 
 @Service
 public class GoodsListService {
 	@Autowired
 	GoodsMapper goodsMapper;
-	public void execute(Model model) {
-		List<GoodsDTO> list = goodsMapper.goodsSelectAll();
+	
+	@Autowired
+	StartEndPageService startEndPageService;
+	
+	public void execute(Model model, int page, String searchWord) {
+		StartEndPageDTO sepDTO = startEndPageService.execute(page, 3, searchWord);
+		List<GoodsDTO> list = goodsMapper.goodsSelectAll(sepDTO);
+		int count = goodsMapper.goodsCount();
+		startEndPageService.execute(page, 3, count, searchWord, list, model);
 		model.addAttribute("list", list);
 	}
 

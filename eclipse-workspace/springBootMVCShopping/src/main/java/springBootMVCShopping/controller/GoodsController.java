@@ -82,7 +82,8 @@ public class GoodsController {
 	}
 	
 	@GetMapping("goodsUpdate")
-	public String goodsUpdate(String goodsNum, Model model) {
+	public String goodsUpdate(String goodsNum, Model model, HttpSession session) {
+		session.removeAttribute("fileList");
 		goodsDetailService.execute(goodsNum, model);
 		return "thymeleaf/goods/goodsModify";
 	}
@@ -90,7 +91,7 @@ public class GoodsController {
 	@PostMapping("goodsModify")
 	public String goodsModify(GoodsCommand goodsCommand, HttpSession session) {
 		goodsUpdateService.execute(goodsCommand, session);
-		return "redirect:goodsList";
+		return "redirect:goodsInfo?goodsNum="+goodsCommand.getGoodsNum();
 	}
 	
 	@GetMapping("goodsDelete")

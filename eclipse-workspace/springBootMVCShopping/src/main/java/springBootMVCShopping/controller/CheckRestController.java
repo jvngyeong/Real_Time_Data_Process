@@ -6,12 +6,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpSession;
 import springBootMVCShopping.service.EmailCheckService;
+import springBootMVCShopping.service.FileDelService;
 
 @RestController
 public class CheckRestController {
 	@Autowired
 	EmailCheckService emailCheckService;
+	@Autowired
+	FileDelService fileDelService;
 	
 	@PostMapping("/checkRest/userEmailCheck")
 	public Integer emailCheck(String userEmail) {
@@ -32,5 +36,10 @@ public class CheckRestController {
 				return "이미 인증되었습니다.";
 			}
 		}
+	}
+	
+	@PostMapping("/file/fileDel")
+	public int fileDel(String orgFile, String storeFile, HttpSession session) {
+		return fileDelService.execute(orgFile, storeFile, session);
 	}
 }

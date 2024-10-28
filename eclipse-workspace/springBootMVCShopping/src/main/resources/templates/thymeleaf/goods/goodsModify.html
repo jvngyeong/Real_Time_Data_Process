@@ -3,46 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <title>thymeleaf/goods/goodsModify.html</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script type="text/javascript">
+function fileDel(btn, orgFile, storeFile, kind){
+	$.ajax({
+		type : "post",
+		url : "/file/fileDel",
+		data : {"orgFile" : orgFile, "storeFile" : storeFile},
+		dataType : "text",
+		success : function(result){
+			if(result == 1){
+				$(btn).text("삭제 취소");
+				if(kind == "main"){
+					$("#main").css("display", "none");
+					$("#mainFile").html("<input type = 'file' name = 'goodsMainImage' />");
+				}
+				else{
+					$(kind).css("display", "none");
+				}
+			}
+			else{
+				if(kind == "main"){
+					$("#main").css("display", "");
+					$("#mainFile").html("");
+				}
+				else{
+					$(kind).css("display", "");
+				}
+				$(btn).text("삭제");
+			}
+		},
+		error : function(){
+			alert("서버 오류입니다;;");
+		}
+	});
+}
+function fileChk(){
+	let fileInput = $("input[name = 'goodsMainImage']");
+	if(fileInput.length > 0 && !fileInput[0].files.length){
+		alert("파일을 선택해주세요.");
+		return false;
+	}
+}
+</script>
 </head>
 <body>
-	<form action="goodsModify" method="post" enctype="multipart/form-data">
+	<form action="goodsModify" method="post" enctype="multipart/form-data" onsubmit="return fileChk();">
 		<table border=1 align="center" width="600">
-			<caption> 상품 상세보기</caption>
-			<tr><th width="150" >상품번호</th>
-				<td><input type="text" name="goodsNum" id = "goodsNum" th:value="${dto.goodsNum }" readonly="readonly"></td></tr>
-			<tr><th width="150" >상품명</th>
-				<td><input type="text" name="goodsName" id = "goodsName" th:value="${dto.goodsName }"></td></tr>
-			<tr><th>상품가격</th>
-				<td><input type="text" name="goodsPrice" id = "goodsPrice" th:value="${dto.goodsPrice }"></td></tr>
-			<tr><th>상품설명</th>
-				<td><textarea rows="10" cols="45" name="goodsContents" id = "goodsContent">[[${dto.goodsContents }]]</textarea></td></tr>
-			<tr><th>조회수</th>
-				<td><input type="text" name="visitCount" id = "visitCount" th:value="${dto.visitCount }" readonly="readonly"></td></tr>
-			<tr><th>등록한 사원</th>
-				<td><input type="text" name="empNum" id = "empNum" th:value="${dto.empNum }" readonly="readonly"></td></tr>
-			<tr><th>등록일</th>
-				<td><input type="text" name="goodsRegist" id = "goodsRegist" th:value="${#dates.format(dto.goodsRegist, 'yyyy-MM-dd')}" readonly="readonly"></td></tr>
-			<tr><th>마지막 수정 사원</th>
-				<td><input type="text" name="updateEmpNum" id = "updateEmpNum" th:value="${dto.updateEmpNum }" readonly="readonly"></td></tr>
-			<tr><th>마지막 수정일</th>
-				<td><input type="text" name="goodsUpdateDate" id = "goodsUpdateDate" th:value="${#dates.format(dto.goodsUpdateDate, 'yyyy-MM-dd' )}" readonly="readonly"></td></tr>
+			<caption>상품 상세보기</caption>
+			<tr>
+				<th width="150">상품번호</th>
+				<td><input type="text" name="goodsNum" id="goodsNum"
+					th:value="${dto.goodsNum }" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th width="150">상품명</th>
+				<td><input type="text" name="goodsName" id="goodsName"
+					th:value="${dto.goodsName }"></td>
+			</tr>
+			<tr>
+				<th>상품가격</th>
+				<td><input type="text" name="goodsPrice" id="goodsPrice"
+					th:value="${dto.goodsPrice }"></td>
+			</tr>
+			<tr>
+				<th>상품설명</th>
+				<td><textarea rows="10" cols="45" name="goodsContents"
+						id="goodsContent">[[${dto.goodsContents }]]</textarea></td>
+			</tr>
+			<tr>
+				<th>조회수</th>
+				<td><input type="text" name="visitCount" id="visitCount"
+					th:value="${dto.visitCount }" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th>등록한 사원</th>
+				<td><input type="text" name="empNum" id="empNum"
+					th:value="${dto.empNum }" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th>등록일</th>
+				<td><input type="text" name="goodsRegist" id="goodsRegist"
+					th:value="${#dates.format(dto.goodsRegist, 'yyyy-MM-dd')}"
+					readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th>마지막 수정 사원</th>
+				<td><input type="text" name="updateEmpNum" id="updateEmpNum"
+					th:value="${dto.updateEmpNum }" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th>마지막 수정일</th>
+				<td><input type="text" name="goodsUpdateDate"
+					id="goodsUpdateDate"
+					th:value="${#dates.format(dto.goodsUpdateDate, 'yyyy-MM-dd' )}"
+					readonly="readonly"></td>
+			</tr>
 			<tr>
 				<th>대문 이미지</th>
-				<th>
-					<input type = "file" name = "goodsMainImage"/>
-				</th>
+				<td>
+					<span id = "mainFile"></span>
+					<span id = "main">[[${dto.goodsMainImage}]]</span>
+					<button type = "button" th:attr = "onclick=|javascript:fileDel(this, '${dto.goodsMainImage}', '${dto.goodsMainStoreImage}', 'main');|">삭제</button>
+				</td>	
+				
 			</tr>
 			<tr>
 				<th>상세 이미지</th>
-				<th>
-					<input type = "file" name = "goodsDetailImage" multiple="multiple"/>
-				</th>
+				<td>
+					<th:block th:each="image, idx : ${#strings.arraySplit(dto.goodsDetailImage, '/')}">
+						<span th:id="|detail${idx.index}|">[[${image}]]</span>
+						<button type = "button" th:attr = "onclick=|javascript:fileDel(this, '${image}', '${#strings.arraySplit(dto.goodsDetailStoreImage, '[`/]')[idx.index]}', '#detail${idx.index}');|">삭제</button>
+						<br> 
+					</th:block>
+					<input type="file" id = "detailFile" name="goodsDetailImage" multiple="multiple"/>
+				</td>
 			</tr>
-			<tr><th colspan="2">
-				<input type="submit" value="수정완료" />
-				<button type="button" th:attr="onclick=|javascript:location.href='/goods/goodsUpdate?goodsNum=${dto.goodsNum}'|">수정취소 1번</button>
-				<button type="button" th:attr="onclick=|javascript:location.reload()|">수정취소 2번</button>
-				<button type="button" th:attr="onclick=|javascript:location.href='/goods/goodsList'|">상품목록</button></th></tr>
+			<tr>
+				<th colspan="2"><input type="submit" value="수정완료" />
+					<button type = "button" onclick = "window.history.back()">뒤로가기</button>
+					<button type="button"
+						th:attr="onclick=|javascript:location.reload()|">수정취소 2번</button>
+					<button type="button"
+						th:attr="onclick=|javascript:location.href='/goods/goodsList'|">상품목록</button></th>
+			</tr>
 		</table>
 	</form>
 </body>

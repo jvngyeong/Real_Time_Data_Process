@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+   "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="springBootMVCShopping.mapper.GoodsIpgoMapper">
+	<sql id = "baseColumns">
+		IPGO_NUM, GOODS_NUM, IPGO_QTY, IPGO_DATE, MADE_DATE, IPGO_PRICE, EMP_NUM
+	</sql>
+	<insert id = "goodsIpgoInsert" parameterType="ipgoDTO">
+		insert into goods_ipgo(<include refid="baseColumns"></include>)
+		values(#{ipgoNum}, #{goodsNum}, #{ipgoQty}, #{ipgoDate}, #{madeDate}, #{ipgoPrice}, #{empNum})
+	</insert>
+	
+	<resultMap type="ipgoDTO" id="goodsIpgoResultMap">
+		<!-- id 태그는 setter/getter를 사용해서 primary key를 사용 -->
+		<!-- DTO에 생성자가 있을 때 constructor 태그 사용 가능! -->
+		<constructor>
+			<idArg column = "IPGO_NUM" javaType = "String"/>
+			<idArg column = "GOODS_NUM" javaType = "String"/>
+			<arg column = "IPGO_QTY" javaType ="integer"/>
+			<arg column = "IPGO_DATE" javaType = "java.util.Date"/>
+			<arg column = "MADE_DATE" javaType = "java.sql.Timestamp"/>
+			<arg column = "IPGO_PRICE" javaType="integer"/> 
+			<arg column="EMP_NUM" javaType="string"/>
+		</constructor>
+	</resultMap>
+	
+	<select id="goodsIpgoSelectList" resultMap = "goodsIpgoResultMap">
+		select <include refid="baseColumns"></include> from goods_ipgo
+	</select>
+	
+	<resultMap type="goodsIpgoGoodsNameDTO" id="goodsIpgoGoodsNameResultMap">
+		<result column="goods_name" javaType = "String" property = "goodsName"/>
+		<!-- association 태그는 setter를 사용한다는 뜻 -->
+		<!-- 여기서는 goodsIpgoGoodsNameDTO의 멤버변수 goodsIpgoDTO를 property에 적어서 setter를 사용한 것 -->
+		<association property="goodsIpgoDTO" javaType = "ipgoDTO" resultMap="goodsIpgoResultMap"></association>
+	</resultMap>
+	<select id="ipgoGoodsSelectOne" resultMap="goodsIpgoGoodsNameResultMap">
+		select IPGO_NUM, i.GOODS_NUM, IPGO_QTY, IPGO_DATE, MADE_DATE, IPGO_PRICE, i.EMP_NUM, GOODS_NAME
+		from goods_ipgo i join goods g on i.goods_num = g.goods_num
+		where IPGO_NUM = #{ipgoNum} and i.GOODS_NUM = #{goodsNum}
+	</select>
+	
+	<update id="goodsIpgoUpdate">
+		update goods_ipgo set IPGO_NUM = #{ipgoNum}, GOODS_NUM = #{goodsNum}, IPGO_QTY = #{ipgoQty},
+		IPGO_DATE = #{ipgoDate}, MADE_DATE = #{madeDate}, IPGO_PRICE = #{ipgoPrice}
+	</update>
+	
+	<delete id="ipgoGoodsNumDelete">
+		delete from goods_ipgo where
+		(ipgo_num, goods_num) in
+		(
+		<foreach collection="num.split('-')" item="item" close=")" open="(" index="index" separator="," >
+		#{item}
+		</foreach>
+		)
+	</delete>
+</mapper>	

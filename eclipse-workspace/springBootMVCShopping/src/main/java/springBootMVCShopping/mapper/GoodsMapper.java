@@ -25,4 +25,6 @@ public interface GoodsMapper {
 
 	public List<GoodsDTO> goodsSelectList(String[] goodsNums);
 
+	public List<GoodsDTO> goodsSelectList2(int startRow, int endRow);
+
 }

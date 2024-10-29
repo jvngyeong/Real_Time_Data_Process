@@ -97,4 +97,10 @@
 			</foreach>
 		</where>
 	</select>
+	
+	<select id="goodsSelectList2" resultMap = "goodsResultMap">
+		select * from
+		(select rownum rn, <include refid="goodsColumns"></include> from goods)
+		where rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

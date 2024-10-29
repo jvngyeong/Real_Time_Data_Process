@@ -3,6 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <title>thymeleaf/index.html</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+<script src = "/static/js/money.js" type="text/javascript"></script>
+<script type="text/javascript">
+var page = 1;
+	$(function(){
+		$.ajax({
+			url : "/",
+			type : "post",
+			data : {"page" : page},
+			dataType : "json",
+			success : function(result){
+				var item = '';
+				item += '<table align = "center">';
+				item += '<colgroup>';
+				item += '<col span = "3" width = "300" height = "330"/>';
+				item += '</colgroup><tr>';
+				$.each(result.list, function(idx, dto){
+					item += '<td><img src="/static/upload/'+dto.goodsMainStoreImage+'" width = "300" height = "300"/><br />';
+					item += dto.goodsName + '<br />';
+					item += formatter.format(dto.goodsPrice)+ '원<br />';
+					item += '</td>';
+					if((idx + 1) % 3 == 0){
+						item += "<tr></tr>";
+					}
+				});
+				item += '</tr></table>';
+				$("#content").html(item);
+				if(result.maxPage <= page){
+					$("#load-more").css("display", "none");
+				}
+			},
+			error : function(){
+				alert("서버 에러");
+			}
+		});
+		$("#load-more").click(loadMoreItems);
+	});
+	
+	function loadMoreItems(){
+		page++;
+		$.ajax({
+			url : "/",
+			type : "post",
+			data : {"page" : page},
+			dataType : "json",
+			success : function(result){
+				var item = '';
+				item += '<table align = "center">';
+				item += '<colgroup>';
+				item += '<col span = "3" width = "300" height = "330"/>';
+				item += '</colgroup><tr>';
+				$.each(result.list, function(idx, dto){
+					item += '<td><img src="/static/upload/'+dto.goodsMainStoreImage+'" width = "300" height = "300"/><br />';
+					item += dto.goodsName + '<br />';
+					item += formatter.format(dto.goodsPrice)+ '원<br />';
+					item += '</td>';
+					if((idx + 1) % 3 == 0){
+						item += "<tr></tr>";
+					}
+				});
+				item += '</tr></table>';
+				$("#content").append(item);
+				if(result.maxPage <= page){
+					$("#load-more").css("display", "none");
+				}
+			},
+			error : function(){
+				alert("서버 에러");
+			}
+		});
+	}
+</script>
 </head>
 <body>
 	<h1>Hello Miso Shopping!</h1>
@@ -37,37 +110,41 @@
 		</ul>
 	</div>
 	<div th:if ="${session.auth == null}">	
-	<ul>
-		<li>
-			<a href = "/smsSend">문자 보내기</a>
-		</li>
-		<form action = "/login/login" method = "post">
-			<table border="1" align="center" th:object = "${loginCommand}">
-				<tr>
-					<th colspan="2">자동 로그인 / 비밀번호 찾기</th>
-				</tr>
-				<tr>
-					<th>아이디 : <input type = "text" name = "userId" th:field = "*{userId}"/><br>
-						<span style = "color:red" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
-					</th>
-					<th rowspan = "2">
-						<input type = "image" src = "/static/images/tokki.PNG" width="400"/>
-					</th>
-				</tr>
-				<tr>
-					<th>비밀번호 : <input type = "password" name = "userPw"/><br>
-						<span style = "color:red" th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}"></span>
-					</th>
-				</tr>
-				<tr>
-					<th colspan="2">
-						아이디 / 비밀번호 찾기 | 
-						<a href="/regist/userAgree">회원가입</a>
-					</th>
-				</tr>
-			</table>
-		</form>
-	</ul>
+		<ul>
+			<li>
+				<a href = "/smsSend">문자 보내기</a>
+			</li>
+			<form action = "/login/login" method = "post">
+				<table border="1" align="center" th:object = "${loginCommand}">
+					<tr>
+						<th colspan="2">자동 로그인 / 비밀번호 찾기</th>
+					</tr>
+					<tr>
+						<th>아이디 : <input type = "text" name = "userId" th:field = "*{userId}"/><br>
+							<span style = "color:red" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+						</th>
+						<th rowspan = "2">
+							<input type = "image" src = "/static/images/tokki.PNG" width="400"/>
+						</th>
+					</tr>
+					<tr>
+						<th>비밀번호 : <input type = "password" name = "userPw"/><br>
+							<span style = "color:red" th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}"></span>
+						</th>
+					</tr>
+					<tr>
+						<th colspan="2">
+							아이디 / 비밀번호 찾기 | 
+							<a href="/regist/userAgree">회원가입</a>
+						</th>
+					</tr>
+				</table>
+			</form>
+		</ul>
 	</div>
+	<div id = "content"></div>
+	<table align = "center">
+		<tr><th><button type = "button" id = "load-more">더보기</button></th></tr>
+	</table>
 </body>
 </html>

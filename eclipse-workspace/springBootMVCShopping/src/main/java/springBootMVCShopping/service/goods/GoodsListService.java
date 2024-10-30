@@ -22,7 +22,7 @@ public class GoodsListService {
 	public void execute(Model model, int page, String searchWord) {
 		StartEndPageDTO sepDTO = startEndPageService.execute(page, 3, searchWord);
 		List<GoodsDTO> list = goodsMapper.goodsSelectAll(sepDTO);
-		int count = goodsMapper.goodsCount();
+		int count = goodsMapper.goodsCount(searchWord);
 		startEndPageService.execute(page, 3, count, searchWord, list, model);
 		model.addAttribute("list", list);
 	}

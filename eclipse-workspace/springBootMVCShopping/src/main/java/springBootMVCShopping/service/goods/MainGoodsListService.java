@@ -18,7 +18,7 @@ public class MainGoodsListService {
 		int startRow = ((page - 1) * limit) + 1;
 		int endRow = startRow + limit - 1;
 		List<GoodsDTO> list = goodsMapper.goodsSelectList2(startRow, endRow);
-		int count = goodsMapper.goodsCount();
+		int count = goodsMapper.goodsCount("");
 		int maxPage = (int)((double)count/limit + 0.95);
 		model.addAttribute("maxPage", maxPage);
 		model.addAttribute("list", list);

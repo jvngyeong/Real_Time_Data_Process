@@ -84,7 +84,13 @@
 		</foreach>
 	</delete>
 	<select id="goodsCount" resultType="int">
-		select count(*) from goods
+		select count(*) from 
+		(select <include refid="goodsColumns"></include> from goods
+		<where>
+			goods_num like '%'||#{searchWord}||'%' or
+			goods_name like '%'||#{searchWord}||'%' or
+			goods_price like '%'||#{searchWord}||'%'
+		</where>)
 	</select>
 	
 	<select id="goodsSelectList" resultType = "goodsDTO">
@@ -101,6 +107,17 @@
 	<select id="goodsSelectList2" resultMap = "goodsResultMap">
 		select * from
 		(select rownum rn, <include refid="goodsColumns"></include> from goods)
+		where rn between #{startRow} and #{endRow}
+	</select>
+		
+	<select id="goodsSelectAll2" resultMap="goodsResultMap" parameterType="sepDTO">
+		select * from
+		(select rownum rn, <include refid="goodsColumns"></include> from goods
+		<where>
+			goods_num like '%'||#{searchWord}||'%' or
+			goods_name like '%'||#{searchWord}||'%' or
+			goods_price like '%'||#{searchWord}||'%'
+		</where>)
 		where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

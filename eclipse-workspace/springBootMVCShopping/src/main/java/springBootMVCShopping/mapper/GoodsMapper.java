@@ -21,10 +21,12 @@ public interface GoodsMapper {
 
 	public void goodsDelete(@Param("goodsNums") String[] goodsNums);
 
-	public int goodsCount();
+	public int goodsCount(String searchWord);
 
 	public List<GoodsDTO> goodsSelectList(String[] goodsNums);
 
 	public List<GoodsDTO> goodsSelectList2(int startRow, int endRow);
+
+	public List<GoodsDTO> goodsSelectAll2(StartEndPageDTO sepDTO);
 
 }

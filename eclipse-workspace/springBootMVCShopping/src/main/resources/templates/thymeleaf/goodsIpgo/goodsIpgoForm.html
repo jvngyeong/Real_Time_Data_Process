@@ -7,6 +7,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	$("#btn").click(function(){
+		window.open("/goodsIpgo/goodsItem", "상품 검색", "width = 600, height = 500, top = 300, left = 60");
+	});
+	
 	$("#regist").click(function(){
 		$("#frm").ajaxSubmit({
 			type : "post",

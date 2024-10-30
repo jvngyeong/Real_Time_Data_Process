@@ -39,7 +39,7 @@
 			</tr>
 			<tr th:each = "dto,idx : ${list}" >
 				<th><input type = "checkbox" name = "nums" th:value = "${dto.goodsNum}"/></th>
-				<th><a th:href = "@{goodsInfo(goodsNum=${dto.goodsNum })}">[[${idx.count}]]</a></th>
+				<th><a th:href = "@{goodsInfo(goodsNum=${dto.goodsNum })}">[[(${idx.count} + ((${page} - 1) * 3))]]</a></th>
 				<th><a th:href = "@{goodsInfo(goodsNum=${dto.goodsNum })}">[[${dto.goodsNum}]]</a></th>
 				<th>[[${dto.goodsName }]]</th>
 				<th>[[${dto.goodsPrice }]]</th>
@@ -48,6 +48,7 @@
 				</th>
 			</tr>
 		</form>
+		
 		<tr>
 			<th colspan = '6'>
 				<span th:if="${page > 1}">
@@ -57,7 +58,8 @@
 					[이전]
 				</span>
 				
-				<th:block>
+				<th:block th:each="i : ${#numbers.sequence(startPageNum,endPageNum)}">
+					[<a th:href="@{goodsList(page=${i}, searchWord=${searchWord})}">[[${i}]]</a>]
 				</th:block>
 				
 				<span th:if="${page < maxPage}">

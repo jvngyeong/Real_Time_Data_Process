@@ -13,6 +13,8 @@ public class GoodsDetailViewService {
 	GoodsStockMapper goodsStockMapper;
 	public void execute(String goodsNum, Model model) {
 		GoodsStockDTO dto = goodsStockMapper.goodsStockSelectOne(goodsNum);
+		int i = goodsStockMapper.goodsVisitCountUpdate(goodsNum);
+		
 		model.addAttribute("dto", dto);
 	}
 }

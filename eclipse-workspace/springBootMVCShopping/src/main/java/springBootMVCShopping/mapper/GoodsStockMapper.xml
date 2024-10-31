@@ -26,7 +26,7 @@
     <select id="goodsStockSelectOne" parameterType="string" resultMap="goodsStockResultMap">
     select g.GOODS_NUM, GOODS_PRICE, GOODS_CONTENTS, VISIT_COUNT, GOODS_MAIN_IMAGE, 
 		   GOODS_UPDATE_DATE, GOODS_DETAIL_IMAGE, GOODS_DETAIL_STORE_IMAGE, EMP_NUM, GOODS_REGIST, 
-		   UPDATE_EMP_NUM, GOODS_NAME, GOODS_MAIN_STORE_IMAGE, nvl(stock, 0)
+		   UPDATE_EMP_NUM, GOODS_NAME, GOODS_MAIN_STORE_IMAGE, nvl(stock, 0) as stock
     from goods g left outer join
 		(SELECT ip.goods_num, ipqty - nvl(pqty, 0) as stock
 			FROM (select goods_num, sum(IPGO_QTY) as ipqty
@@ -39,4 +39,36 @@
 	where g.goods_num = #{goodsNum}
     </select>
     
+    <update id="goodsVisitCountUpdate" parameterType="string">
+    update goods
+    set visit_count = visit_count + 1
+    where goods_num = #{goodsNum}
+    </update>
+    
+    <update id="wishMerge">
+merge into wish w
+using (select goods_num from goods where goods_num = #{goodsNum}) g
+on (w.goods_num = g.goods_num)
+when matched then
+    update set w.wish_date = sysdate
+    where w.goods_num = #{goodsNum} 
+      and w.member_num = #{memberNum}
+    delete where w.goods_num = #{goodsNum} and w.member_num = #{memberNum}
+when not matched then
+    insert (member_num, goods_num, wish_date) 
+    values(#{memberNum}, #{goodsNum}, sysdate)
+    </update>
+    
+    
+    <select id="wishCheck">
+    	select '1' from wish
+    	where member_num = #{memberNum} and goods_num = #{goodsNum}
+    </select>
+    
+    <select id="wishListSelect">
+    	select w.goods_num, goods_name, goods_price, goods_main_store_image
+    	from wish w join goods g
+    	on g.goods_num = w.goods_num
+    	where member_num = #{memberNum}
+    </select>
 </mapper>

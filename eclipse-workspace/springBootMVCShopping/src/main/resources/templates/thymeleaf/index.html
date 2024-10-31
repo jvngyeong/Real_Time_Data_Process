@@ -7,7 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 <script src = "/static/js/money.js" type="text/javascript"></script>
 <script type="text/javascript">
-var page = 1;
+var page = 0;
 	$(function(){
 		loadMoreItems();
 		$("#load-more").click(loadMoreItems);
@@ -75,6 +75,12 @@ var page = 1;
 			<th:block th:if="${session.auth.grade == 'mem'}">
 			<li>
 				<a href = "/myPage/memberMyPage">내 정보 보기</a>
+			</li>
+			<li>
+				<a href = "/item/cartList">장바구니</a>
+			</li>
+			<li>
+				<a href = "/item/wishList">관심 목록</a>
 			</li>
 			</th:block>
 			<li>

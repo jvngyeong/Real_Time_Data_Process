@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+   "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="springBootMVCShopping.mapper.CartMapper">
+
+	<resultMap id="goodsCartDTO" type="GoodsCartDTO">
+	    <result property="cartDTO.cartQty" column="cart_qty" />
+	    <result property="goodsDTO.goodsName" column="goods_name" />
+	    <result property="goodsDTO.goodsPrice" column="goods_price" />
+	    <result property="goodsDTO.goodsMainStoreImage" column="goods_main_store_image" />
+	</resultMap>
+
+	<update id="cartMerge">
+		merge 
+			into cart c
+			using (select goods_num from goods where goods_num = #{goodsNum}) g
+			on (c.goods_num = g.goods_num and c.member_num = #{memberNum})
+			when matched then
+				update set c.cart_qty = c.cart_qty + #{cartQty}
+			when not matched then
+				insert (member_num, goods_num, cart_date, cart_qty)
+				values (#{memberNum}, #{goodsNum}, sysdate, #{cartQty})
+	</update>
+	
+	<select id="cartListSelect" resultMap = "goodsCartDTO">
+		select c.cart_qty, g.goods_name, g.goods_price, g.goods_main_store_image
+		from cart c join goods g
+		on c.goods_num = g.goods_num
+		where member_num = #{memberNum}
+	</select>
+</mapper>

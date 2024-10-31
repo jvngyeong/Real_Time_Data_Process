@@ -19,4 +19,6 @@ public interface MemberMapper {
 	public void memberUpdate(MemberDTO dto);
 
 	public Integer memberEmailCheckUpdate(String userEmail);
+	
+	public String getMemberNum(String memberId);
 }

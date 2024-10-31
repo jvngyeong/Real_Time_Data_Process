@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf/item/cart</title>
+</head>
+<body>
+	<h3>장바구니 페이지입니다.</h3>
+	<ul>
+		<li><a href = "/">홈</a></li>
+	</ul>
+<form action="itemBuy.item" method="post" onsubmit="return goodsCheck();">
+   <table width="600" align="center" border="1">
+      <tr>
+         <td>번호</td>
+         <td><input type="checkbox" id="checkBoxs" /></td>
+         <td>이미지</td>
+         <td>제품이름</td>
+         <td>수량</td>
+         <td>합계금액</td>
+         <td><button type="button" onclick="itemsDel();">선택삭제</button></td>
+      </tr>
+         <tr th:each = "list, idx : ${list}">
+            <td>[[${idx.count }]]</td>
+            <td><input type="checkbox" name="prodCk" value="${list.goodsDTO.goodsNum }" /></td>
+            <td><img th:src="|/static/upload/${list.goodsDTO.goodsMainStoreImage }|" width="30" />
+            </td>
+            <td>[[${list.goodsDTO.goodsName }]]</td>
+            <td><a href="javascript:checkQty('${list.goodsNum }',${idx.index },${list.goodsPrice })">[-]</a> <span class="cartQty">[[${list.cartDTO.cartQty }]]</span>
+               <a
+               href="javascript:goodsCartAdd('${list.goodsNum }',${idx.index },${list.goodsPrice })">[+]</a></td>
+            <td><span class="cartPrice">[[${list.goodsDTO.goodsPrice * list.cartDTO.cartQty  }]]</span></td>
+            <td><button type="button" onclick="itemDel('${list.goodsNum}');">삭제</button></td>
+         </tr>
+      <tr>
+         <td colspan="7" align="right">상품수 : <span id="prodCnt">0</span>개<br />
+            총수량 : <span id="totQty">0</span>개 <br /> 
+            총금액 : <span id="totalPrice">0</span>원 <br />
+      </tr>
+      <tr>
+         <td colspan="7" align="right"> <input type="submit" value="구매하기"> </td>
+      </tr>
+
+   </table>
+   </form>
+</body>
+</html>

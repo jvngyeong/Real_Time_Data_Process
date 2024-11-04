@@ -71,6 +71,9 @@ var page = 0;
 				<li>
 					<a href = "/mailling">메일 보내기</a>
 				</li>
+				<li>
+					<a href = "/purchase/purchaseList">주문 내역</a>
+				</li>
 			</th:block>
 			<th:block th:if="${session.auth.grade == 'mem'}">
 			<li>
@@ -81,6 +84,9 @@ var page = 0;
 			</li>
 			<li>
 				<a href = "/item/wishList">관심 목록</a>
+			</li>
+			<li>
+				<a href = "/purchase/orderList">주문 목록</a>
 			</li>
 			</th:block>
 			<li>

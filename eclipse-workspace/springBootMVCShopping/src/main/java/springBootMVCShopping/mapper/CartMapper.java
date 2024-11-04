@@ -12,4 +12,8 @@ public interface CartMapper {
 	public void cartMerge(CartDTO dto);
 
 	public List<GoodsCartDTO> cartListSelect(String memberNum);
+
+	public void checkQty(String goodsNum, String memberNum);
+
+	public void goodsCartAdd(String goodsNum, String memberNum);
 }

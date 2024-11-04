@@ -9,6 +9,7 @@ $(function(){
 		else{
 			$("input:checkbox[name=nums]").prop("checked", false);
 		}
+		prodChk();
 	});
 	
 	$("input:checkbox[name=nums]").click(function(){
@@ -20,5 +21,6 @@ $(function(){
 		else{
 			$("#checkBoxes").prop("checked", false);
 		}
+		prodChk();
 	})
 });

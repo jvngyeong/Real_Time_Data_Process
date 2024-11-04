@@ -3,17 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <title>thymeleaf/item/cart</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+<script src="/static/js/money.js" type="text/javascript"></script>
+<script src="/static/js/checkbox.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	prodChk();
+})
+
+function checkQty(goodsNum, idx, goodsPrice){
+	var formattedCartQty = $(".cartQty").eq(idx).html();
+	const cartQty = Number(formattedCartQty.replace(/,/g, "").replace(/₩/g, ""));
+	var formattedCartPrice = $(".cartPrice").eq(idx).html();
+	const cartPrice = Number(formattedCartPrice.replace(/,/g, "").replace(/₩/g, ""));
+	if(cartQty > 1){
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/item/checkQty", true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onload = function(){
+			if(xhr.status == "200"){
+				$(".cartQty").eq(idx).html((cartQty - 1).toLocaleString());
+				$(".cartPrice").eq(idx).html(formatter.format(cartPrice - cartPrice / cartQty));
+				prodChk();
+			}
+		};
+		var formData = goodsNum.toString();
+		xhr.send(formData);	// 실행.
+	}
+	else{
+		alert("최소 수량은 1개입니다.");
+	}
+}
+
+function goodsCartAdd(goodsNum, idx, goodsPrice){
+	var formattedCartQty = $(".cartQty").eq(idx).html();
+	const cartQty = Number(formattedCartQty.replace(/,/g, "").replace(/₩/g, ""));
+	var formattedCartPrice = $(".cartPrice").eq(idx).html();
+	const cartPrice = Number(formattedCartPrice.replace(/,/g, "").replace(/₩/g, ""));
+
+	$.ajax({
+		type : "post",
+		url : "/item/goodsCartAdd",
+		data : {"goodsNum" : goodsNum},
+		success : function(result){
+			$(".cartQty").eq(idx).html((cartQty + 1).toLocaleString());
+			$(".cartPrice").eq(idx).html(formatter.format(cartPrice + cartPrice / cartQty));
+			prodChk(cartPrice);
+		},
+		error : function(){
+			alert("서버 오류");
+		}
+	})
+}
+
+function prodChk(){
+	var chkLeng  = $('input[name="nums"]')
+	var cnt = 0; // 상품 수
+	var totalQty = 0; // 총 상품의 갯수
+	var totalPrice = 0; // 총 상품 금액
+	for(var i = 0; i < chkLeng.length ; i++){
+		if(chkLeng[i].checked){
+			cnt ++;
+			var stringQty = $(".cartQty:eq("+i+")").text();  // 1,000
+			var number = Number(stringQty.replace(/,/g, '')); // 1000
+			totalQty += Number(number);
+			
+			var price = $(".cartPrice:eq("+i+")").text().substring(1).replace(/,/g,"");	
+			totalPrice += Number(price);	
+		}
+	}
+	var commaQty = totalQty.toLocaleString(); // 1,001
+	$("#prodCnt").text(cnt);
+	$("#totQty").text(commaQty);
+	$("#totalPrice").text(formatter.format(totalPrice));
+}
+</script>
 </head>
 <body>
 	<h3>장바구니 페이지입니다.</h3>
 	<ul>
 		<li><a href = "/">홈</a></li>
 	</ul>
-<form action="itemBuy.item" method="post" onsubmit="return goodsCheck();">
+<form action="itemBuy" method="post" onsubmit="return goodsCheck();">
    <table width="600" align="center" border="1">
       <tr>
          <td>번호</td>
-         <td><input type="checkbox" id="checkBoxs" /></td>
+         <td><input type="checkbox" id="checkBoxes" /></td>
          <td>이미지</td>
          <td>제품이름</td>
          <td>수량</td>
@@ -22,20 +98,22 @@
       </tr>
          <tr th:each = "list, idx : ${list}">
             <td>[[${idx.count }]]</td>
-            <td><input type="checkbox" name="prodCk" value="${list.goodsDTO.goodsNum }" /></td>
+            <td><input type="checkbox" name="nums" value="${list.goodsDTO.goodsNum }" /></td>
             <td><img th:src="|/static/upload/${list.goodsDTO.goodsMainStoreImage }|" width="30" />
             </td>
             <td>[[${list.goodsDTO.goodsName }]]</td>
-            <td><a href="javascript:checkQty('${list.goodsNum }',${idx.index },${list.goodsPrice })">[-]</a> <span class="cartQty">[[${list.cartDTO.cartQty }]]</span>
-               <a
-               href="javascript:goodsCartAdd('${list.goodsNum }',${idx.index },${list.goodsPrice })">[+]</a></td>
-            <td><span class="cartPrice">[[${list.goodsDTO.goodsPrice * list.cartDTO.cartQty  }]]</span></td>
+            <td>
+            	<a th:href="|javascript:checkQty('${list.goodsDTO.goodsNum }',${idx.index },${list.goodsDTO.goodsPrice })|">[-]</a> 
+            	<span class="cartQty">[[${#numbers.formatInteger(list.cartDTO.cartQty, 1, 'COMMA') }]]</span>
+              	<a th:href="|javascript:goodsCartAdd('${list.goodsDTO.goodsNum }',${idx.index },${list.goodsDTO.goodsPrice })|">[+]</a>
+            </td>
+            <td><span class="cartPrice">[[${#numbers.formatCurrency(list.goodsDTO.goodsPrice * list.cartDTO.cartQty)}]]</span></td>
             <td><button type="button" onclick="itemDel('${list.goodsNum}');">삭제</button></td>
          </tr>
       <tr>
-         <td colspan="7" align="right">상품수 : <span id="prodCnt">0</span>개<br />
-            총수량 : <span id="totQty">0</span>개 <br /> 
-            총금액 : <span id="totalPrice">0</span>원 <br />
+         <td colspan="7" align="right">상품수 : <span id="prodCnt">[[${#numbers.formatInteger(list.size(), 1, 'COMMA')}]]</span>개<br />
+            총수량 : <span id="totQty">[[${#numbers.formatInteger(totQty, 1, 'COMMA')}]]</span>개 <br /> 
+            총금액 : <span id="totalPrice">[[${#numbers.formatCurrency(totPrice)}]]</span>원 <br />
       </tr>
       <tr>
          <td colspan="7" align="right"> <input type="submit" value="구매하기"> </td>

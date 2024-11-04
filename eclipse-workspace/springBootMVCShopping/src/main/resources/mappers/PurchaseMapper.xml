@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+   "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="springBootMVCShopping.mapper.PurchaseMapper">
+	<select id="getPurchaseList" resultType = "purchaseDTO">
+		select purchase_num, purchase_status, purchase_name, purchase_date from purchase
+		<if test="memberNum != null">
+		where member_num= #{memberNum}
+		</if>
+	</select>
+</mapper>

@@ -16,10 +16,12 @@
 		<tr><th>상품가격</th><td>[[${dto.goodsPrice }]]</td></tr>
 		<tr><th>상품설명</th><td>[[${dto.goodsContents }]]</td></tr>
 		<tr><th>조회수</th><td>[[${dto.visitCount }]]</td></tr>
-		<tr><th>등록한 사원</th><td>[[${dto.empNum }]]</td></tr>
-		<tr><th>등록일</th><td>[[${#dates.format(dto.goodsRegist, 'yyyy-MM-dd') }]]</td></tr>
-		<tr><th>마지막 수정 사원</th><td>[[${dto.updateEmpNum }]]</td></tr>
-		<tr><th>마지막 수정일</th><td>[[${#dates.format(dto.goodsUpdateDate, 'yyyy-MM-dd' )}]]</td></tr>
+		<th:block th:if = "${session.auth.grade == 'emp'}">
+			<tr><th>등록한 사원</th><td>[[${dto.empNum }]]</td></tr>
+			<tr><th>등록일</th><td>[[${#dates.format(dto.goodsRegist, 'yyyy-MM-dd') }]]</td></tr>
+			<tr><th>마지막 수정 사원</th><td>[[${dto.updateEmpNum }]]</td></tr>
+			<tr><th>마지막 수정일</th><td>[[${#dates.format(dto.goodsUpdateDate, 'yyyy-MM-dd' )}]]</td></tr>
+		</th:block>
 		<tr>
 			<th colspan = '2'>
 				대문 이미지 :
@@ -34,10 +36,13 @@
 				<img th:src = "|/static/upload/${image}|" />	
 			</th>
 		</tr>
-		<tr><th colspan="2">
-			<a th:href="@{goodsUpdate(goodsNum=${dto.goodsNum })}">상품 수정</a> | 
-			<a th:href="@{goodsDelete(goodsNum=${dto.goodsNum })}">상품 삭제</a> | 
-			<a href="/goods/goodsList">상품목록</a></th></tr>
+		<th:block th:if = "${session.auth.grade == 'emp'}">
+			<tr><th colspan="2">
+				<a th:href="@{goodsUpdate(goodsNum=${dto.goodsNum })}">상품 수정</a> | 
+				<a th:href="@{goodsDelete(goodsNum=${dto.goodsNum })}">상품 삭제</a> | 
+				<a href="/goods/goodsList">상품목록</a></th>
+			</tr>
+		</th:block>
 	</table>
 </body>
 </html>

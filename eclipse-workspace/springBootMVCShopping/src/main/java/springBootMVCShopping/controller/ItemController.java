@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import jakarta.servlet.http.HttpSession;
 import springBootMVCShopping.service.item.CartListService;
 import springBootMVCShopping.service.item.CartMergeService;
+import springBootMVCShopping.service.item.GoodsCartDelsService;
 import springBootMVCShopping.service.item.GoodsDetailViewService;
 import springBootMVCShopping.service.item.WishListService;
 
@@ -28,6 +29,10 @@ public class ItemController {
 	
 	@Autowired
 	WishListService wishListService;
+	
+	@Autowired
+	GoodsCartDelsService goodsCartDelsService;
+	
 	@GetMapping("detailView/{goodsNum}")
 	public String goodsInfo(@PathVariable("goodsNum") String goodsNum, Model model) {
 		goodsDetailViewService.execute(goodsNum, model);
@@ -50,5 +55,10 @@ public class ItemController {
 	public String wishList(Model model, HttpSession session) {
 		wishListService.execute(model, session);
 		return "thymeleaf/item/wishList";
+	}
+	@GetMapping("cartDel")
+	public String cartDel(String[] goodsNum, HttpSession session) {
+		goodsCartDelsService.execute(goodsNum, session);
+		return "redirect:cartList";
 	}
 }

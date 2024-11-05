@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.servlet.http.HttpSession;
 import springBootMVCShopping.service.item.CheckQtyService;
 import springBootMVCShopping.service.item.GoodsCartAddService;
+import springBootMVCShopping.service.item.GoodsCartDelsService;
 import springBootMVCShopping.service.item.WishCheckService;
 import springBootMVCShopping.service.item.WishMergeService;
 
@@ -27,6 +28,9 @@ public class ItemRestController {
 	
 	@Autowired
 	GoodsCartAddService goodsCartAddService;
+	
+	@Autowired
+	GoodsCartDelsService goodsCartDelsService;
 	
 	@PostMapping("wish")
 	public @ResponseBody String wish(String goodsNum, HttpSession session) {
@@ -49,5 +53,10 @@ public class ItemRestController {
 	@PostMapping("goodsCartAdd")
 	public String goodsCartAdd(String goodsNum, HttpSession session) {
 		return goodsCartAddService.execute(goodsNum, session);
+	}
+	
+	@PostMapping("cartDels")
+	public String cartDels(@RequestBody String[] goodsNums, HttpSession session) {
+		return goodsCartDelsService.execute(goodsNums, session);
 	}
 }

@@ -60,8 +60,13 @@
 		from cart c join goods g
 		on c.goods_num = g.goods_num
 		where member_num = #{memberNum}
+		<if test="nums != null">
+				and c.goods_num in
+				<foreach collection="nums" item="goodsNum" close=")" open="(" index="index" separator=",">
+					#{goodsNum}
+				</foreach>
+		</if>
 	</select>
-	
 	<update id="checkQty">
 		update cart set cart_qty = cart_qty - 1 where goods_num = #{goodsNum} and member_num = #{memberNum}
 	</update>
@@ -69,4 +74,13 @@
 	<update id = "goodsCartAdd">
 		update cart set cart_qty = cart_qty + 1 where goods_num = #{goodsNum} and member_num = #{memberNum}
 	</update>
+	
+	<delete id="goodsNumsDelete" parameterType="hashmap">
+		delete from cart
+		where member_num = #{memberNum}
+		and goods_num in 
+		<foreach collection="goodsNums" open="(" close=")" separator="," item="goodsNum" index="index">
+			#{goodsNum}
+		</foreach>
+	</delete>
 </mapper>

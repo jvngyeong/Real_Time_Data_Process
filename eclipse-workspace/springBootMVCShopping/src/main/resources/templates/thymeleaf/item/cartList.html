@@ -78,6 +78,35 @@ function prodChk(){
 	$("#totQty").text(commaQty);
 	$("#totalPrice").text(formatter.format(totalPrice));
 }
+
+function itemsDel(){
+	var chk_arr = [];
+	$("input:checkbox[name='nums']:checked").each(function(){
+		chk_arr.push($(this).val());
+	});
+	/* $.ajax({
+		
+	}); */
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "cartDels", true);	//true는 비동기 false는 동기
+	xhr.setRequestHeader("Content-Type", "application/json");
+	var formData = JSON.stringify(chk_arr);
+	xhr.onload = function(){
+		if(xhr.status == 200){
+			var result = xhr.responseText;
+			if(result == "200"){
+				location.reload();
+			}
+			else{
+				alert("삭제되지 않았습니다.");
+			}
+		}
+		else{
+			alert("삭제되지 않았습니다.");
+		}
+	}
+	xhr.send(formData);
+}
 </script>
 </head>
 <body>
@@ -85,7 +114,7 @@ function prodChk(){
 	<ul>
 		<li><a href = "/">홈</a></li>
 	</ul>
-<form action="itemBuy" method="post" onsubmit="return goodsCheck();">
+<form action="/purchase/goodsBuy" method="post" onsubmit="return goodsCheck();">
    <table width="600" align="center" border="1">
       <tr>
          <td>번호</td>
@@ -98,7 +127,7 @@ function prodChk(){
       </tr>
          <tr th:each = "list, idx : ${list}">
             <td>[[${idx.count }]]</td>
-            <td><input type="checkbox" name="nums" value="${list.goodsDTO.goodsNum }" /></td>
+            <td><input type="checkbox" name="nums" th:value="${list.goodsDTO.goodsNum }" /></td>
             <td><img th:src="|/static/upload/${list.goodsDTO.goodsMainStoreImage }|" width="30" />
             </td>
             <td>[[${list.goodsDTO.goodsName }]]</td>
@@ -108,7 +137,7 @@ function prodChk(){
               	<a th:href="|javascript:goodsCartAdd('${list.goodsDTO.goodsNum }',${idx.index },${list.goodsDTO.goodsPrice })|">[+]</a>
             </td>
             <td><span class="cartPrice">[[${#numbers.formatCurrency(list.goodsDTO.goodsPrice * list.cartDTO.cartQty)}]]</span></td>
-            <td><button type="button" onclick="itemDel('${list.goodsNum}');">삭제</button></td>
+            <td><button type="button" th:attr = "onclick=|javascript:location.href='cartDel?goodsNum=${list.goodsDTO.goodsNum}'|">삭제</button></td>
          </tr>
       <tr>
          <td colspan="7" align="right">상품수 : <span id="prodCnt">[[${#numbers.formatInteger(list.size(), 1, 'COMMA')}]]</span>개<br />

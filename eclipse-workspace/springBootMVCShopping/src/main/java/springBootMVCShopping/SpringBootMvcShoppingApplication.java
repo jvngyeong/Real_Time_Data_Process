@@ -7,10 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import springBootMVCShopping.command.LoginCommand;
+import springBootMVCShopping.domain.AuthInfoDTO;
+import springBootMVCShopping.mapper.LoginMapper;
 import springBootMVCShopping.service.EmailSendService;
 import springBootMVCShopping.service.SMSMessageService;
 import springBootMVCShopping.service.goods.MainGoodsListService;
@@ -27,17 +31,35 @@ public class SpringBootMvcShoppingApplication {
 	@Autowired
 	MainGoodsListService mainGoodsListService;
 	
+	@Autowired
+	LoginMapper loginMapper;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootMvcShoppingApplication.class, args);
 	}
 
 	@GetMapping("/")
 	public String index(
-			LoginCommand loginCommand 
+			LoginCommand loginCommand, HttpServletRequest req, Model model, HttpSession session
 			//@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
 			//Model model
 			) {
 		//mainGoodsListService.execute(model, page);
+		Cookie[] cookies = req.getCookies();
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				if(cookie.getName().equals("isAutoLogin")) {
+					AuthInfoDTO auth = loginMapper.loginSelectOne(cookie.getValue());
+					session.setAttribute("auth", auth);
+				}
+				
+				if(cookie.getName().equals("isIdStore")) {
+					loginCommand.setUserId(cookie.getValue());
+					loginCommand.setIdStore(true);
+					model.addAttribute("loginCommand", loginCommand);
+				}
+			}
+		}
 		return "thymeleaf/index";
 	}
 	

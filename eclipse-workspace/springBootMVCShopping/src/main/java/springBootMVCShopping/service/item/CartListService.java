@@ -22,7 +22,7 @@ public class CartListService {
 	public void execute(Model model, HttpSession session) {
 		AuthInfoDTO auth = (AuthInfoDTO) session.getAttribute("auth");
 		String memberNum = memberMapper.getMemberNum(auth.getUserId());
-		List<GoodsCartDTO> list = cartMapper.cartListSelect(memberNum);
+		List<GoodsCartDTO> list = cartMapper.cartListSelect(memberNum, null);
 		model.addAttribute("list", list);
 		Integer totPrice = 0;
 		Integer totQty = 0;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+   "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="springBootMVCShopping.mapper.HelpMapper">
+	<select id="findId" resultType="String">
+		select member_id from members where (member_phone1 = #{userPhone} or member_phone2 = #{userPhone}) and member_email = #{userEmail}
+		union
+		select emp_id from employees where emp_phone = #{userPhone} and emp_email = #{userEmail}
+	</select>
+	
+	<select id="findPw" resultType="authDTO">
+		select member_id as userId, member_pw as userPw, member_email as userEmail, 'mem' as grade
+		from members 
+		where member_id = #{userId} and (member_phone1 = #{userPhone} or member_phone2 = #{userPhone})
+		union
+		select emp_id as userId, emp_pw as userPw, emp_email as userEmail, 'emp' as grade
+		from employees
+		where emp_phone = #{userPhone} and emp_id = #{userId}
+	</select>
+	
+	<update id="changePw" parameterType="authDTO">
+		<if test="grade == 'emp'">
+			update employees set emp_pw = #{userPw} where emp_id = #{userId}
+		</if> 
+		<if test = "grade == 'mem'">
+			update members set member_pw = #{userPw}
+			where member_id = #{userId}
+		</if>
+	</update>
+</mapper>

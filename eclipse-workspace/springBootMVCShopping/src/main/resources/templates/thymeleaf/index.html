@@ -52,8 +52,6 @@ var page = 0;
 </script>
 </head>
 <body>
-						[[${loginCommand.autoLogin}]]
-						[[${loginCommand.idStore}]]
 	<h1>Hello Miso Shopping!</h1>
 	<div th:if="${session.auth != null}">
 		<ul>
@@ -124,7 +122,10 @@ var page = 0;
 					</tr>
 					<tr>
 						<th colspan="2">
-							아이디 / 비밀번호 찾기 | 
+							<a href = "/help/findId">아이디</a>
+							 / 
+							 <a href = "/help/findPassword">비밀번호 찾기</a> 
+							 | 
 							<a href="/regist/userAgree">회원가입</a>
 						</th>
 					</tr>

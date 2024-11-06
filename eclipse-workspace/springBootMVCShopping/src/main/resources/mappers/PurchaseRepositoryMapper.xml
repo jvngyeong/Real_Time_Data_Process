@@ -19,7 +19,7 @@
 		insert into purchase(<include refid="purchaseBaseColumns"></include>)
 		values(#{purchaseNum}, #{purchaseName}, sysdate, #{purchasePrice},
 			   #{memberNum}, #{deliveryAddrDetail}, #{deliveryPost}, #{deliveryPhone}, 
-			   #{message}, '입금 대기중', #{deliveryName}, #{deliveryAddr}
+			   #{message}, '결제 대기중', #{deliveryName}, #{deliveryAddr}
 		)
 	</insert>
 	
@@ -34,4 +34,65 @@
 			#{goodsNum}
 		</foreach>)
 	</insert>
+	
+	<resultMap type="orderListDTO" id="orderListResultMap">
+	<association property="purchaseDTO" javaType = "purchaseDTO">
+	    <constructor>
+	        <idArg column="PURCHASE_NUM" javaType="String"/>
+	        <arg column="PURCHASE_DATE" javaType="java.util.Date"/>
+	        <arg column="PURCHASE_PRICE" javaType="Integer"/>
+	        <arg column="DELIVERY_ADDR" javaType="String"/>
+	        <arg column="DELIVERY_ADDR_DETAIL" javaType="String"/>
+	        <arg column="DELIVERY_POST" javaType="String"/>
+	        <arg column="DELIVERY_PHONE" javaType="String"/>
+	        <arg column="MESSAGE" javaType="String"/>
+	        <arg column="PURCHASE_STATUS" javaType="String"/>
+	        <arg column="MEMBER_NUM" javaType="String"/>
+	        <arg column="DELIVERY_NAME" javaType="String"/>
+	        <arg column="PURCHASE_NAME" javaType="String"/>
+	    </constructor>
+	</association>
+	
+	<collection property="purchaseListGoodsDTOs" ofType="purchaseListGoodsDTO">
+		<association property="purchaseListDTO" javaType = "purchaseListDTO">
+			<result column="purchase_qty" jdbcType="BIGINT" property="purchaseQty" />
+			<result column="GOODS_UNIT_PRICE" jdbcType = "BIGINT" property = "goodsUnitPrice" />
+		</association>
+		
+		<association property="goodsDTO" javaType = "goodsDTO">
+			<result column = "goods_num" jdbcType = "VARCHAR" property = "goodsNum"/>
+			<result column="goods_name" jdbcType = "VARCHAR" property = "goodsName"/>
+			<result column="GOODS_MAIN_STORE_IMAGE" jdbcType = "VARCHAR" property = "goodsMainStoreImage"/>
+		</association>
+	</collection>	
+</resultMap>
+	
+<select id="orderList" parameterType="hashmap" resultMap = "orderListResultMap">
+	select g.goods_num, goods_name, GOODS_MAIN_STORE_IMAGE,
+			goods_unit_price, purchase_qty,
+			p.purchase_num, PURCHASE_DATE, purchase_price, delivery_addr, delivery_addr_detail, 
+			delivery_post, delivery_phone, message, purchase_status, purchase_price, member_num,
+			delivery_name, purchase_name
+	from goods g join purchase_list pl
+	on g.goods_num = pl.goods_num join purchase p
+	on pl.purchase_num = p.purchase_num
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="memberNum != null">
+				member_num = #{memberNum}
+		</if>
+	</trim>
+</select>
+
+<select id="purchaseSelectOne" parameterType="String" resultType = "purchaseDTO">
+	select <include refid="purchaseBaseColumns"></include>
+	from purchase
+	where purchase_num = #{purchaseNum}
+</select>
+
+<update id="paymentInsert" parameterType="paymentDTO">
+	insert into payment(purchase_num, confirmnumber, cardnum, tid, totalprice, resultmessage, 
+						paymethod, appldate, apptime)
+				values(#{purchaseNum}, #{confirmnumber}, #{cardnum}, #{tid}, #{totalprice}, #{resultmessage},
+						#{paymethod}, #{appldate}, #{apptime})
+</update>
 </mapper>

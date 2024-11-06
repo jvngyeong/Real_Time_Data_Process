@@ -10,4 +10,5 @@
 		where member_num= #{memberNum}
 		</if>
 	</select>
+			
 </mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+   "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="deliveryRepositorySql">
+	<update id="deliveryUpdate" parameterType="hashmap">
+		merge into delivery d
+		using (select purchase_num from purchase where purchase_num = #{purchaseNum}) p
+		on (d.purchase_num = p.purchase_num)
+		WHEN MATCHED THEN
+		update set delivery_num = null
+		delete where purchase_num = #{purchaseNum}
+		when not matched then
+			insert (delivery_num, purchase_num, delivery_date, delivery_status) 
+			values (#{deliveryNum}, #{purchaseNum}, sysdate, '배송중')
+	</update>
+	
+	<update id="deliveryStatusUpdate">
+		update delivery set delivery_status = '배송 완료' where purchase_num = #{purchaseNum}
+	</update>
+</mapper>

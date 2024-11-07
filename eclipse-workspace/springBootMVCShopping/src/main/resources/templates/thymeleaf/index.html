@@ -27,7 +27,7 @@ var page = 0;
 				item += '<col span = "3" width = "300" height = "330"/>';
 				item += '</colgroup><tr>';
 				$.each(result.list, function(idx, dto){
-					item += '<td><a href = "item/detailView/'+dto.goodsNum+'"><img src="/static/upload/'+dto.goodsMainStoreImage+'" width = "300" height = "300"/><br />';
+					item += '<td><a href = "/corner/detailView/'+dto.goodsNum+'"><img src="/static/upload/'+dto.goodsMainStoreImage+'" width = "300" height = "300"/><br />';
 					item += dto.goodsName + '<br />';
 					item += formatter.format(dto.goodsPrice)+ '원<br />';
 					item += '</a></td>';

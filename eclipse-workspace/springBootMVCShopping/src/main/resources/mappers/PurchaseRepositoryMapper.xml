@@ -10,7 +10,7 @@
 	</sql>
 
 	<select id="purchaseNum" resultType = "string">
-		select concat(to_char(sysdate, 'yyyyMMdd'), nvl(max(substr(purchase_num, 9)), 0) + 1)
+		select concat(to_char(sysdate, 'yyyyMMdd'), nvl(max(to_number(substr(purchase_num, 9))), 0) + 1)
 		from purchase
 		where substr(purchase_num, 1, 8) = to_char(sysdate, 'yyyyMMdd')
 	</select>
@@ -36,6 +36,21 @@
 	</insert>
 	
 	<resultMap type="orderListDTO" id="orderListResultMap">
+		<association property="deliveryDTO">
+			<id column = "purchase_num" jdbcType = "VARCHAR" property = "purchaseNum" />
+			<result column="delivery_num" property="deliveryNum" jdbcType="VARCHAR"/>
+			<result column="delivery_date" property="deliveryDate" jdbcType="DATE"/>
+			<result column="delivery_status" property="deliveryStatus" jdbcType="VARCHAR"/>
+		</association>
+	
+		<association property="paymentDTO" javaType = "paymentDTO">
+			<id column = "purchase_num" jdbcType = "VARCHAR" property = "purchaseNum" />
+			<result property="confirmnumber" column="confirmnumber" jdbcType="VARCHAR" />
+			<result property="cardnum" column="cardnum" jdbcType = "VARCHAR" />
+			<result property="appldate" column="appldate" jdbcType="VARCHAR" />
+			<result property="apptime" column="apptime" jdbcType="VARCHAR" />
+			<result property="totalprice" column = "totalprice" jdbcType = "BIGINT"/>
+		</association>
 	<association property="purchaseDTO" javaType = "purchaseDTO">
 	    <constructor>
 	        <idArg column="PURCHASE_NUM" javaType="String"/>
@@ -53,6 +68,7 @@
 	    </constructor>
 	</association>
 	
+	
 	<collection property="purchaseListGoodsDTOs" ofType="purchaseListGoodsDTO">
 		<association property="purchaseListDTO" javaType = "purchaseListDTO">
 			<result column="purchase_qty" jdbcType="BIGINT" property="purchaseQty" />
@@ -63,22 +79,30 @@
 			<result column = "goods_num" jdbcType = "VARCHAR" property = "goodsNum"/>
 			<result column="goods_name" jdbcType = "VARCHAR" property = "goodsName"/>
 			<result column="GOODS_MAIN_STORE_IMAGE" jdbcType = "VARCHAR" property = "goodsMainStoreImage"/>
+			<result column="goods_contents" jdbcType = "VARCHAR" property = "goodsContents"/>
 		</association>
 	</collection>	
 </resultMap>
 	
 <select id="orderList" parameterType="hashmap" resultMap = "orderListResultMap">
-	select g.goods_num, goods_name, GOODS_MAIN_STORE_IMAGE,
-			goods_unit_price, purchase_qty,
-			p.purchase_num, PURCHASE_DATE, purchase_price, delivery_addr, delivery_addr_detail, 
-			delivery_post, delivery_phone, message, purchase_status, purchase_price, member_num,
-			delivery_name, purchase_name
+	select g.goods_num, goods_name, GOODS_MAIN_STORE_IMAGE, goods_contents,
+	    goods_unit_price, purchase_qty,
+	    p.purchase_num, PURCHASE_DATE, purchase_price, delivery_addr, delivery_addr_detail, 
+	    delivery_post, delivery_phone, message, purchase_status, purchase_price, member_num,
+	    delivery_name, purchase_name,
+	    CONFIRMNUMBER, CARDNUM, APPLDATE, APPTIME, PAYMETHOD, totalprice,
+	    delivery_num, delivery_date, delivery_status
 	from goods g join purchase_list pl
 	on g.goods_num = pl.goods_num join purchase p
 	on pl.purchase_num = p.purchase_num
+	left outer join payment pm on pm.purchase_num = p.purchase_num
+	left outer join delivery d on p.purchase_num = d.purchase_num
 	<trim prefix="where" prefixOverrides="AND | OR">
 		<if test="memberNum != null">
 				member_num = #{memberNum}
+		</if>
+		<if test = "purchaseNum != null">
+			and p.purchase_num = #{purchaseNum}
 		</if>
 	</trim>
 </select>
@@ -95,4 +119,8 @@
 				values(#{purchaseNum}, #{confirmnumber}, #{cardnum}, #{tid}, #{totalprice}, #{resultmessage},
 						#{paymethod}, #{appldate}, #{apptime})
 </update>
+
+<delete id="paymentDel" parameterType="string">
+	delete from payment where purchase_num = ${purchaseNum}
+</delete>
 </mapper>

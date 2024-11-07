@@ -1,6 +1,5 @@
 package springBootMVCShopping.domain;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
@@ -15,5 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderListDTO {
 	PurchaseDTO purchaseDTO;
+	PaymentDTO paymentDTO;
+	DeliveryDTO deliveryDTO;
 	List<PurchaseListGoodsDTO> purchaseListGoodsDTOs;
 }

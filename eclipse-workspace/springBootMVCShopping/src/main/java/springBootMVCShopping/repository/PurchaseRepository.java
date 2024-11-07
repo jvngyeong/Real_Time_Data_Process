@@ -45,4 +45,8 @@ public class PurchaseRepository {
 		statement = namespace + ".paymentInsert";
 		sqlSession.insert(statement, dto);
 	}
+	public void paymentDel(String purchaseNum) {
+		statement = namespace + ".paymentDel";
+		sqlSession.delete(statement, purchaseNum);
+	}
 }

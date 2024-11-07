@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>thymeleaf/delivery/deliveryRegist.html</title>
+<script type="text/javascript">
+window.onunload = function(){
+    if(window.opener && !window.opener.closed){
+       window.opener.location.reload();
+    }
+ }
+</script>
+</head>
+<body>
+	구매상품 정보<br/>
+	<table width = "800" align = "center" border = '1'>
+		<th:block th:each = "orderListDTO : ${list}">
+			<th:block th:each = "dto : ${orderListDTO.purchaseListGoodsDTOs}">
+				<tr>
+					<th>
+						<img width = "30" th:src="|/static/upload/${dto.goodsDTO.goodsMainStoreImage}|" />
+					</th>
+					<th>
+						제품명 : [[${dto.goodsDTO.goodsName}]] | 제품 가격 : [[${dto.purchaseListDTO.goodsUnitPrice}]] | 주문수량 : [[${dto.purchaseListDTO.purchaseQty}]]
+					</th>
+				</tr>
+				
+				<tr>
+					<th colspan = '2'>
+						상품 설명<br />
+						<span>[[${#strings.replace(dto.goodsDTO.goodsContents, newLineChar, '&lt; br /&gt;')}]]</span>
+					</th>
+				</tr>
+			</th:block>
+		</th:block>
+		<tr>
+			<td width = "400">
+				<h2 align = "center">주문내용</h2>
+				주문 번호 : [[${list[0].purchaseDTO.purchaseNum}]]<br />
+				주문 날짜 : [[${#dates.format(list[0].purchaseDTO.purchaseDate, 'yyyy-MM-dd')}]]<br />
+				주문 금액 : [[${list[0].purchaseDTO.purchasePrice}]]<br />
+				배송지 : [[${list[0].purchaseDTO.deliveryAddr + '	' + list[0].purchaseDTO.deliveryAddrDetail}]]<br />
+				연락처 : [[${list[0].purchaseDTO.deliveryPhone}]]<br />
+				받는 사람 : [[${list[0].purchaseDTO.deliveryName}]]<br />
+				주문 메시지 : [[${list[0].purchaseDTO.message}]]<br />
+			</td>
+			<td width = "400" th:if = "${list[0].paymentDTO.appldate != null}">
+				<h2 align = "center">결제내용</h2>
+				<span th:if="${list[0].paymentDTO.confirmnumber != null}">
+				결제 번호 : [[${list[0].paymentDTO.confirmnumber}]]
+				</span>
+				<span th:if="${list[0].paymentDTO.confirmnumber == null}">
+					현금 결제
+				</span><br />
+				결제 금액 : [[${list[0].paymentDTO.totalprice}]]<br />
+				결제일 : [[${list[0].paymentDTO.appldate}]]<br />
+				카드 번호 : [[${list[0].paymentDTO.cardnum}]]<br />
+			</td>
+			<td width = "400" th:if = "${list[0].paymentDTO.appldate == null}">
+				<h2 align = "center">미결제</h2>
+			</td>
+		</tr>
+	</table>
+	
+	<form action = "/delivery/deliveryRegist" method = "post" th:if = "${list[0].deliveryDTO.deliveryNum != null}">
+		<table width = "800" align = "center" border = '1'>
+			<tr>
+				<td colspan = '2'><h2>배송정보</h2></td>
+			</tr>
+			<tr>
+				<td>송장번호</td>
+				<td>[[${list[0].deliveryDTO.deliveryNum}]]</td>
+			</tr>
+			<tr>
+				<td colspan = '2'>
+					<input type = "hidden" name = "purchaseNum" th:value = "${list[0].purchaseDTO.purchaseNum}"/>
+					<input type = "hidden" name = "deliveryNum" th:value = "${list[0].deliveryDTO.deliveryNum}"/>
+					<input type = "submit" value = "배송정보 삭제" />
+				</td>
+			</tr>
+		</table>
+	</form>
+	<form action = "/delivery/deliveryRegist" method = "post"  th:if = "${list[0].deliveryDTO.deliveryNum == null && list[0].paymentDTO.appldate != null}">
+		<input type = "hidden" name = "purchaseNum" th:value = "${list[0].purchaseDTO.purchaseNum}"/>
+		<table width = "800" align = "center" border = '1'>
+			<tr>
+				<td colspan = '2'>배송정보 입력</td>
+			</tr>
+			<tr>
+				<td>송장번호</td>
+				<td>
+					<input type = "text" name = "deliveryNum" required="required" />
+				</td>
+			</tr>
+			<tr>
+				<th colspan = '2'>
+					<input type = "submit" value = "배송정보 등록" />
+				</th>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

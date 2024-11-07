@@ -61,8 +61,12 @@ when not matched then
     
     
     <select id="wishCheck">
-    	select '1' from wish
-    	where member_num = #{memberNum} and goods_num = #{goodsNum}
+    	
+    	select <if test="memberNum != null">'1'</if> <if test="memberNum == null">'0'</if>from wish
+    	where goods_num = #{goodsNum}
+    	<if test="memberNum != null"> and member_num = #{memberNum} </if>
+    	
+    	
     </select>
     
     <select id="wishListSelect">

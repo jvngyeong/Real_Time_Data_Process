@@ -32,12 +32,7 @@ public class ItemController {
 	
 	@Autowired
 	GoodsCartDelsService goodsCartDelsService;
-	
-	@GetMapping("detailView/{goodsNum}")
-	public String goodsInfo(@PathVariable("goodsNum") String goodsNum, Model model) {
-		goodsDetailViewService.execute(goodsNum, model);
-		return "thymeleaf/item/detailView";
-	}
+
 	
 	@RequestMapping("cart")
 	public @ResponseBody String cart(String goodsNum, Integer cartQty, HttpSession session) {

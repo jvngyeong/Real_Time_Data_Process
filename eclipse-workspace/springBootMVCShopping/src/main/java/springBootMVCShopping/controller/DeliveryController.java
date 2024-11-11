@@ -42,4 +42,10 @@ public class DeliveryController {
 		deliveryRepository.deliveryStatusUpdate(purchaseNum);
 		return "redirect:/purchase/purchaseList";
 	}
+	
+	@PostMapping("deliveryDelete")
+	public String deliveryDelete(String purchaseNum) {
+		deliveryRepository.deliveryDelete(purchaseNum);
+		return "redirect:deliveryRegist?purchaseNum="+purchaseNum;
+	}
 }

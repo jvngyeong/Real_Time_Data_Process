@@ -62,7 +62,7 @@ window.onunload = function(){
 		</tr>
 	</table>
 	
-	<form action = "/delivery/deliveryRegist" method = "post" th:if = "${list[0].deliveryDTO.deliveryNum != null}">
+	<form action = "/delivery/deliveryDelete" method = "post" th:if = "${list[0].deliveryDTO.deliveryNum != null}">
 		<table width = "800" align = "center" border = '1'>
 			<tr>
 				<td colspan = '2'><h2>배송정보</h2></td>

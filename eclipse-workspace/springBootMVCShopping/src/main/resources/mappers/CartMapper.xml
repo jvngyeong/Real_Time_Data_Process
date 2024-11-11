@@ -44,15 +44,12 @@
 	</resultMap>
 
 	<update id="cartMerge">
-		merge 
-			into cart c
-			using (select goods_num from goods where goods_num = #{goodsNum}) g
-			on (c.goods_num = g.goods_num and c.member_num = #{memberNum})
-			when matched then
-				update set c.cart_qty = c.cart_qty + #{cartQty}
-			when not matched then
-				insert (member_num, goods_num, cart_date, cart_qty)
-				values (#{memberNum}, #{goodsNum}, sysdate, #{cartQty})
+		INSERT INTO cart (member_num, goods_num, cart_date, cart_qty)
+		SELECT #{memberNum}, #{goodsNum}, NOW(), #{cartQty}
+		FROM goods
+		WHERE goods_num = #{goodsNum}
+		ON DUPLICATE KEY UPDATE 
+		    cart_qty = cart_qty + #{cartQty};
 	</update>
 	
 	<select id="cartListSelect" resultMap = "goodsCartDTO">

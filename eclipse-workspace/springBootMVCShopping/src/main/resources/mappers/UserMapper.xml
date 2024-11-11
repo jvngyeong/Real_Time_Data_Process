@@ -11,7 +11,7 @@
 	</sql>
 	
 	<sql id = "memberNum">
-		select concat('mem_', nvl(max(substr(member_num, 5)), 100000) + 1) from members
+		select concat('mem_', coalesce(max(substr(member_num, 5)), 100000) + 1) from members
 	</sql>
 	
 	<insert id="userInsert" parameterType="memberDTO">

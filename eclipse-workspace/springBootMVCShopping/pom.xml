@@ -144,7 +144,19 @@
 			<systemPath>${project.basedir}/libs/INIpaySample_v1.3.jar</systemPath>
 		</dependency>
 		
-		</dependencies>
+		<!-- MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
+		</dependency>
+		
+		<dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-mail</artifactId>
+	    </dependency>
+		
+	</dependencies>
 
 	<build>
 		<plugins>

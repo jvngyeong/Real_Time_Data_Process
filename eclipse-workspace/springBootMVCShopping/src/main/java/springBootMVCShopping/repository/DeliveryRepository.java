@@ -14,16 +14,21 @@ public class DeliveryRepository {
 	String namespace= "deliveryRepositorySql";
 	String statement;
 
-	public int deliveryUpdate(String purchaseNum, String deliveryNum) {
-		statement = namespace + ".deliveryUpdate";
+	public int deliveryInsert(String purchaseNum, String deliveryNum) {
+		statement = namespace + ".deliveryInsert";
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("purchaseNum", purchaseNum);
 		map.put("deliveryNum", deliveryNum);
-		return sqlSession.update(statement, map);
+		return sqlSession.insert(statement, map);
 	}
 
 	public int deliveryStatusUpdate(String purchaseNum) {
 		statement = namespace + ".deliveryStatusUpdate";
 		return sqlSession.update(statement, purchaseNum);
+	}
+
+	public int deliveryDelete(String purchaseNum) {
+		statement = namespace + ".deliveryDelete";
+		return sqlSession.delete(statement, purchaseNum);
 	}
 }

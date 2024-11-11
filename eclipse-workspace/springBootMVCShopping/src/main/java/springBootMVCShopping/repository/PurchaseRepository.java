@@ -49,4 +49,8 @@ public class PurchaseRepository {
 		statement = namespace + ".paymentDel";
 		sqlSession.delete(statement, purchaseNum);
 	}
+	public void paymentStatusUpdate(String purchaseNum) {
+		statement = namespace + ".paymentStatusUpdate";
+		sqlSession.update(statement, purchaseNum);
+	}
 }

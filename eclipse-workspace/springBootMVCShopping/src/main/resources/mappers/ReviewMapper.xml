@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+   "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+   
+<mapper namespace="reviewMapperSql">
+	<select id="reviewSelectOne" resultType="string" parameterType="review">
+		select goods_num, purchase_num, review_date, review_contents, member_id
+		from reviews
+		where goods_num = #{goodsNum} and purchase_num = #{purchaseNum}
+	</select>
+	
+	<update id="reviewUpdate" parameterType="review">
+		insert into reviews(GOODS_NUM, PURCHASE_NUM, REVIEW_DATE, REVIEW_CONTENTS, MEMBER_ID)
+		values(#{goodsNum}, #{purchaseNum}, now(),#{reviewContents}, #{memberId})
+	</update>
+</mapper>

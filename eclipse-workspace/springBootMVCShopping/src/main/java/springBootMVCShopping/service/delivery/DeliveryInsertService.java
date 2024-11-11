@@ -11,6 +11,6 @@ public class DeliveryInsertService {
 	DeliveryRepository deliveryRepository;
 	
 	public void execute(String purchaseNum, String deliveryNum) {
-		deliveryRepository.deliveryUpdate(purchaseNum, deliveryNum);
+		deliveryRepository.deliveryInsert(purchaseNum, deliveryNum);
 	}
 }

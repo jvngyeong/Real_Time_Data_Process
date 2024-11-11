@@ -10,7 +10,7 @@
 	</sql>
 
 	<select id="purchaseNum" resultType = "string">
-		select concat(to_char(sysdate, 'yyyyMMdd'), nvl(max(to_number(substr(purchase_num, 9))), 0) + 1)
+		select concat(to_char(sysdate, 'yyyyMMdd'), coalesce(max(to_number(substr(purchase_num, 9))), 0) + 1)
 		from purchase
 		where substr(purchase_num, 1, 8) = to_char(sysdate, 'yyyyMMdd')
 	</select>
@@ -81,6 +81,13 @@
 			<result column="GOODS_MAIN_STORE_IMAGE" jdbcType = "VARCHAR" property = "goodsMainStoreImage"/>
 			<result column="goods_contents" jdbcType = "VARCHAR" property = "goodsContents"/>
 		</association>
+		
+		<association property="reviewDTO" javaType = "review">
+			<id column="review_num" jdbcType="BIGINT" property="reviewNum" />
+			<result column="review_date" jdbcType="DATE" property="reviewDate" />
+			<result column="review_contents" jdbcType="VARCHAR" property="reviewContents" />
+			<result column="member_id" jdbcType="VARCHAR" property="memberId" />
+		</association>
 	</collection>	
 </resultMap>
 	
@@ -91,12 +98,14 @@
 	    delivery_post, delivery_phone, message, purchase_status, purchase_price, member_num,
 	    delivery_name, purchase_name,
 	    CONFIRMNUMBER, CARDNUM, APPLDATE, APPTIME, PAYMETHOD, totalprice,
-	    delivery_num, delivery_date, delivery_status
+	    delivery_num, delivery_date, delivery_status,
+	    review_num, review_date, review_contents, member_id
 	from goods g join purchase_list pl
 	on g.goods_num = pl.goods_num join purchase p
 	on pl.purchase_num = p.purchase_num
 	left outer join payment pm on pm.purchase_num = p.purchase_num
 	left outer join delivery d on p.purchase_num = d.purchase_num
+	left outer join reviews r on pl.purchase_num = r.purchase_num and pl.goods_num = r.goods_num
 	<trim prefix="where" prefixOverrides="AND | OR">
 		<if test="memberNum != null">
 				member_num = #{memberNum}
@@ -123,4 +132,10 @@
 <delete id="paymentDel" parameterType="string">
 	delete from payment where purchase_num = ${purchaseNum}
 </delete>
+
+	<update id="paymentStatusUpdate">
+		update purchase
+		set purchase_status = '구매 확정'
+		where purchase_num = #{purchaseNum}
+	</update>
 </mapper>

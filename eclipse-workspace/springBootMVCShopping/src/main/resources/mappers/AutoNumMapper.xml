@@ -6,7 +6,7 @@
 <mapper namespace="springBootMVCShopping.mapper.AutoNumMapper">
 
 	<select id="autoNumSelect" resultType="String">
-		select concat(#{sep}, nvl(max(substr(${columnName}, #{len})), 100000) + 1) from ${tableName}
+		select concat(#{sep}, coalesce(max(substr(${columnName}, #{len})), 100000) + 1) from ${tableName}
 	</select>
 	
 	<delete id="numsDelete">

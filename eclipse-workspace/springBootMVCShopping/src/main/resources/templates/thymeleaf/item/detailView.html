@@ -8,6 +8,10 @@
 <script type="text/javascript">
 $(function(){
 	wishCheck();
+	goodsDescript();
+	$("#descript").click(function(){
+		goodsDescript();
+	});
 	$("#cartBtn").click(function(){
 		var conf = confirm("장바구니에 담겠습니까?");
 		if(conf == true){
@@ -29,6 +33,39 @@ $(function(){
 			});
 		}
 	});
+	
+	$("#review").click(function(){
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "/review/reviewList", true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		var formData = JSON.stringify({"goodsNum" : "[[${dto.goodsDTO.goodsNum}]]"});
+		xhr.onload = function(){
+			if(xhr.status == 200){
+				var result = JSON.parse(xhr.responseText);
+				var item = "";
+				item += '<table width="600" border="1">';
+				/*
+				result.reviews.forEach(function(review){
+					item += '<tr><th>'+review.memberId+'</th><th>'+review.purchaseNum+'</th></tr>';
+					item += '<tr><th colspan = "2">'+review.reviewContents+'</th></tr>';
+				});
+				*/
+				
+				const reviewDetails = result.reviews.map(function(review){
+					return `<tr><th>${review.memberId}</th><th>${review.purchaseNum}</th></tr>
+							<tr><th colspan = "2">${review.reviewContents}</th></tr>`;
+				});
+				
+				item += reviewDetails;
+				item += '</table>';
+				$("#content").html(item);
+			}
+			else{
+				alert("서버 오류");
+			}
+		}
+		xhr.send(formData);
+	});
 })
 
 function wishCheck(){
@@ -37,10 +74,13 @@ function wishCheck(){
 		url : "/item/wishCheck",
 		data : {"goodsNum" : "[[${dto.goodsDTO.goodsNum}]]"},
 		success : function(result){
+			alert("성공");
 			if(result == 1){
+				alert("성공1");
 				$("#wish").attr("src", "/static/images/hart.jpg");
 			}
 			else{
+				alert("성공2");
 				$("#wish").attr("src", "/static/images/hart1.jpg");
 			}
 		},
@@ -87,6 +127,37 @@ function wishUpdate(){
 	}
 	//var formData = JSON.stringify({"goodsNum" : goodsNum});	//QueryString을 사용하지 않고 데이터를 넘길 때 Json 사용.
 	xhr.send();	// 실행.
+}
+
+function goodsDescript(){
+	var formData = JSON.stringify({"goodsNum" : "[[${dto.goodsDTO.goodsNum}]]"})
+	$.ajax({
+		type : "post",
+		url : "../goodsDescript",
+		data : formData,
+		contentType : "application/json",
+		dataType : "json",
+		success : function(data){
+			//var data = JSON.stringify(result);
+			var item = "";
+			item += "<table width = '800' align = 'center' border = '1'>";
+			item += "<tr><td>";
+			item += "<span>" + data.goodsDTO.goodsContents + "</span>";
+			item += "<br />";
+			if(data.goodsDTO.goodsDetailStoreImage != null){
+				var imageParts = data.goodsDTO.goodsDetailStoreImage.split(/[\/,`.]/);
+				imageParts.forEach(function(image, index, array){
+					item += "<img src='/static/upload/"+ image +"'/><br />"
+				});
+			}
+			item += "</td></tr>";
+			item += "</table>";
+			$("#content").html(item);
+		},
+		error : function(){
+			console.error("Error : " + error);
+		}
+	});
 }
 </script>
 </head>

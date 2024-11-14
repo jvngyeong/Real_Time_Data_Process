@@ -48,7 +48,7 @@
     <update id="wishMerge">
 merge into wish w
 using (select goods_num from goods where goods_num = #{goodsNum}) g
-on (w.goods_num = g.goods_num)
+on (w.goods_num = g.goods_num and w.member_num = #{memberNum})
 when matched then
     update set w.wish_date = sysdate
     where w.goods_num = #{goodsNum} 
@@ -61,12 +61,9 @@ when not matched then
     
     
     <select id="wishCheck">
-    	
     	select <if test="memberNum != null">'1'</if> <if test="memberNum == null">'0'</if>from wish
     	where goods_num = #{goodsNum}
     	<if test="memberNum != null"> and member_num = #{memberNum} </if>
-    	
-    	
     </select>
     
     <select id="wishListSelect">

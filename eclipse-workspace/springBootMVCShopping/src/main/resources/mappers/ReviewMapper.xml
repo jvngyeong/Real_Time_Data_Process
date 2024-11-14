@@ -6,13 +6,23 @@
    
 <mapper namespace="reviewMapperSql">
 	<select id="reviewSelectOne" resultType="string" parameterType="review">
-		select goods_num, purchase_num, review_date, review_contents, member_id
+		select review_contents
 		from reviews
 		where goods_num = #{goodsNum} and purchase_num = #{purchaseNum}
 	</select>
 	
-	<update id="reviewUpdate" parameterType="review">
+	<update id="reviewInsert" parameterType="review">
 		insert into reviews(GOODS_NUM, PURCHASE_NUM, REVIEW_DATE, REVIEW_CONTENTS, MEMBER_ID)
 		values(#{goodsNum}, #{purchaseNum}, now(),#{reviewContents}, #{memberId})
 	</update>
+	
+	<update id="reviewUpdate" parameterType="review">
+		update reviews set REVIEW_DATE = now(), REVIEW_CONTENTS = #{reviewContents}
+		where member_id = #{memberId} and goods_num = #{goodsNum}
+	</update>
+	
+	<select id="goodsReviewList" parameterType="string" resultType="review">
+		select goods_num, purchase_num, review_date, review_contents, member_id from 
+		reviews where goods_num = #{goodsNum}
+	</select>
 </mapper>

@@ -90,7 +90,7 @@
 			goods_num like '%'||#{searchWord}||'%' or
 			goods_name like '%'||#{searchWord}||'%' or
 			goods_price like '%'||#{searchWord}||'%'
-		</where>) as subQuery
+		</where>)
 	</select>
 	
 	<select id="goodsSelectList" resultType = "goodsDTO">
@@ -106,7 +106,7 @@
 	
 	<select id="goodsSelectList2" resultMap = "goodsResultMap">
 		select * from
-		(select row_number() over(order by goods_num desc) as rn, <include refid="goodsColumns"></include> from goods) AS subquery
+		(select row_number() over(order by goods_num desc) as rn, <include refid="goodsColumns"></include> from goods)
 		where rn between #{startRow} and #{endRow}
 	</select>
 		
@@ -117,7 +117,7 @@
 			goods_num like '%'||#{searchWord}||'%' or
 			goods_name like '%'||#{searchWord}||'%' or
 			goods_price like '%'||#{searchWord}||'%'
-		</where>) as sub1
+		</where>)
 		where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

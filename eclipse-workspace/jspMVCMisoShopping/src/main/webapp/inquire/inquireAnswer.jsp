@@ -8,7 +8,7 @@
 <title>inquire/inquireAnswer.jsp</title>
 </head>
 <body>
-	<form action = "inquireRepleUpdate.inq" method = "post">
+	<form action = "inquireAnswer" method = "post">
 			<input type = "hidden" name = "inquireNum" value = "${dto.inquireNum }"/>
 	<table width="600" border='1'>
 		<tr>

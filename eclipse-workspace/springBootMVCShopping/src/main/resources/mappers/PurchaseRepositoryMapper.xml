@@ -83,7 +83,6 @@
 		</association>
 		
 		<association property="reviewDTO" javaType = "review">
-			<id column="review_num" jdbcType="BIGINT" property="reviewNum" />
 			<result column="review_date" jdbcType="DATE" property="reviewDate" />
 			<result column="review_contents" jdbcType="VARCHAR" property="reviewContents" />
 			<result column="member_id" jdbcType="VARCHAR" property="memberId" />
@@ -99,7 +98,7 @@
 	    delivery_name, purchase_name,
 	    CONFIRMNUMBER, CARDNUM, APPLDATE, APPTIME, PAYMETHOD, totalprice,
 	    delivery_num, delivery_date, delivery_status,
-	    review_num, review_date, review_contents, member_id
+	    review_date, review_contents, member_id
 	from goods g join purchase_list pl
 	on g.goods_num = pl.goods_num join purchase p
 	on pl.purchase_num = p.purchase_num

@@ -34,8 +34,8 @@ public class GoodsWriteService {
 		//파일 추가
 		//경로 (getResource를 통해 Resources 파일의 경로를 가져오고 그 안의 폴더를 가져옴)
 		URL resource = getClass().getClassLoader().getResource("static/upload");
-		String fileDir = resource.getFile();
-		fileDir = "C:\\Users\\jun gyeong\\Real_Time_Data_Process\\eclipse-workspace\\springBootMVCShopping\\target\\classes\\static\\upload";
+		//String fileDir = resource.getFile();
+		String fileDir = "C:\\Real_Time_Data_Process\\eclipse-workspace\\springBootMVCShopping\\target\\classes\\static\\upload";
 		
 		//메인 이미지
 		MultipartFile mf = goodsCommand.getGoodsMainImage();

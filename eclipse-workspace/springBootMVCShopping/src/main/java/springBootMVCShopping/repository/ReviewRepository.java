@@ -16,7 +16,7 @@ public class ReviewRepository {
 	String namespace = "reviewMapperSql";
 	String statement;
 	
-	public String reviewSelectOne(ReviewDTO dto) {
+	public ReviewDTO reviewSelectOne(ReviewDTO dto) {
 		statement = namespace + ".reviewSelectOne";
 		return sqlSession.selectOne(statement, dto);
 	}

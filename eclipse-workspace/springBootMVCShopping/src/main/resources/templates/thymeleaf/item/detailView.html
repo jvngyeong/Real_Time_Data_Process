@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>thymeleaf/item/detailView.html</title>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -11,6 +12,9 @@ $(function(){
 	goodsDescript();
 	$("#descript").click(function(){
 		goodsDescript();
+	});
+	$("#inquire").click(function(){
+		inquire();
 	});
 	$("#cartBtn").click(function(){
 		var conf = confirm("장바구니에 담겠습니까?");
@@ -41,6 +45,7 @@ $(function(){
 		var formData = JSON.stringify({"goodsNum" : "[[${dto.goodsDTO.goodsNum}]]"});
 		xhr.onload = function(){
 			if(xhr.status == 200){
+				console.log(xhr.responseText);
 				var result = JSON.parse(xhr.responseText);
 				var item = "";
 				item += '<table width="600" border="1">';
@@ -74,13 +79,10 @@ function wishCheck(){
 		url : "/item/wishCheck",
 		data : {"goodsNum" : "[[${dto.goodsDTO.goodsNum}]]"},
 		success : function(result){
-			alert("성공");
 			if(result == 1){
-				alert("성공1");
 				$("#wish").attr("src", "/static/images/hart.jpg");
 			}
 			else{
-				alert("성공2");
 				$("#wish").attr("src", "/static/images/hart1.jpg");
 			}
 		},
@@ -159,6 +161,36 @@ function goodsDescript(){
 		}
 	});
 }
+
+function inquire(){
+	$.ajax({
+		type : "POST",
+		url : "/corner/inquireList",
+		dataType : "html",
+		data : {"goodsNum" : "[[${dto.goodsDTO.goodsNum}]]"},
+		success : function(item){
+			$("#content").html(item);
+		},
+		error : function(){
+			alert("로그아웃 되었습니다.")
+		}
+	});
+}
+
+function inquireDelete(inquireNum){
+	$.ajax({
+		type:"post",
+		url : "/inquire/inquireDelete",
+		data : {'inquireNum' : inquireNum},
+		success : function(){
+			inquire();
+		}
+	})
+}
+function inquireUpdate(inquireNum){
+    window.open("/inquire/inquireUpdate?inquireNum="+inquireNum,
+          "", "width=700, height=650, top=100, left=100");
+ }
 </script>
 </head>
 <body>

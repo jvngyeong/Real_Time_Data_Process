@@ -1,5 +1,8 @@
 package springBootMVCShopping.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,5 +63,28 @@ public class LoginController {
 		
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	@GetMapping("item.login")
+	public String item() {
+		return "thymeleaf/login";
+	}
+	
+	@PostMapping("item.login")
+	public void item(LoginCommand loginCommand, BindingResult result, HttpSession httpSession, HttpServletResponse response) {
+		userLoginService.execute(loginCommand, result, httpSession, response);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String str = "<script language = 'javascript'>";
+		str += "opener.location.reload();";
+		str += "window.self.close();";		
+		str += "</script>";
+		out.print(str);
+		out.close();
 	}
 }

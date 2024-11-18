@@ -29,7 +29,8 @@ public class ReviewController {
 		ReviewDTO dto = new ReviewDTO();
 		dto.setGoodsNum(goodsNum);
 		dto.setPurchaseNum(purchaseNum);
-		String reviewContents = reviewRepository.reviewSelectOne(dto);
+		ReviewDTO reviewDTO = reviewRepository.reviewSelectOne(dto);
+		String reviewContents = reviewDTO.getReviewContents();
 		dto.setReviewContents(reviewContents);
 		model.addAttribute("dto", dto);
 		return "thymeleaf/review/goodsReview";
@@ -37,11 +38,14 @@ public class ReviewController {
 	
 	@RequestMapping("reviewWrite")
 	public String reviewWrite(ReviewDTO dto, HttpSession session) {
-		String reviewContents = reviewRepository.reviewSelectOne(dto);
+		ReviewDTO reviewDTO = reviewRepository.reviewSelectOne(dto);
+		String reviewContents = reviewDTO.getReviewContents();
+		String reviewMemberId = reviewDTO.getMemberId();
+		String goodsNum = reviewDTO.getGoodsNum();
 		AuthInfoDTO auth = (AuthInfoDTO) session.getAttribute("auth");
-		String memberId = auth.getUserId();
-		dto.setMemberId(memberId);
-		if(reviewContents == null) {
+		String authMemberId = auth.getUserId();
+		dto.setMemberId(authMemberId);
+		if(reviewContents == null && reviewMemberId == null && goodsNum == null) {
 			reviewRepository.reviewInsert(dto);
 		}
 		reviewRepository.reviewUpdate(dto);
@@ -49,12 +53,12 @@ public class ReviewController {
 	}
 	
 	@PostMapping("reviewList")
-	public ResponseEntity<Map<String, Object>> reviewList(@RequestBody Map<String, String> map) {
-		String goodsNum = map.get("goodsNum");
-		System.out.println(goodsNum + "ssfkbnalskd aLksgjdzlekgj n");
-		List<ReviewDTO> list = reviewRepository.goodsReviewList(goodsNum);
-		Map<String, Object> response = new HashMap<>();
-		response.put("reviews", list);
-		return ResponseEntity.ok(response);
-	}
+    public ResponseEntity<Map<String, Object>> reviewList(@RequestBody Map<String, String> map) {
+        String goodsNum = map.get("goodsNum");
+        System.out.println(goodsNum + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        List<ReviewDTO> list = reviewRepository.goodsReviewList(goodsNum);
+        Map<String, Object> response = new HashMap<String, Object>();
+        response.put("reviews", list);
+        return ResponseEntity.ok(response);
+    }
 }

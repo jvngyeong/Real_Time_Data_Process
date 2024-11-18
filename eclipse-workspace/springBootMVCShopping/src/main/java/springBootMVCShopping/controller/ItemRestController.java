@@ -46,7 +46,6 @@ public class ItemRestController {
 	
 	@PostMapping("checkQty")
 	public String checkQty(@RequestBody String goodsNum, HttpSession session) {
-		System.out.println(goodsNum + "askdjdkjbWEKJV;wekvjn;WEJVNw;ekvjb");
 		return checkQtyService.execute(goodsNum, session);
 	}
 	

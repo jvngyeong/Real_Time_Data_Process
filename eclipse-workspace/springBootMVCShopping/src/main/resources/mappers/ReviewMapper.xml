@@ -5,19 +5,19 @@
 
    
 <mapper namespace="reviewMapperSql">
-	<select id="reviewSelectOne" resultType="string" parameterType="review">
-		select review_contents
+	<select id="reviewSelectOne" resultType="review" parameterType="review">
+		select review_contents, goods_num, member_id
 		from reviews
 		where goods_num = #{goodsNum} and purchase_num = #{purchaseNum}
 	</select>
 	
 	<update id="reviewInsert" parameterType="review">
 		insert into reviews(GOODS_NUM, PURCHASE_NUM, REVIEW_DATE, REVIEW_CONTENTS, MEMBER_ID)
-		values(#{goodsNum}, #{purchaseNum}, now(),#{reviewContents}, #{memberId})
+		values(#{goodsNum}, #{purchaseNum}, sysdate ,#{reviewContents}, #{memberId})
 	</update>
 	
 	<update id="reviewUpdate" parameterType="review">
-		update reviews set REVIEW_DATE = now(), REVIEW_CONTENTS = #{reviewContents}
+		update reviews set REVIEW_DATE = sysdate, REVIEW_CONTENTS = #{reviewContents}
 		where member_id = #{memberId} and goods_num = #{goodsNum}
 	</update>
 	

@@ -10,6 +10,10 @@
 $(function(){
 	wishCheck();
 	goodsDescript();
+	$("#buyItem").click(function(){
+		location.href = "/item/buyItem?goodsNum=[[${dto.goodsDTO.goodsNum}]]&cartQty="+$("#cartQty").val();
+	});
+	
 	$("#descript").click(function(){
 		goodsDescript();
 	});
@@ -17,6 +21,7 @@ $(function(){
 		inquire();
 	});
 	$("#cartBtn").click(function(){
+		alert();
 		var conf = confirm("장바구니에 담겠습니까?");
 		if(conf == true){
 			$.ajax({
@@ -74,22 +79,25 @@ $(function(){
 })
 
 function wishCheck(){
-	$.ajax({
-		type : "post",
-		url : "/item/wishCheck",
-		data : {"goodsNum" : "[[${dto.goodsDTO.goodsNum}]]"},
-		success : function(result){
-			if(result == 1){
-				$("#wish").attr("src", "/static/images/hart.jpg");
+	if([[${#strings.isEmpty(session.auth)}]]){}
+	else{
+		$.ajax({
+			type : "post",
+			url : "/item/wishCheck",
+			data : {"goodsNum" : "[[${dto.goodsDTO.goodsNum}]]"},
+			success : function(result){
+				if(result == 1){
+					$("#wish").attr("src", "/static/images/hart.jpg");
+				}
+				else{
+					$("#wish").attr("src", "/static/images/hart1.jpg");
+				}
+			},
+			error : function(result){
+				alert("서버 오류");
 			}
-			else{
-				$("#wish").attr("src", "/static/images/hart1.jpg");
-			}
-		},
-		error : function(result){
-			alert("서버 오류");
-		}
-	});
+		});
+	}
 }
 
 function wishUpdate(){
@@ -113,22 +121,31 @@ function wishUpdate(){
 		}
 	});
 	*/
-	var xhr = new XMLHttpRequest();	//Ajax 대신에 사용! Ajax 역할을 함
-	xhr.open("POST", "/item/wish?goodsNum=[[${dto.goodsDTO.goodsNum}]]", true);	//QueryString으로 데이터를 넘기는 방식
-	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.onload = function(){	// success와 같은 역할!
-		if(xhr.status == 200){ //XMLHttpRequest 객체는 정상 처리되었을 때 status로 200을 가져옴.
-			//var result = xhr.responseText;	// 받아올 data가 있을 때, responseText로 받아옴
-			if($("#wish").attr("src") == "/static/images/hart1.jpg"){
-				$("#wish").attr("src", "/static/images/hart.jpg");
-			}
-			else{
-				$("#wish").attr("src", "/static/images/hart1.jpg");
-			}
+	if([[${#strings.isEmpty(session.auth)}]]){
+		alert("로그인이 필요한 서비스입니다.");
+		popupWindow = window.open("/login/item.login", "login", "width=800, height=500, top=150, left=350");
+		popupWindow.onbeforeunload = function(){
+			window.location.reload();	//부모 창 새로고침
 		}
 	}
-	//var formData = JSON.stringify({"goodsNum" : goodsNum});	//QueryString을 사용하지 않고 데이터를 넘길 때 Json 사용.
-	xhr.send();	// 실행.
+	else{
+		var xhr = new XMLHttpRequest();	//Ajax 대신에 사용! Ajax 역할을 함
+		xhr.open("POST", "/item/wish?goodsNum=[[${dto.goodsDTO.goodsNum}]]", true);	//QueryString으로 데이터를 넘기는 방식
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onload = function(){	// success와 같은 역할!
+			if(xhr.status == 200){ //XMLHttpRequest 객체는 정상 처리되었을 때 status로 200을 가져옴.
+				//var result = xhr.responseText;	// 받아올 data가 있을 때, responseText로 받아옴
+				if($("#wish").attr("src") == "/static/images/hart1.jpg"){
+					$("#wish").attr("src", "/static/images/hart.jpg");
+				}
+				else{
+					$("#wish").attr("src", "/static/images/hart1.jpg");
+				}
+			}
+		}
+		//var formData = JSON.stringify({"goodsNum" : goodsNum});	//QueryString을 사용하지 않고 데이터를 넘길 때 Json 사용.
+		xhr.send();	// 실행.
+	}
 }
 
 function goodsDescript(){
@@ -147,9 +164,11 @@ function goodsDescript(){
 			item += "<span>" + data.goodsDTO.goodsContents + "</span>";
 			item += "<br />";
 			if(data.goodsDTO.goodsDetailStoreImage != null){
-				var imageParts = data.goodsDTO.goodsDetailStoreImage.split(/[\/,`.]/);
+				var imageParts = data.goodsDTO.goodsDetailStoreImage.split(/[\/,`]/);
 				imageParts.forEach(function(image, index, array){
-					item += "<img src='/static/upload/"+ image +"'/><br />"
+					if (image != '') {
+					    item += "<img src='/static/upload/" + image + "'/><br />";
+					}
 				});
 			}
 			item += "</td></tr>";
@@ -213,16 +232,16 @@ function inquireUpdate(inquireNum){
 		</tr>
 		<tr>
 			<td>
-				수량 : <input type="number" min="1" step="1" value="1" id="cartQty" />
+				수량 : <input type="number" min="1" th:max = "${dto.stock}" step="1" value="1" id="cartQty" />
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<th:block th:if = "${dto.stock != 0 and dto.stock != null}">
+				<th:block th:if = "${dto.stock > 0 and dto.stock != null}">
 					<button type="button" id="cartBtn">장바구니</button> |
 					<button type="button" id="buyItem">바로구매</button> | 
 				</th:block>
-				<th:block th:if = "${dto.stock == 0 or dto.stock == null}">
+				<th:block th:if = "${dto.stock <= 0 or dto.stock == null}">
 					품절입니다.
 				</th:block>
 				

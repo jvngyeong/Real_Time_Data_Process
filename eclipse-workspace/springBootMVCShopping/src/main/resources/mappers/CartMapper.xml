@@ -41,21 +41,27 @@
 	    <result property="goodsDTO.goodsName" column="goods_name" />
 	    <result property="goodsDTO.goodsPrice" column="goods_price" />
 	    <result property="goodsDTO.goodsMainStoreImage" column="goods_main_store_image" />
+	    <result property="stock" column="stock"/>
 	</resultMap>
 
-	<update id="cartMerge">
-		INSERT INTO cart (member_num, goods_num, cart_date, cart_qty)
-		SELECT #{memberNum}, #{goodsNum}, NOW(), #{cartQty}
-		FROM goods
-		WHERE goods_num = #{goodsNum}
-		ON DUPLICATE KEY UPDATE 
-		    cart_qty = cart_qty + #{cartQty};
+	<update id="cartMerge">		    
+		merge 
+		into cart c
+		using (select goods_num from goods where goods_num = #{goodsNum}) g
+		on (c.goods_num = g.goods_num and c.member_num = #{memberNum})
+		when matched then
+			update set c.cart_qty = c.cart_qty + #{cartQty}, cart_date = sysdate
+		when not matched then
+			insert (member_num, goods_num, cart_date, cart_qty)
+			values (#{memberNum}, #{goodsNum}, sysdate, #{cartQty})
 	</update>
 	
 	<select id="cartListSelect" resultMap = "goodsCartDTO">
-		select c.goods_num, c.cart_qty, g.goods_name, g.goods_price, g.goods_main_store_image
+		select c.goods_num, c.cart_qty, g.goods_name, g.goods_price, g.goods_main_store_image, sum(gi.Ipgo_Qty) as stock
 		from cart c join goods g
 		on c.goods_num = g.goods_num
+		join goods_ipgo gi
+		on g.goods_num = gi.goods_num
 		where member_num = #{memberNum}
 		<if test="nums != null">
 				and c.goods_num in
@@ -63,6 +69,7 @@
 					#{goodsNum}
 				</foreach>
 		</if>
+		group by c.goods_num, c.cart_qty, g.goods_name, g.goods_price, g.goods_main_store_image
 	</select>
 	<update id="checkQty">
 		update cart set cart_qty = cart_qty - 1 where goods_num = #{goodsNum} and member_num = #{memberNum}

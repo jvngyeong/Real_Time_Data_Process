@@ -1,15 +1,13 @@
 package springBootMVCShopping.service.item;
 
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.servlet.http.HttpServletResponse;
 import springBootMVCShopping.domain.GoodsStockDTO;
 import springBootMVCShopping.mapper.GoodsStockMapper;
 
@@ -17,9 +15,11 @@ import springBootMVCShopping.mapper.GoodsStockMapper;
 public class GoodsDetailViewService {
 	@Autowired
 	GoodsStockMapper goodsStockMapper;
-	public void execute(String goodsNum, Model model, HttpServletResponse response) {
+	public void execute(String goodsNum, Model model, HttpServletResponse response, boolean isFirstVisit) {
 		GoodsStockDTO dto = goodsStockMapper.goodsStockSelectOne(goodsNum);
-		int i = goodsStockMapper.goodsVisitCountUpdate(goodsNum);
+		if(isFirstVisit) {
+			int i = goodsStockMapper.goodsVisitCountUpdate(goodsNum);
+		}
 		
 		model.addAttribute("dto", dto);
 		ObjectMapper mapper = new ObjectMapper();

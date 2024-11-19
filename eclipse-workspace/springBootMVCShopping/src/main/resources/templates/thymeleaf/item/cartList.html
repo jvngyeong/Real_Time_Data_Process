@@ -36,25 +36,29 @@ function checkQty(goodsNum, idx, goodsPrice){
 	}
 }
 
-function goodsCartAdd(goodsNum, idx, goodsPrice){
+function goodsCartAdd(goodsNum, idx, goodsPrice, stock){
 	var formattedCartQty = $(".cartQty").eq(idx).html();
 	const cartQty = Number(formattedCartQty.replace(/,/g, "").replace(/₩/g, ""));
 	var formattedCartPrice = $(".cartPrice").eq(idx).html();
 	const cartPrice = Number(formattedCartPrice.replace(/,/g, "").replace(/₩/g, ""));
-
-	$.ajax({
-		type : "post",
-		url : "/item/goodsCartAdd",
-		data : {"goodsNum" : goodsNum},
-		success : function(result){
-			$(".cartQty").eq(idx).html((cartQty + 1).toLocaleString());
-			$(".cartPrice").eq(idx).html(formatter.format(cartPrice + cartPrice / cartQty));
-			prodChk(cartPrice);
-		},
-		error : function(){
-			alert("서버 오류");
-		}
-	})
+	if(cartQty < stock){
+		$.ajax({
+			type : "post",
+			url : "/item/goodsCartAdd",
+			data : {"goodsNum" : goodsNum},
+			success : function(result){
+				$(".cartQty").eq(idx).html((cartQty + 1).toLocaleString());
+				$(".cartPrice").eq(idx).html(formatter.format(cartPrice + cartPrice / cartQty));
+				prodChk(cartPrice);
+			},
+			error : function(){
+				alert("서버 오류");
+			}
+		})
+	}
+	else{
+		alert("구매할 수 있는 최대 수량입니다.");
+	}
 }
 
 function prodChk(){
@@ -134,7 +138,7 @@ function itemsDel(){
             <td>
             	<a th:href="|javascript:checkQty('${list.goodsDTO.goodsNum }',${idx.index },${list.goodsDTO.goodsPrice })|">[-]</a> 
             	<span class="cartQty">[[${#numbers.formatInteger(list.cartDTO.cartQty, 1, 'COMMA') }]]</span>
-              	<a th:href="|javascript:goodsCartAdd('${list.goodsDTO.goodsNum }',${idx.index },${list.goodsDTO.goodsPrice })|">[+]</a>
+              	<a th:href="|javascript:goodsCartAdd('${list.goodsDTO.goodsNum }',${idx.index },${list.goodsDTO.goodsPrice }, ${list.stock})|">[+]</a>
             </td>
             <td><span class="cartPrice">[[${#numbers.formatCurrency(list.goodsDTO.goodsPrice * list.cartDTO.cartQty)}]]</span></td>
             <td><button type="button" th:attr = "onclick=|javascript:location.href='cartDel?goodsNum=${list.goodsDTO.goodsNum}'|">삭제</button></td>

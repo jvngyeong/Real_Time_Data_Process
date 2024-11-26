@@ -32,4 +32,4 @@ public class GoodsCommand {
 	//MultipartFile goodsMainStoreImage;
 	MultipartFile[] goodsDetailImage;
 	//MultipartFile goodsDetailStoreImage;
-}	
+}

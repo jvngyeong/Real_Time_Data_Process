@@ -26,5 +26,4 @@ public class GoodsListService {
 		startEndPageService.execute(page, 3, count, searchWord, list, model);
 		model.addAttribute("list", list);
 	}
-
 }

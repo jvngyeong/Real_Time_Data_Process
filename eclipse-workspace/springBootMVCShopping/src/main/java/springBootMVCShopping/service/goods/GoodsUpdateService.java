@@ -92,6 +92,7 @@ public class GoodsUpdateService {
 		
 		//session에 있는 값들을 지우고 새로운 값들을 삽입
 		List<FileDTO> list = (List<FileDTO>) session.getAttribute("fileList");
+		
 		//파일의 정보를 DB로부터 가져오기(파일 시스템을 지우기 위해서)
 		GoodsDTO goodsDTO = goodsMapper.goodsSelectOne(goodsCommand.getGoodsNum());
 		if(goodsDTO.getGoodsDetailImage() != null) {

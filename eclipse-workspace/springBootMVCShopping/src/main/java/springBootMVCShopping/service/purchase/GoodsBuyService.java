@@ -24,7 +24,6 @@ public class GoodsBuyService {
 		AuthInfoDTO auth = (AuthInfoDTO) session.getAttribute("auth");
 		String memberNum = memberMapper.getMemberNum(auth.getUserId());
 		List<GoodsCartDTO> list = cartMapper.cartListSelect(memberNum, nums);
-		System.out.println(buyQty + "adaksdnalsdkn");
 		if(buyQty != null) {
 			for(GoodsCartDTO dto : list) {
 				dto.getCartDTO().setCartQty(buyQty);

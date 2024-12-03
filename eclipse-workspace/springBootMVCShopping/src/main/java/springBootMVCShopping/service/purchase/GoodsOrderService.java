@@ -30,7 +30,6 @@ public class GoodsOrderService {
 		AuthInfoDTO auth = (AuthInfoDTO) session.getAttribute("auth");
 		String memberNum = memberMapper.getMemberNum(auth.getUserId());
 		String purchaseNum = purchaseRepository.selectPurchaseNum();
-		System.out.println(purchaseNum);
 		
 		//구매
 		PurchaseDTO dto = new PurchaseDTO();
